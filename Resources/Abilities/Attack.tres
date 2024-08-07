@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://i8eqr8470aeg"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_q4kwc"]
+
+[resource]
+script = ExtResource("1_q4kwc")
+name = "Attack"
+description = ""
+target = "single"
+mainStat = "strength"
+targetStat = "health"
+cost = 0
+baseDamage = 5
+multiplier = 1.2
+turns = 0
+type = "melee"
+element = "none"

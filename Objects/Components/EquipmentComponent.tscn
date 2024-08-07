@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv6ldxepmuas5"]
+
+[ext_resource type="Script" path="res://Objects/Components/Scripts/EquipmentComponent.gd" id="1_mj206"]
+
+[node name="EquipmentComponent" type="Node"]
+script = ExtResource("1_mj206")

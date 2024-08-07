@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bya0ps2ufov22"]
+
+[ext_resource type="Script" path="res://Objects/Components/Scripts/AbilityComponent.gd" id="1_iwhpg"]
+[ext_resource type="PackedScene" uid="uid://b8hxmu4bhihv3" path="res://Objects/Ability.tscn" id="2_u0y2f"]
+
+[node name="AbilityComponent" type="Node"]
+script = ExtResource("1_iwhpg")
+abilityObject = ExtResource("2_u0y2f")

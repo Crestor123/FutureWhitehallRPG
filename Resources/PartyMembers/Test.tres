@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=4 format=3 uid="uid://n6mrngv536uj"]
+
+[ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="1_xjbqw"]
+[ext_resource type="Script" path="res://Resources/Templates/PartyMemberResource.gd" id="1_yq1p7"]
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_0xjkn"]
+
+[resource]
+script = ExtResource("1_yq1p7")
+name = "Test"
+sprite = ExtResource("3_0xjkn")
+level = 1
+stats = {
+"dexterity": 5,
+"health": 10,
+"intelligence": 5,
+"mana": 10,
+"resistance": 5,
+"speed": 5,
+"strength": 5,
+"vitality": 5
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+abilities = Array[Resource("res://Resources/Templates/AbilityResource.gd")]([ExtResource("1_xjbqw")])
