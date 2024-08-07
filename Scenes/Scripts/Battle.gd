@@ -13,6 +13,7 @@ var allyColumn = 272
 var enemyColumn = 112
 
 var currentBattler : Node = null
+var currentTarget : Node = null
 
 signal combatFinished()
 signal combatLoss()
@@ -26,6 +27,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		allies.append(newAlly)
 		newAlly.partyMember = item
 		newAlly.initialize()
+		newAlly.on_select.connect(move_cursor)
 		
 	for item in enemyFormation.enemyList:
 		var newEnemy = enemyScene.instantiate()
@@ -33,6 +35,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		enemies.append(newEnemy)
 		newEnemy.data = item
 		newEnemy.initialize()
+		newEnemy.on_select.connect(move_cursor)
 		
 	#Position each battler on the field
 	position_battlers()
@@ -51,7 +54,19 @@ func position_battlers():
 	pass
 
 func ability_button(ability : Node):
-	currentBattler.Abilities.use_ability(ability, enemies[0])
+	if ability.target == "multi":
+		if currentTarget in allies:
+			currentBattler.Abilities.use_ability(ability, allies) 
+		else:
+			currentBattler.Abilities.use_ability(ability, enemies) 
+	else:
+		var targetArray : Array[Node] = [currentTarget]
+		currentBattler.Abilities.use_ability(ability, targetArray)
+
+func move_cursor(target : Node):
+	currentTarget = target
+	UI.move_cursor(target)
+	pass
 
 func start_battle():
 	while !enemies.is_empty():
@@ -63,6 +78,8 @@ func start_battle():
 			if currentBattler in allies:
 				#The current battler is an ally; show the ability selection UI
 				UI.create_buttons(currentBattler.Abilities.get_children())
+				UI.move_cursor(enemies[0])
+				currentTarget = enemies[0]
 				UI.on_button_pressed.connect(ability_button)
 				await currentBattler.Abilities.used_ability
 				

@@ -22,7 +22,7 @@ func add_ability(abilityData : AbilityResource):
 	newAbility.initialize()
 	pass
 	
-func use_ability(ability : Node, target : Node):
+func use_ability(ability : Node, targetList : Array[Node]):
 	print(ability)
 	if ability not in get_children():
 		print("Error: no such ability")
@@ -30,10 +30,11 @@ func use_ability(ability : Node, target : Node):
 	var damage = 0
 	damage = (ability.baseDamage + stats.get_stat(ability.mainStat)) * ability.multiplier
 	
-	if target == null:
+	if targetList == null:
 		print("Error: no target found")
-		
-	target.Stats.take_damage(damage, ability.type, ability.element)
+	
+	for target in targetList:
+		target.Stats.take_damage(damage, ability.type, ability.element)
 	
 	used_ability.emit(ability.abilityName)
 	pass

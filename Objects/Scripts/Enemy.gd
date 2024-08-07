@@ -3,8 +3,11 @@ extends Node2D
 @onready var Sprite = $Sprite2D
 @onready var Abilities = $AbilityComponent
 @onready var Stats = $StatComponent
+@onready var Select = $Sprite2D/Button
 
 @export var data : EnemyResource
+
+signal on_select
 
 func initialize():
 	if !data: return
@@ -20,3 +23,6 @@ func initialize():
 
 func start_turn():
 	pass
+
+func _on_button_pressed():
+	on_select.emit(self)
