@@ -23,7 +23,7 @@ func add_ability(abilityData : AbilityResource):
 	pass
 	
 func use_ability(ability : Node, targetList : Array[Node]):
-	print(ability)
+	print(ability.abilityName)
 	if ability not in get_children():
 		print("Error: no such ability")
 	

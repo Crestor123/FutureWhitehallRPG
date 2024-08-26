@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var TurnOrder = $TurnOrder
 @onready var UI = $UILayer
+@onready var T = $Timer
 
 @export var allyScene : PackedScene
 @export var enemyScene : PackedScene
@@ -72,7 +73,9 @@ func start_battle():
 	while !enemies.is_empty():
 		#Start of round:
 		TurnOrder.sort_turn_order()	#Sort turn order
+		print("Start of Round")
 		while !TurnOrder.Round.is_empty():
+			print("Start of Turn")
 			currentBattler = TurnOrder.get_next_battler()
 			
 			if currentBattler in allies:
@@ -82,7 +85,19 @@ func start_battle():
 				currentTarget = enemies[0]
 				UI.on_button_pressed.connect(ability_button)
 				await currentBattler.Abilities.used_ability
-				
+				T.wait_time = 1
+				T.start()
+				await T.timeout
+			
+			else:
+				#The current battler is an enemy
+				currentBattler.start_turn(TurnOrder.RoundCount, allies, enemies)
+				T.wait_time = 1
+				T.start()
+				await T.timeout
+			
 			UI.delete_buttons()
 			UI.on_button_pressed.disconnect(ability_button)
+			print("End Turn")
+		print("End Round")
 	pass

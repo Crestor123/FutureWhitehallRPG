@@ -21,7 +21,24 @@ func initialize():
 	Sprite.texture = data.sprite
 	pass
 
-func start_turn():
+#enemies and allies are from the view of this node
+#players = enemies, allies = other monsters
+func start_turn(turnCount, enemies, allies):
+	var ability = select_ability(turnCount)
+	var targetArray = select_target(ability, enemies, allies)
+	Abilities.use_ability(ability, targetArray)
+
+func select_ability(turnCount) -> Node:
+	return Abilities.get_child(turnCount % Abilities.get_child_count())
+	pass
+
+func select_target(ability, enemies, allies):
+	if ability.target == "multi":
+		return enemies
+		
+	var targetIndex = randi_range(0, enemies.size() - 1)
+	var targetArray : Array[Node] = [enemies[targetIndex]]
+	return targetArray
 	pass
 
 func _on_button_pressed():

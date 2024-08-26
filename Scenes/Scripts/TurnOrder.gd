@@ -1,12 +1,13 @@
 extends Node
 
 var Round : Array[Node]
+var RoundCount : int = 0
 
 func sort_turn_order():
 	for item in get_children():
 		Round.append(item)
 	Round.sort_custom(speed_sort)
-	#print(Round)
+	RoundCount += 1
 	pass
 	
 func get_next_battler():
