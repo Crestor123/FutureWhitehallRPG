@@ -5,6 +5,7 @@ extends Node
 @export var parent : Node
 @export var equipment : Node
 
+signal healthChanged
 signal healthZero
 
 var level = 1
@@ -58,6 +59,7 @@ func initialize():
 	
 func take_damage(damage : int, type : String, element : String):
 	print(parent.name, " ", damage, " ", type, " ", element, " damage")
+	healthChanged.emit()
 	pass
 	
 func add_buff():
@@ -68,13 +70,13 @@ func tick_buffs():
 
 func get_health(percent : bool = false):
 	if percent:
-		return 100 * (float(tempStats["health"]) / float(get_stat("health")))
+		return 100 * (float(tempStats["health"]) / float(get_health()))
 	else:
 		return tempStats["health"]
 
 func get_mana(percent : bool = false):
 	if percent:
-		return 100 * (float(tempStats["mana"]) / float(get_stat("mana")))
+		return 100 * (float(tempStats["mana"]) / float(get_mana()))
 	else:
 		return tempStats["mana"]
 	pass

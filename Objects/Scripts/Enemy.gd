@@ -4,6 +4,7 @@ extends Node2D
 @onready var Abilities = $AbilityComponent
 @onready var Stats = $StatComponent
 @onready var Select = $Sprite2D/Button
+@onready var HealthBar = $HealthBar
 
 @export var data : EnemyResource
 
@@ -18,11 +19,14 @@ func initialize():
 	name = data.name
 	for item in data.stats:
 		Stats.stats[item] = data.stats[item]
+	Stats.tempStats["health"] = Stats.stats["health"]
+	Stats.tempStats["mana"] = Stats.stats["mana"]
 	for item in data.resistances:
 		Stats.resistances[item] = data.resistances[item]
 	Abilities.initialize(data.abilities)
 	Sprite.texture = data.sprite
-	pass
+	
+	Stats.healthChanged.connect(update_healthbar)
 
 #enemies and allies are from the view of this node
 #players = enemies, allies = other monsters
@@ -42,6 +46,10 @@ func select_target(ability):
 	var targetIndex = randi_range(0, targets.size() - 1)
 	var targetArray : Array[Node] = [targets[targetIndex]]
 	return targetArray
+	pass
+
+func update_healthbar():
+	HealthBar.update_bar(Stats.get_health(true))
 	pass
 
 func _on_button_pressed():
