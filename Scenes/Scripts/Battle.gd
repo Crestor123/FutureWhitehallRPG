@@ -38,6 +38,10 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.initialize()
 		newEnemy.on_select.connect(move_cursor)
 		
+	for item in enemies:
+		item.allies = enemies
+		item.targets = allies
+		
 	#Position each battler on the field
 	position_battlers()
 	start_battle()
@@ -85,19 +89,19 @@ func start_battle():
 				currentTarget = enemies[0]
 				UI.on_button_pressed.connect(ability_button)
 				await currentBattler.Abilities.used_ability
+				UI.delete_buttons()
+				UI.on_button_pressed.disconnect(ability_button)
 				T.wait_time = 1
 				T.start()
 				await T.timeout
 			
 			else:
 				#The current battler is an enemy
-				currentBattler.start_turn(TurnOrder.RoundCount, allies, enemies)
+				currentBattler.start_turn(TurnOrder.RoundCount)
 				T.wait_time = 1
 				T.start()
 				await T.timeout
 			
-			UI.delete_buttons()
-			UI.on_button_pressed.disconnect(ability_button)
 			print("End Turn")
 		print("End Round")
 	pass

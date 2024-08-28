@@ -7,6 +7,9 @@ extends Node2D
 
 @export var data : EnemyResource
 
+var targets : Array[Node]
+var allies : Array[Node]
+
 signal on_select
 
 func initialize():
@@ -23,21 +26,21 @@ func initialize():
 
 #enemies and allies are from the view of this node
 #players = enemies, allies = other monsters
-func start_turn(turnCount, enemies, allies):
+func start_turn(turnCount):
 	var ability = select_ability(turnCount)
-	var targetArray = select_target(ability, enemies, allies)
+	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)
 
 func select_ability(turnCount) -> Node:
 	return Abilities.get_child(turnCount % Abilities.get_child_count())
 	pass
 
-func select_target(ability, enemies, allies):
+func select_target(ability):
 	if ability.target == "multi":
-		return enemies
+		return targets
 		
-	var targetIndex = randi_range(0, enemies.size() - 1)
-	var targetArray : Array[Node] = [enemies[targetIndex]]
+	var targetIndex = randi_range(0, targets.size() - 1)
+	var targetArray : Array[Node] = [targets[targetIndex]]
 	return targetArray
 	pass
 
