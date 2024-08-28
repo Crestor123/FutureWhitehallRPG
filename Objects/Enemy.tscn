@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://jci0jbslk6hj"]
+[gd_scene load_steps=6 format=3 uid="uid://jci0jbslk6hj"]
 
 [ext_resource type="Script" path="res://Objects/Scripts/Enemy.gd" id="1_irflq"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_jcpcc"]
 [ext_resource type="PackedScene" uid="uid://bya0ps2ufov22" path="res://Objects/Components/AbilityComponent.tscn" id="2_ti8ex"]
 [ext_resource type="PackedScene" uid="uid://2sabk1qf7cl4" path="res://Objects/Components/StatComponent.tscn" id="3_u7d70"]
+[ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/HealthBar.tscn" id="5_tqx74"]
 
 [node name="Enemy" type="Node2D"]
 texture_filter = 1
@@ -31,5 +32,11 @@ parent = NodePath("..")
 
 [node name="StatComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_u7d70")]
 parent = NodePath("..")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_tqx74")]
+offset_left = -64.0
+offset_top = 20.0
+offset_right = 64.0
+offset_bottom = 28.0
 
 [connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]
