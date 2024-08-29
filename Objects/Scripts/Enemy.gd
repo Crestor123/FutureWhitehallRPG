@@ -12,6 +12,7 @@ var targets : Array[Node]
 var allies : Array[Node]
 
 signal on_select
+signal dead
 
 func initialize():
 	if !data: return
@@ -27,18 +28,19 @@ func initialize():
 	Sprite.texture = data.sprite
 	
 	Stats.healthChanged.connect(update_healthbar)
+	Stats.healthZero.connect(die)
 
-#enemies and allies are from the view of this node
-#players = enemies, allies = other monsters
 func start_turn(turnCount):
 	var ability = select_ability(turnCount)
 	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)
 
+#Uses turn count to choose an ability (implement some AI later)
 func select_ability(turnCount) -> Node:
 	return Abilities.get_child(turnCount % Abilities.get_child_count())
 	pass
 
+#Chooses a target for the current ability
 func select_target(ability):
 	if ability.target == "multi":
 		return targets
@@ -52,5 +54,11 @@ func update_healthbar():
 	HealthBar.update_bar(Stats.get_health(true))
 	pass
 
+#Enemy selector button signal
 func _on_button_pressed():
 	on_select.emit(self)
+
+func die():
+	print(name, " defeated!")
+	dead.emit(self)
+	pass

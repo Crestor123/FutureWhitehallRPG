@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyFormation" load_steps=3 format=3 uid="uid://c4ob1t33m1tar"]
+[gd_resource type="Resource" script_class="EnemyFormation" load_steps=4 format=3 uid="uid://c4ob1t33m1tar"]
 
 [ext_resource type="Script" path="res://Resources/Templates/EnemyFormation.gd" id="1_him2o"]
 [ext_resource type="Resource" uid="uid://cs7ihaymb71kn" path="res://Resources/Enemies/TestEnemy.tres" id="1_mda3b"]
+[ext_resource type="Script" path="res://Resources/Templates/EnemyResource.gd" id="1_nttjs"]
 
 [resource]
 script = ExtResource("1_him2o")
-enemyList = Array[Resource("res://Resources/Templates/EnemyResource.gd")]([ExtResource("1_mda3b")])
+enemyList = Array[ExtResource("1_nttjs")]([ExtResource("1_mda3b")])

@@ -48,6 +48,3 @@ func equip():
 	
 func start_turn():
 	pass
-	
-func die():
-	pass

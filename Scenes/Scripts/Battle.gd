@@ -29,6 +29,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newAlly.partyMember = item
 		newAlly.initialize()
 		newAlly.on_select.connect(move_cursor)
+		newAlly.dead.connect(battler_defeated)
 		
 	for item in enemyFormation.enemyList:
 		var newEnemy = enemyScene.instantiate()
@@ -37,6 +38,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.data = item
 		newEnemy.initialize()
 		newEnemy.on_select.connect(move_cursor)
+		newEnemy.dead.connect(battler_defeated)
 		
 	for item in enemies:
 		item.allies = enemies
@@ -104,4 +106,9 @@ func start_battle():
 			
 			print("End Turn")
 		print("End Round")
+	pass
+
+func battler_defeated(battler):
+	#Remove battler from turn order
+	#battler.queue_free()
 	pass
