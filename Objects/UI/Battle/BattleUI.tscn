@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c56ghvj57d1ws"]
+[gd_scene load_steps=13 format=3 uid="uid://c56ghvj57d1ws"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
 [ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
 [ext_resource type="Texture2D" uid="uid://ersecl1p8w6k" path="res://Assets/CursorSingle.png" id="3_ax01a"]
 [ext_resource type="PackedScene" uid="uid://ckt6mj6la3sew" path="res://Objects/UI/Battle/AllyStatBlock.tscn" id="3_nnqog"]
 [ext_resource type="PackedScene" uid="uid://c3h4fytt0403" path="res://Objects/UI/Battle/EnemyStatBlock.tscn" id="4_ikcrs"]
+[ext_resource type="PackedScene" uid="uid://xyxigkol2w46" path="res://Objects/UI/Battle/BattlerTurnIcon.tscn" id="5_ascfi"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
 
 [sub_resource type="Theme" id="Theme_kcj8j"]
@@ -52,6 +53,7 @@ script = ExtResource("1_8sqfg")
 abilityButton = ExtResource("2_f4qr7")
 allyStatBlock = ExtResource("3_nnqog")
 enemyStatBlock = ExtResource("4_ikcrs")
+battlerTurnIcon = ExtResource("5_ascfi")
 
 [node name="RightBar" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(96, 176)
@@ -67,7 +69,11 @@ grow_vertical = 2
 theme = SubResource("Theme_kcj8j")
 theme_override_styles/panel = SubResource("StyleBoxFlat_xvmax")
 
-[node name="AbilityContainer" type="VBoxContainer" parent="RightBar"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RightBar"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="AbilityContainer" type="VBoxContainer" parent="RightBar/ScrollContainer"]
 layout_mode = 2
 
 [node name="BottomBar" type="PanelContainer" parent="."]
@@ -127,6 +133,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vkn38")
 
 [node name="TurnOrder" type="VBoxContainer" parent="LeftBar"]
 layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="HSeparator" type="HSeparator" parent="LeftBar/TurnOrder"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_vkn38")
 
 [node name="Cursor" type="Sprite2D" parent="."]
 visible = false

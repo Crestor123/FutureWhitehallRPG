@@ -9,6 +9,7 @@ extends Node2D
 @export var data : EnemyResource
 
 var enemyName : String = ""
+var icon : Texture2D = null
 
 var targets : Array[Node]
 var allies : Array[Node]
@@ -28,6 +29,7 @@ func initialize():
 		Stats.resistances[item] = data.resistances[item]
 	Abilities.initialize(data.abilities)
 	Sprite.texture = data.sprite
+	icon = data.sprite
 	
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)

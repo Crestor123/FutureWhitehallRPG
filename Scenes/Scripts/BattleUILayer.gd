@@ -1,14 +1,17 @@
 extends Control
 
 @export var abilityButton : PackedScene
+
 @export var allyStatBlock : PackedScene
 @export var enemyStatBlock : PackedScene
+
+@export var battlerTurnIcon : PackedScene
 
 @onready var rightBar = $RightBar
 @onready var bottomBar = $BottomBar
 @onready var leftBar = $LeftBar
 
-@onready var AbilityContainer = $RightBar/AbilityContainer
+@onready var AbilityContainer = $RightBar/ScrollContainer/AbilityContainer
 @onready var EnemyStats = $BottomBar/HBoxContainer/MarginContainer/EnemyStats
 @onready var AllyStats = $BottomBar/HBoxContainer/MarginContainer2/AllyStats
 @onready var TurnOrder = $LeftBar/TurnOrder
@@ -16,6 +19,7 @@ extends Control
 
 signal on_button_pressed()
 
+#Deletes any ability buttons and hides the ability menu
 func delete_buttons():
 	#AbilityContainer.visible = false
 	rightBar.visible = false
@@ -23,6 +27,7 @@ func delete_buttons():
 	for item in AbilityContainer.get_children():
 		item.queue_free()
 
+#Creates ability buttons for the current battler
 func create_buttons(abilityList : Array[Node]):
 	rightBar.visible = false
 	#AbilityContainer.visible = false
@@ -49,11 +54,23 @@ func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 		newStatBlock.initialize(item)
 	pass
 
+func initialize_turnorder(battlerList : Array[Node]):
+	for item in battlerList:
+		var newIcon = battlerTurnIcon.instantiate()
+		TurnOrder.add_child(newIcon)
+		newIcon.texture = item.icon
+	TurnOrder.move_child(TurnOrder.get_node("HSeparator"), TurnOrder.get_child_count())
+
+func remove_statblock():
+	pass
+
 func move_cursor(target : Node):
 	var targetPos = target.global_position
 	Cursor.global_position = Vector2(targetPos.x, targetPos.y - 32)
 	pass
 
+#Called when an ability button is pressed
+#Sends a signal to the battler to use the ability
 func button_pressed(ability):
 	on_button_pressed.emit(ability)
 	pass

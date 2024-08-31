@@ -8,6 +8,7 @@ extends Node2D
 var allyName : String = ""
 var Stats : Node = null
 var Abilities : Node = null
+var icon : Texture2D = null
 
 signal on_select
 signal dead
@@ -18,6 +19,7 @@ func initialize():
 	Stats = partyMember.Stats
 	Abilities = partyMember.Abilities
 	Sprite.texture = partyMember.sprite
+	icon = partyMember.sprite
 	
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)

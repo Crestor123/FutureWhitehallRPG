@@ -39,7 +39,9 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.initialize()
 		newEnemy.on_select.connect(move_cursor)
 		newEnemy.dead.connect(battler_defeated)
-		
+	
+	TurnOrder.sort_turn_order()
+	
 	#Give the enemies references to the lists of battlers
 	for item in enemies:
 		item.allies = enemies
@@ -47,6 +49,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		
 	#Initialize the UI
 	UI.initialize_statblocks(allies, enemies)
+	UI.initialize_turnorder(TurnOrder.Round)
 	
 	#Position each battler on the field
 	position_battlers()
