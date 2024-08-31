@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo4wynw2jixx4"]
+[gd_scene load_steps=6 format=3 uid="uid://bo4wynw2jixx4"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Battle.gd" id="1_56hep"]
 [ext_resource type="PackedScene" uid="uid://cgrqg1py0agou" path="res://Objects/Ally.tscn" id="2_8tbmj"]
 [ext_resource type="PackedScene" uid="uid://jci0jbslk6hj" path="res://Objects/Enemy.tscn" id="3_ilbj2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/TurnOrder.gd" id="4_81y1j"]
-[ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="5_om8gd"]
-[ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/AbilityButton.tscn" id="5_rbhed"]
-[ext_resource type="Texture2D" uid="uid://ersecl1p8w6k" path="res://Assets/CursorSingle.png" id="7_8kwps"]
+[ext_resource type="PackedScene" uid="uid://c56ghvj57d1ws" path="res://Objects/UI/Battle/BattleUI.tscn" id="5_1gjpb"]
 
 [node name="Battle" type="Node2D"]
 texture_filter = 1
@@ -18,21 +16,8 @@ enemyScene = ExtResource("3_ilbj2")
 script = ExtResource("4_81y1j")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-script = ExtResource("5_om8gd")
-abilityButton = ExtResource("5_rbhed")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer"]
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Cursor" type="Sprite2D" parent="UILayer"]
-visible = false
-texture_filter = 1
-texture = ExtResource("7_8kwps")
+[node name="BattleUI" parent="UILayer" instance=ExtResource("5_1gjpb")]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

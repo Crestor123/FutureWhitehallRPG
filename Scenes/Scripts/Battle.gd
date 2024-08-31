@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var TurnOrder = $TurnOrder
-@onready var UI = $UILayer
+@onready var UI = $UILayer/BattleUI
 @onready var T = $Timer
 
 @export var allyScene : PackedScene
@@ -40,10 +40,14 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.on_select.connect(move_cursor)
 		newEnemy.dead.connect(battler_defeated)
 		
+	#Give the enemies references to the lists of battlers
 	for item in enemies:
 		item.allies = enemies
 		item.targets = allies
 		
+	#Initialize the UI
+	UI.initialize_statblocks(allies, enemies)
+	
 	#Position each battler on the field
 	position_battlers()
 	start_battle()
@@ -108,7 +112,6 @@ func start_battle():
 		print("End Round")
 	pass
 
-func battler_defeated(battler):
-	#Remove battler from turn order
+func battler_defeated(battler):	#Remove battler from turn order
 	#battler.queue_free()
 	pass

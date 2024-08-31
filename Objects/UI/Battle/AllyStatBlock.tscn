@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckt6mj6la3sew"]
+
+[ext_resource type="Script" path="res://Objects/UI/Scripts/AllyStatBlock.gd" id="1_200gg"]
+[ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="2_k38ki"]
+
+[node name="AllyStatBlock" type="HBoxContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_200gg")
+
+[node name="Name" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="HealthBar" parent="CenterContainer" instance=ExtResource("2_k38ki")]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP / MaxHP"
+horizontal_alignment = 2
+
+[node name="Mana" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MP"
+horizontal_alignment = 2

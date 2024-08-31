@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://eue73ie54jos" path="res://Assets/HealthBarUnder.png" id="1_4121m"]
 [ext_resource type="Texture2D" uid="uid://332qhgheskqt" path="res://Assets/HealthBarOver.png" id="2_feb78"]
 [ext_resource type="Texture2D" uid="uid://2i8om8xsvi6k" path="res://Assets/HealthBarProgress.png" id="3_sl3md"]
-[ext_resource type="Script" path="res://Objects/UI/HealthBar.gd" id="4_wom38"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/HealthBar.gd" id="4_wom38"]
 
 [node name="HealthBar" type="TextureProgressBar"]
 texture_filter = 1
@@ -14,4 +14,5 @@ value = 100.0
 texture_under = ExtResource("1_4121m")
 texture_over = ExtResource("2_feb78")
 texture_progress = ExtResource("3_sl3md")
+tint_over = Color(0.629675, 0.629675, 0.629675, 1)
 script = ExtResource("4_wom38")

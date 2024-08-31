@@ -5,7 +5,7 @@ extends Node
 @export var parent : Node
 @export var equipment : Node
 
-signal healthChanged
+signal healthChanged(amount)
 signal healthZero
 
 var level = 1
@@ -76,7 +76,7 @@ func take_damage(value : int, type : String, element : String):
 	if tempStats.health < 0:
 		tempStats.health = 0
 	
-	healthChanged.emit()
+	healthChanged.emit(tempStats.health)
 	if tempStats.health == 0:
 		healthZero.emit()
 	

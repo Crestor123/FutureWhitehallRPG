@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://c56ghvj57d1ws"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
+[ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
+[ext_resource type="Texture2D" uid="uid://ersecl1p8w6k" path="res://Assets/CursorSingle.png" id="3_ax01a"]
+[ext_resource type="PackedScene" uid="uid://ckt6mj6la3sew" path="res://Objects/UI/Battle/AllyStatBlock.tscn" id="3_nnqog"]
+[ext_resource type="PackedScene" uid="uid://c3h4fytt0403" path="res://Objects/UI/Battle/EnemyStatBlock.tscn" id="4_ikcrs"]
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
+
+[sub_resource type="Theme" id="Theme_kcj8j"]
+default_font = ExtResource("5_myop7")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvmax"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_47dam"]
+default_font = ExtResource("5_myop7")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ufn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkn38"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="BattleUI" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8sqfg")
+abilityButton = ExtResource("2_f4qr7")
+allyStatBlock = ExtResource("3_nnqog")
+enemyStatBlock = ExtResource("4_ikcrs")
+
+[node name="RightBar" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(96, 176)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.76
+anchor_right = 1.0
+anchor_bottom = 0.733
+offset_left = -3.05176e-05
+offset_bottom = 0.0799866
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_kcj8j")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xvmax")
+
+[node name="AbilityContainer" type="VBoxContainer" parent="RightBar"]
+layout_mode = 2
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_47dam")
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="EnemyStats" type="VBoxContainer" parent="BottomBar/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="AllyStats" type="VBoxContainer" parent="BottomBar/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftBar" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.04
+anchor_bottom = 0.737
+offset_bottom = -0.880005
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vkn38")
+
+[node name="TurnOrder" type="VBoxContainer" parent="LeftBar"]
+layout_mode = 2
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("3_ax01a")

@@ -5,6 +5,7 @@ extends Node2D
 @onready var HealthBar = $HealthBar
 
 @export var partyMember : PartyMember
+var allyName : String = ""
 var Stats : Node = null
 var Abilities : Node = null
 
@@ -13,6 +14,7 @@ signal dead
 
 func initialize():
 	if !partyMember: return
+	allyName = partyMember.partyName
 	Stats = partyMember.Stats
 	Abilities = partyMember.Abilities
 	Sprite.texture = partyMember.sprite

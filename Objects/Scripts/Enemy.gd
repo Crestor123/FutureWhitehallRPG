@@ -8,6 +8,8 @@ extends Node2D
 
 @export var data : EnemyResource
 
+var enemyName : String = ""
+
 var targets : Array[Node]
 var allies : Array[Node]
 
@@ -17,7 +19,7 @@ signal dead
 func initialize():
 	if !data: return
 	
-	name = data.name
+	enemyName = data.name
 	for item in data.stats:
 		Stats.stats[item] = data.stats[item]
 	Stats.tempStats["health"] = Stats.stats["health"]
