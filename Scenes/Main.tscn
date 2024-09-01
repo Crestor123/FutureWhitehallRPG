@@ -21,6 +21,7 @@ StartingScene = ExtResource("2_60d34")
 data = ExtResource("6_ivy2p")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="OverworldUI" parent="UILayer" instance=ExtResource("6_c3y5o")]
 

@@ -21,7 +21,7 @@ window/size/viewport_width=400
 window/size/viewport_height=240
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
-window/handheld/orientation=1
+window/handheld/orientation=4
 
 [rendering]
 
