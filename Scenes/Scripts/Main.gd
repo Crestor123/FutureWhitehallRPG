@@ -16,4 +16,10 @@ func enter_battle(enemyFormation):
 	print(enemyFormation.enemyList)
 	await CurrentScene.load_battle()
 	CurrentScene.CurrentScene.initialize(Player.PartyMembers, enemyFormation)
+	CurrentScene.CurrentScene.battleFinished.connect(battle_victory)
+	pass
+
+func battle_victory():
+	print("Battle won!")
+	CurrentScene.return_from_battle()
 	pass

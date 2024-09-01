@@ -54,7 +54,10 @@ func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 		newStatBlock.initialize(item)
 	pass
 
-func initialize_turnorder(battlerList : Array[Node]):
+func set_turnorder(battlerList : Array[Node]):
+	for item in TurnOrder.get_children():
+		item.queue_free()
+	
 	for item in battlerList:
 		var newIcon = battlerTurnIcon.instantiate()
 		TurnOrder.add_child(newIcon)

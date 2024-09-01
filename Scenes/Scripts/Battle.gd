@@ -16,8 +16,8 @@ var enemyColumn = 112
 var currentBattler : Node = null
 var currentTarget : Node = null
 
-signal combatFinished()
-signal combatLoss()
+signal battleFinished()
+signal battleLoss()
 
 func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormation):
 	#Takes a list of party members and enemies
@@ -40,8 +40,6 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.on_select.connect(move_cursor)
 		newEnemy.dead.connect(battler_defeated)
 	
-	TurnOrder.sort_turn_order()
-	
 	#Give the enemies references to the lists of battlers
 	for item in enemies:
 		item.allies = enemies
@@ -49,7 +47,6 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		
 	#Initialize the UI
 	UI.initialize_statblocks(allies, enemies)
-	UI.initialize_turnorder(TurnOrder.Round)
 	
 	#Position each battler on the field
 	position_battlers()
@@ -86,6 +83,7 @@ func start_battle():
 	while !enemies.is_empty():
 		#Start of round:
 		TurnOrder.sort_turn_order()	#Sort turn order
+		UI.set_turnorder(TurnOrder.Round)
 		print("Start of Round")
 		while !TurnOrder.Round.is_empty():
 			print("Start of Turn")
@@ -113,8 +111,15 @@ func start_battle():
 			
 			print("End Turn")
 		print("End Round")
-	pass
+	if enemies.is_empty():	#Victory, return to previous map
+		battleFinished.emit()
+		
 
-func battler_defeated(battler):	#Remove battler from turn order
-	#battler.queue_free()
-	pass
+func battler_defeated(battler):
+	#Remove battler from turn order
+	if battler in enemies:
+		enemies.erase(battler)
+	elif battler in allies:
+		allies.erase(battler)
+		
+	TurnOrder.remove_battler(battler)
