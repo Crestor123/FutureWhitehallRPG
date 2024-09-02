@@ -2,6 +2,7 @@ extends Node
 
 @export var CharacterObject : PackedScene
 @export var BattleScene : PackedScene
+@export var PauseMenu : PackedScene
 
 @export var tileSize = 32
 
@@ -34,7 +35,7 @@ func load_scene(scene : PackedScene):
 		Character.step.connect(character_step)
 	pass
 
-func load_battle():
+func load_subscene(scene : PackedScene):
 	if CurrentScene:
 		#Grab battle background from current map
 		CharacterPosition = Character.global_position
@@ -42,12 +43,11 @@ func load_battle():
 		Character.queue_free()
 		CurrentScene.queue_free()
 		
-	CurrentScene = BattleScene.instantiate()
+	CurrentScene = scene.instantiate()
 	add_child(CurrentScene)
-	
-	pass
+	return CurrentScene
 
-func return_from_battle():
+func return_from_subscene():
 	if !PrevScene: return
 	
 	CurrentPackedScene = PrevScene
@@ -55,13 +55,15 @@ func return_from_battle():
 	CurrentScene = CurrentPackedScene.instantiate()
 	add_child(CurrentScene)
 	
-	stepCount = 10
 	Character = CharacterObject.instantiate()
 	add_child(Character)
 	Character.initialize(tileSize)
 	Character.global_position = CharacterPosition
 	Character.step.connect(character_step)
 	pass
+
+func reset_stepcount():
+	stepCount = 12
 
 func get_enemy_formations():
 	if !CurrentScene: return

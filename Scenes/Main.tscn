@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcirhhyojhm5v"]
+[gd_scene load_steps=11 format=3 uid="uid://dcirhhyojhm5v"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Main.gd" id="1_pskxb"]
 [ext_resource type="PackedScene" uid="uid://cmeynhelhk6em" path="res://Scenes/TestScene.tscn" id="2_60d34"]
 [ext_resource type="PackedScene" uid="uid://penyqboqdfbh" path="res://Objects/Player.tscn" id="4_dvuns"]
 [ext_resource type="PackedScene" uid="uid://vwc8vtsckf4f" path="res://Objects/Character.tscn" id="4_wag8g"]
 [ext_resource type="PackedScene" uid="uid://ciubsoqne0anu" path="res://Objects/PartyMember.tscn" id="5_hr24t"]
-[ext_resource type="Script" path="res://Scenes/Scripts/CurrentScene.gd" id="5_qkc37"]
+[ext_resource type="Script" path="res://Scenes/Scripts/SceneChanger.gd" id="5_qkc37"]
 [ext_resource type="PackedScene" uid="uid://bl7pjotc7ibe3" path="res://Objects/UI/OverworldUI.tscn" id="6_c3y5o"]
 [ext_resource type="Resource" uid="uid://n6mrngv536uj" path="res://Resources/PartyMembers/Test.tres" id="6_ivy2p"]
 [ext_resource type="PackedScene" uid="uid://bo4wynw2jixx4" path="res://Scenes/Battle.tscn" id="7_r16ws"]
+[ext_resource type="PackedScene" uid="uid://4q55h78engfb" path="res://Objects/UI/PauseMenu.tscn" id="10_emt16"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -25,7 +26,8 @@ follow_viewport_enabled = true
 
 [node name="OverworldUI" parent="UILayer" instance=ExtResource("6_c3y5o")]
 
-[node name="CurrentScene" type="Node" parent="."]
+[node name="SceneChanger" type="Node" parent="."]
 script = ExtResource("5_qkc37")
 CharacterObject = ExtResource("4_wag8g")
 BattleScene = ExtResource("7_r16ws")
+PauseMenu = ExtResource("10_emt16")

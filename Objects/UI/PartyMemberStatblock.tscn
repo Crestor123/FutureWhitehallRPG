@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0uvi1e534jup"]
+
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="1_84r0g"]
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_qegto"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/PartyMemberStatblock.gd" id="2_1sq5f"]
+
+[sub_resource type="Theme" id="Theme_mf1pj"]
+default_font = ExtResource("1_qegto")
+default_font_size = 8
+
+[node name="PartyMemberStatblock" type="MarginContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mf1pj")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("2_1sq5f")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_84r0g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tags" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="HBoxContainer/HBoxContainer/Tags"]
+layout_mode = 2
+text = "Name"
+
+[node name="LevelTag" type="Label" parent="HBoxContainer/HBoxContainer/Tags"]
+layout_mode = 2
+text = "Level:"
+
+[node name="HealthTag" type="Label" parent="HBoxContainer/HBoxContainer/Tags"]
+layout_mode = 2
+text = "HP:"
+
+[node name="ManaTag" type="Label" parent="HBoxContainer/HBoxContainer/Tags"]
+layout_mode = 2
+text = "MP:"
+
+[node name="Values" type="VBoxContainer" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Class" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+text = "Class"
+horizontal_alignment = 2
+
+[node name="Level" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+text = "Lv"
+horizontal_alignment = 2
+
+[node name="Health" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+text = "100 / 100"
+horizontal_alignment = 2
+
+[node name="Mana" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+text = "100 / 100"
+horizontal_alignment = 2

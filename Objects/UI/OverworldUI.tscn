@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a6sns")
 
-[node name="btnMenu" type="Button" parent="."]
+[node name="Menu" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 0
 offset_right = 8.0
@@ -48,13 +48,13 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="btnStatus" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Status" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 text = "Status"
 flat = true
 
-[node name="btnItems" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Items" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_fonts/font = ExtResource("3_kkorv")
@@ -62,7 +62,7 @@ theme_override_font_sizes/font_size = 8
 text = "Items"
 flat = true
 
-[node name="btnEquipment" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Equipment" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_fonts/font = ExtResource("3_kkorv")
@@ -70,14 +70,14 @@ theme_override_font_sizes/font_size = 8
 text = "Equipment"
 flat = true
 
-[node name="btnClose" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Close" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 text = "Close"
 flat = true
 
-[connection signal="pressed" from="btnMenu" to="." method="_on_btn_menu_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/btnStatus" to="." method="_on_btn_status_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/btnItems" to="." method="_on_btn_items_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/btnEquipment" to="." method="_on_btn_equipment_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/btnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_btn_menu_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Status" to="." method="_on_btn_status_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Items" to="." method="_on_btn_items_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Equipment" to="." method="_on_btn_equipment_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Close" to="." method="_on_btn_close_pressed"]
