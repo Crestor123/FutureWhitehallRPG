@@ -16,7 +16,7 @@ extends Node
 @export var cost : int = 0
 @export var baseDamage : int
 @export var multiplier : float
-@export var turns : int = 0
+@export var turns : int = 0	#Turns > 0 indicate a buff or debuff
 
 @export_enum ("melee", "ranged", "magical") var type : String
 @export_enum ("fire", "electricity", "water", 

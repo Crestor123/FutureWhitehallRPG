@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://ckbmhfayj2xwh"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_gpwrd"]
+
+[resource]
+script = ExtResource("1_gpwrd")
+name = "Poison"
+description = ""
+target = "single"
+mainStat = "intelligence"
+targetStat = "health"
+cost = 0
+baseDamage = 0
+multiplier = 0.0
+turns = 0
+type = "magical"
+element = "acid"

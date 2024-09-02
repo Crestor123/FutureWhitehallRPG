@@ -69,6 +69,10 @@ func take_damage(value : int, type : String, element : String):
 	else:	#The damage has no element
 		damage -= get_stat("vitality")
 	
+	#Error Checking
+	if value > 0:
+		if damage < 0: damage = 0	#Damage cannot be reduced below 0
+	
 	#Subtract the damage done from temphealth
 	print(parent.name, " ", damage, " ", type, " ", element, " damage")
 	tempStats.health -= damage
@@ -80,10 +84,15 @@ func take_damage(value : int, type : String, element : String):
 	if tempStats.health == 0:
 		healthZero.emit()
 	
-func add_buff():
+func add_buff(source, ability, value):
+	var newBuff = buffObject.instantiate()
+	add_child(newBuff)
+	newBuff.initialize(source, ability, value)
 	pass
 	
 func tick_buffs():
+	for buff in get_children():
+		buff.tick()
 	pass
 
 #Returns current health value

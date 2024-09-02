@@ -95,6 +95,8 @@ func start_battle():
 				UI.move_cursor(enemies[0])
 				currentTarget = enemies[0]
 				UI.on_button_pressed.connect(ability_button)
+				currentBattler.Stats.tick_buffs()
+				
 				await currentBattler.Abilities.used_ability
 				UI.delete_buttons()
 				UI.on_button_pressed.disconnect(ability_button)

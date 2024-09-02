@@ -33,8 +33,17 @@ func use_ability(ability : Node, targetList : Array[Node]):
 	if targetList == null:
 		print("Error: no target found")
 	
-	for target in targetList:
-		target.Stats.take_damage(damage, ability.type, ability.element)
+	if ability.target == "self":
+		targetList.clear()
+		targetList.append(parent)
+	
+	if ability.targetStat == "health":
+		for target in targetList:
+			target.Stats.take_damage(damage, ability.type, ability.element)
+	else: 
+		for target in targetList:
+			target.Stats.add_buff(self, ability, damage)
+		
 	
 	used_ability.emit(ability.abilityName)
 	pass

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://csxy2k4ktuogf"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_funhy"]
+
+[resource]
+script = ExtResource("1_funhy")
+name = "Defend"
+description = ""
+target = "self"
+mainStat = "vitality"
+targetStat = "vitality"
+cost = 0
+baseDamage = 2
+multiplier = 1.0
+turns = 1
+type = "melee"
+element = "none"

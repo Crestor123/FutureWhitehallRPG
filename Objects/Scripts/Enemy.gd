@@ -35,6 +35,7 @@ func initialize():
 	Stats.healthZero.connect(die)
 
 func start_turn(turnCount):
+	Stats.tick_buffs()
 	var ability = select_ability(turnCount)
 	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)
