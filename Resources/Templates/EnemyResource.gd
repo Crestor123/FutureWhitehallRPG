@@ -30,4 +30,13 @@ class_name EnemyResource
 	"earth": 0
 }
 
+@export var statusResist = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
+}
+
 @export var abilities : Array[AbilityResource]

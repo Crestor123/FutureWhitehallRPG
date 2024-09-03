@@ -36,6 +36,11 @@ func initialize():
 
 func start_turn(turnCount):
 	Stats.tick_buffs()
+	for item in Stats.get_children():
+		if item.disabling == true:
+			#The battler is prevented from acting
+			return
+	
 	var ability = select_ability(turnCount)
 	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)

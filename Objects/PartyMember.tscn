@@ -8,8 +8,9 @@
 [node name="PartyMember" type="Node"]
 script = ExtResource("1_t2p47")
 
-[node name="StatComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("1_vm0ts")]
+[node name="StatComponent" parent="." node_paths=PackedStringArray("parent", "equipment") instance=ExtResource("1_vm0ts")]
 parent = NodePath("..")
+equipment = NodePath("../EquipmentComponent")
 
 [node name="EquipmentComponent" parent="." instance=ExtResource("2_cpuku")]
 

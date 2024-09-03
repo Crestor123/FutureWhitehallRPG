@@ -19,6 +19,13 @@ extends Node
 
 @export_enum ("fire", "electricity", "water", 
 	"acid", "air", "void", "earth") var element : String
+	
+@export var disablingEffects = [
+	"stun",
+	"death",
+	"sleep",
+]
+@export var disabling : bool = false
 
 var target : Node = null
 
@@ -28,6 +35,7 @@ func initialize(setSource : Node, setAbility : Node, effect : EffectResource):
 	element = ability.element
 	turns = ability.turns
 	target = get_parent()
+	type = effect.status
 	
 	#Calculate the percentage to modify each stat by
 	var percent : int = 0
@@ -38,6 +46,7 @@ func initialize(setSource : Node, setAbility : Node, effect : EffectResource):
 			1: percent = 10	#Minor
 			2: percent = 25	#Normal
 			3: percent = 50	#Major
+			4: percent = 100#Max
 	
 	if effect.debuff: percent *= -1	#The effect will deal damage rather than heal
 	
@@ -48,6 +57,10 @@ func initialize(setSource : Node, setAbility : Node, effect : EffectResource):
 	for item in statValues:
 		if item != "health" and item != "mana":
 			target.tempStats[item] += statValues[item]
+			
+	if effect.status in disablingEffects:
+		#The debuff prevents the target from acting
+		disabling = true
 	
 	
 func tick():

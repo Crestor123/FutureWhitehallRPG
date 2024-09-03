@@ -11,6 +11,7 @@ var Abilities : Node = null
 var icon : Texture2D = null
 
 signal on_select
+signal endTurn
 signal dead
 
 func initialize():
@@ -23,6 +24,20 @@ func initialize():
 	
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)
+
+func start_turn():
+	Stats.tick_buffs()
+	for item in Stats.get_children():
+		if item.disabling == true:
+			#The battler is prevented from acting
+			return
+	Abilities.used_ability.connect(end_turn)
+	pass
+
+func end_turn(abilityName):
+	Abilities.used_ability.disconnect(end_turn)
+	endTurn.emit()
+	pass
 
 func update_healthbar():
 	HealthBar.update_bar(Stats.get_health(true))

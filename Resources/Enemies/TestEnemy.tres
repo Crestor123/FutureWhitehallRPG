@@ -30,4 +30,12 @@ resistances = {
 "void": 0,
 "water": 0
 }
+statusResist = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
 abilities = Array[ExtResource("1_84yk8")]([ExtResource("1_10r3u")])

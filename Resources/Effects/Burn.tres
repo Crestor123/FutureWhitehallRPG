@@ -16,5 +16,5 @@ stats = {
 }
 value = 1
 customValue = 0
-status = 0
+status = "burn"
 debuff = true

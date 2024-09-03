@@ -32,6 +32,15 @@ var equipResistances = {
 	"earth": 0
 }
 
+var equipStatusResist = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
+}
+
 func equip():
 	pass
 

@@ -32,6 +32,15 @@ var resistances = {
 	"earth": 0
 }
 
+var statusResist = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
+}
+
 #Holds temporary values applied to stats
 #as well as current health and mana
 var tempStats = {
@@ -53,6 +62,15 @@ var tempResistances = {
 	"air": 0,
 	"void": 0,
 	"earth": 0
+}
+
+var tempStatusResist = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
 }
 
 func initialize():
@@ -84,7 +102,15 @@ func take_damage(value : int, type : String, element : String):
 	if tempStats.health == 0:
 		healthZero.emit()
 	
-func add_buff(source, ability, value):
+func add_buff(source, ability, effect):
+	#Check status resistances
+	if effect.status in statusResist:
+		var rand = randi_range(1, 100)
+		if rand < get_resistance(effect.status): 
+			#The status failed
+			print("Status failed to apply")
+			return
+	
 	for item in get_children():
 		if item.source == source and item.ability == ability:
 			#There is already a buff from the same source active
@@ -92,7 +118,7 @@ func add_buff(source, ability, value):
 			return
 	var newBuff = buffObject.instantiate()
 	add_child(newBuff)
-	newBuff.initialize(source, ability, value)
+	newBuff.initialize(source, ability, effect)
 	pass
 	
 func tick_buffs():
@@ -133,9 +159,13 @@ func get_resistance(res : String):
 	
 	if res in resistances:
 		result += tempResistances[res] + resistances[res]
+	if res in statusResist:
+		result += tempStatusResist[res] + statusResist[res]
 		
 	if equipment:
 		if res in equipment.equipResistances:
 			result += equipment.equipResistances[res]
+		if res in equipment.equipStatusResist:
+			result += equipment.equipStatusResist[res]
 	
 	return result

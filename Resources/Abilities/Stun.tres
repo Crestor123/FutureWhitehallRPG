@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=4 format=3 uid="uid://0s1by8p6o4rp"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_lloc1"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_ggljb"]
+[ext_resource type="Resource" uid="uid://bcnf6q5qpq25h" path="res://Resources/Effects/Stun.tres" id="3_lumh5"]
+
+[resource]
+script = ExtResource("1_lloc1")
+name = "Stun"
+description = ""
+target = "single"
+mainStat = "strength"
+targetStat = "health"
+cost = 0
+baseDamage = 0
+multiplier = 0.0
+turns = 3
+type = "melee"
+element = "none"
+statusEffects = Array[ExtResource("2_ggljb")]([ExtResource("3_lumh5")])
