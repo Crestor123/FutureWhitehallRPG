@@ -66,11 +66,11 @@ func take_damage(value : int, type : String, element : String):
 	if element in resistances:
 		damage -= damage * get_resistance(element)
 		damage -= get_stat("resistance") / 2
-	else:	#The damage has no element
+	elif type != "none":	#The damage has no element
 		damage -= get_stat("vitality")
 	
 	#Error Checking
-	if value > 0:
+	if value >= 0:
 		if damage < 0: damage = 0	#Damage cannot be reduced below 0
 	
 	#Subtract the damage done from temphealth
@@ -85,6 +85,11 @@ func take_damage(value : int, type : String, element : String):
 		healthZero.emit()
 	
 func add_buff(source, ability, value):
+	for item in get_children():
+		if item.source == source and item.ability == ability:
+			#There is already a buff from the same source active
+			item.turns = ability.turns	#Reset the buff's turn counter
+			return
 	var newBuff = buffObject.instantiate()
 	add_child(newBuff)
 	newBuff.initialize(source, ability, value)

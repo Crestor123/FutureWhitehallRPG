@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=6 format=3 uid="uid://n6mrngv536uj"]
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=7 format=3 uid="uid://n6mrngv536uj"]
 
 [ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_wnyj5"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="1_xjbqw"]
 [ext_resource type="Script" path="res://Resources/Templates/PartyMemberResource.gd" id="1_yq1p7"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_0xjkn"]
 [ext_resource type="Resource" uid="uid://csxy2k4ktuogf" path="res://Resources/Abilities/Defend.tres" id="3_8toce"]
+[ext_resource type="Resource" uid="uid://c57ps30oj3oup" path="res://Resources/Abilities/Burn.tres" id="4_0iw24"]
 
 [resource]
 script = ExtResource("1_yq1p7")
@@ -30,4 +31,4 @@ resistances = {
 "void": 0,
 "water": 0
 }
-abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce")])
+abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_0iw24")])

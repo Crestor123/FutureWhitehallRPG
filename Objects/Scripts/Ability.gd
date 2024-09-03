@@ -22,6 +22,8 @@ extends Node
 @export_enum ("fire", "electricity", "water", 
 "acid", "air", "void", "earth", "none") var element : String
 
+@export var statusEffects : Array[EffectResource]
+
 func initialize():
 	if !data: return
 	
@@ -37,5 +39,6 @@ func initialize():
 	turns = data.turns
 	type = data.type
 	element = data.element
+	statusEffects = data.statusEffects
 	
 	print("New ability ", abilityName, " created")

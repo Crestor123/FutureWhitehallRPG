@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EffectResource" load_steps=2 format=3 uid="uid://d3qtujnpjn2in"]
+
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_83qoj"]
+
+[resource]
+script = ExtResource("1_83qoj")
+stats = {
+"dexterity": false,
+"health": true,
+"intelligence": false,
+"mana": false,
+"resistance": false,
+"speed": false,
+"strength": false,
+"vitality": false
+}
+value = 1
+customValue = 0
+status = 0
+debuff = true

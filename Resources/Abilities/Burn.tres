@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=4 format=3 uid="uid://c57ps30oj3oup"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_cwsr4"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_x3oyk"]
+[ext_resource type="Resource" uid="uid://d3qtujnpjn2in" path="res://Resources/Effects/Burn.tres" id="3_dji04"]
+
+[resource]
+script = ExtResource("1_cwsr4")
+name = "Burn"
+description = ""
+target = "single"
+mainStat = "intelligence"
+targetStat = "health"
+cost = 0
+baseDamage = 0
+multiplier = 0.0
+turns = 3
+type = "magical"
+element = "none"
+statusEffects = Array[ExtResource("2_x3oyk")]([ExtResource("3_dji04")])

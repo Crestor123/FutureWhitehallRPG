@@ -36,13 +36,19 @@ func use_ability(ability : Node, targetList : Array[Node]):
 	if ability.target == "self":
 		targetList.clear()
 		targetList.append(parent)
+		
+	if ability.baseDamage > 0:
+		if ability.targetStat == "health":
+			for target in targetList:
+				target.Stats.take_damage(damage, ability.type, ability.element)
+		else:
+			for target in targetList:
+				target.tempStats[ability.targetStat] -= damage
 	
-	if ability.targetStat == "health":
+	for effect in ability.statusEffects:
 		for target in targetList:
-			target.Stats.take_damage(damage, ability.type, ability.element)
-	else: 
-		for target in targetList:
-			target.Stats.add_buff(self, ability, damage)
+			target.Stats.add_buff(self, ability, effect)
+
 		
 	
 	used_ability.emit(ability.abilityName)

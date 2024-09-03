@@ -21,3 +21,5 @@ class_name AbilityResource
 @export_enum ("melee", "ranged", "magical") var type : String
 @export_enum ("fire", "electricity", "water", 
 "acid", "air", "void", "earth", "none") var element : String
+
+@export var statusEffects : Array[EffectResource]

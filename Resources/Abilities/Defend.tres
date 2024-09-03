@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://csxy2k4ktuogf"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=4 format=3 uid="uid://csxy2k4ktuogf"]
 
 [ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_funhy"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_u6q5x"]
+[ext_resource type="Resource" uid="uid://chvhaxcgrkerg" path="res://Resources/Effects/Defend.tres" id="3_7ihup"]
 
 [resource]
 script = ExtResource("1_funhy")
@@ -10,8 +12,9 @@ target = "self"
 mainStat = "vitality"
 targetStat = "vitality"
 cost = 0
-baseDamage = 2
-multiplier = 1.0
+baseDamage = 0
+multiplier = 0.0
 turns = 1
 type = "melee"
 element = "none"
+statusEffects = Array[ExtResource("2_u6q5x")]([ExtResource("3_7ihup")])
