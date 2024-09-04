@@ -10,6 +10,9 @@ extends Node2D
 var allies : Array[Node]
 var enemies : Array[Node]
 
+var victory = false
+var defeat = false
+
 var allyColumn = 272
 var enemyColumn = 112
 
@@ -80,7 +83,7 @@ func move_cursor(target : Node):
 	pass
 
 func start_battle():
-	while !enemies.is_empty():
+	while !victory and !defeat:
 		#Start of round:
 		TurnOrder.sort_turn_order()	#Sort turn order
 		UI.set_turnorder(TurnOrder.Round)
@@ -113,15 +116,22 @@ func start_battle():
 			
 			print("End Turn")
 		print("End Round")
-	if enemies.is_empty():	#Victory, return to previous map
+	if victory:	 #return to previous map
 		battleFinished.emit()
 		
-
+	if defeat:
+		#Game over
+		battleFinished.emit()
+		
 func battler_defeated(battler):
 	#Remove battler from turn order
-	if battler in enemies:
-		enemies.erase(battler)
-	elif battler in allies:
-		allies.erase(battler)
+	#TurnOrder.remove_battler(battler)
+	
+	#Check if the battler was the last ally or enemy
+	victory = true
+	for item in enemies:
+		if !item.Stats.dead: victory = false
 		
-	TurnOrder.remove_battler(battler)
+	defeat = true
+	for item in allies:
+		if !item.Stats.dead: defeat = false

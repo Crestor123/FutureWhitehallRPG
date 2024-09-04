@@ -13,6 +13,7 @@ var icon : Texture2D = null
 signal on_select
 signal endTurn
 signal dead
+signal revived
 
 func initialize():
 	if !partyMember: return
@@ -22,6 +23,7 @@ func initialize():
 	Sprite.texture = partyMember.sprite
 	icon = partyMember.sprite
 	
+	Stats.reviveSignal.connect(revive)
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)
 
@@ -46,7 +48,13 @@ func update_healthbar():
 func _on_button_pressed():
 	on_select.emit(self)
 
+func revive():
+	print(partyMember.partyName, " revived!")
+	Stats.dead = false
+	revived.emit(self)
+
 func die():
 	print(partyMember.partyName, " defeated!")
+	Stats.dead = true
 	dead.emit(self)
 	pass

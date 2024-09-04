@@ -54,6 +54,11 @@ func initialize(setSource : Node, setAbility : Node, effect : EffectResource):
 		if effect.stats[stat]:	#If the stat is checked
 			statValues[stat] = target.stats[stat] * (float(percent) / 100)
 			
+	if effect.status == "revive":
+		if target.dead == true: 
+			target.revive()
+			target.take_damage(-statValues["health"], "none", "none")
+			
 	for item in statValues:
 		if item != "health" and item != "mana":
 			target.tempStats[item] += statValues[item]

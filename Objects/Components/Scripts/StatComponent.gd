@@ -4,11 +4,14 @@ extends Node
 
 @export var parent : Node
 @export var equipment : Node
+@export var battler : Node
 
+signal reviveSignal
 signal healthChanged(amount)
 signal healthZero
 
 var level = 1
+var dead = false
 
 var stats = {
 	"health": 0,
@@ -76,6 +79,9 @@ var tempStatusResist = {
 func initialize():
 	pass
 	
+func revive():
+	reviveSignal.emit()
+
 func take_damage(value : int, type : String, element : String):
 	
 	var damage : int = value

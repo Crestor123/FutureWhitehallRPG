@@ -21,6 +21,9 @@ StartingScene = ExtResource("2_60d34")
 [node name="PartyMember" parent="Player" instance=ExtResource("5_hr24t")]
 data = ExtResource("6_ivy2p")
 
+[node name="PartyMember2" parent="Player" instance=ExtResource("5_hr24t")]
+data = ExtResource("6_ivy2p")
+
 [node name="UILayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 

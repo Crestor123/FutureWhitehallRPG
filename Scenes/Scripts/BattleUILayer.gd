@@ -64,7 +64,7 @@ func set_turnorder(battlerList : Array[Node]):
 		newIcon.texture = item.icon
 	TurnOrder.move_child(TurnOrder.get_node("HSeparator"), TurnOrder.get_child_count())
 
-func remove_statblock():
+func remove_statblock(battler : Node):
 	pass
 
 func move_cursor(target : Node):

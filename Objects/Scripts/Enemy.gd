@@ -16,6 +16,7 @@ var allies : Array[Node]
 
 signal on_select
 signal dead
+signal revived
 
 func initialize():
 	if !data: return
@@ -31,6 +32,7 @@ func initialize():
 	Sprite.texture = data.sprite
 	icon = data.sprite
 	
+	Stats.reviveSignal.connect(revive)
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)
 
@@ -52,11 +54,15 @@ func select_ability(turnCount) -> Node:
 
 #Chooses a target for the current ability
 func select_target(ability):
+	var aliveTargets : Array[Node]
+	for item in targets:
+		if !item.Stats.dead: aliveTargets.append(item)
+	
 	if ability.target == "multi":
-		return targets
-		
-	var targetIndex = randi_range(0, targets.size() - 1)
-	var targetArray : Array[Node] = [targets[targetIndex]]
+		return aliveTargets
+	
+	var targetIndex = randi_range(0, aliveTargets.size() - 1)
+	var targetArray : Array[Node] = [aliveTargets[targetIndex]]
 	return targetArray
 	pass
 
@@ -68,7 +74,15 @@ func update_healthbar():
 func _on_button_pressed():
 	on_select.emit(self)
 
+func revive():
+	print(name, " revived!")
+	Stats.dead = false
+	Sprite.visible = true
+	revived.emit(self)
+
 func die():
 	print(name, " defeated!")
+	Stats.dead = true
+	Sprite.visible = false
 	dead.emit(self)
 	pass

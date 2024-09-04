@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=4 format=3 uid="uid://db0v6hlho2123"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_w5fpo"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_meb7g"]
+[ext_resource type="Resource" uid="uid://c278ud1m1agrh" path="res://Resources/Effects/Revive.tres" id="3_kpl1a"]
+
+[resource]
+script = ExtResource("1_w5fpo")
+name = "Revive"
+description = ""
+target = "single"
+mainStat = "intelligence"
+targetStat = "health"
+cost = 0
+baseDamage = 0
+multiplier = 0.0
+turns = 0
+type = "magical"
+element = "none"
+statusEffects = Array[ExtResource("2_meb7g")]([ExtResource("3_kpl1a")])
