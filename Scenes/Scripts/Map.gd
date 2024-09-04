@@ -1,4 +1,4 @@
-extends TileMap
+extends TileMapLayer
 
 class_name Map
 

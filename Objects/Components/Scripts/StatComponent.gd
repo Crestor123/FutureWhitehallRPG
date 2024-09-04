@@ -103,6 +103,8 @@ func take_damage(value : int, type : String, element : String):
 	
 	if tempStats.health < 0:
 		tempStats.health = 0
+	if tempStats.health > stats.health:
+		tempStats.health = stats.health
 	
 	healthChanged.emit(tempStats.health)
 	if tempStats.health == 0:

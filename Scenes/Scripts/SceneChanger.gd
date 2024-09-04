@@ -33,6 +33,14 @@ func load_scene(scene : PackedScene):
 		add_child(Character)
 		Character.initialize(tileSize)
 		Character.step.connect(character_step)
+		
+		for item in CurrentScene.get_children():
+			if item is TriggerZone:
+				item.zoneEntered.connect(zone_entered)
+	pass
+
+func zone_entered(zone : TriggerZone):
+	print(zone)
 	pass
 
 func load_subscene(scene : PackedScene):

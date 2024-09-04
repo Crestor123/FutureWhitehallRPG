@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://cokrbidcfhc1m"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_2rmxk"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_x57rc"]
+
+[resource]
+script = ExtResource("1_2rmxk")
+name = "Heal"
+description = ""
+target = "single"
+mainStat = "intelligence"
+targetStat = "health"
+cost = 0
+baseDamage = 10
+multiplier = -1.1
+turns = 0
+type = ""
+element = ""
+statusEffects = Array[ExtResource("2_x57rc")]([])

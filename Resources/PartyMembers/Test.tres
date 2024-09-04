@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Resources/Templates/PartyMemberResource.gd" id="1_yq1p7"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_0xjkn"]
 [ext_resource type="Resource" uid="uid://csxy2k4ktuogf" path="res://Resources/Abilities/Defend.tres" id="3_8toce"]
-[ext_resource type="Resource" uid="uid://db0v6hlho2123" path="res://Resources/Abilities/Revive.tres" id="4_sxxys"]
+[ext_resource type="Resource" uid="uid://cokrbidcfhc1m" path="res://Resources/Abilities/Heal.tres" id="4_bmu80"]
 
 [resource]
 script = ExtResource("1_yq1p7")
@@ -14,7 +14,7 @@ sprite = ExtResource("3_0xjkn")
 level = 1
 stats = {
 "dexterity": 5,
-"health": 10,
+"health": 20,
 "intelligence": 5,
 "mana": 10,
 "resistance": 5,
@@ -39,4 +39,4 @@ statusResist = {
 "slow": 0,
 "stun": 0
 }
-abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_sxxys")])
+abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_bmu80")])

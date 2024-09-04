@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://o27h14qw0qcv"]
+
+[ext_resource type="Script" path="res://Objects/Overworld/Scripts/TriggerZone.gd" id="1_yv0i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg15u"]
+size = Vector2(16, 16)
+
+[node name="TriggerZone" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_yv0i4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pg15u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
