@@ -17,7 +17,7 @@ var stepCount : int = 0
 
 signal encounter()
 
-func load_scene(scene : PackedScene):
+func load_scene(scene : PackedScene, newPosition : Vector2):
 	if CurrentScene:
 		CharacterPosition = Character.globalPosition
 		PrevScene = CurrentPackedScene
@@ -34,13 +34,20 @@ func load_scene(scene : PackedScene):
 		Character.initialize(tileSize)
 		Character.step.connect(character_step)
 		
+		Character.global_position = newPosition
+		
 		for item in CurrentScene.get_children():
 			if item is TriggerZone:
 				item.zoneEntered.connect(zone_entered)
 	pass
 
 func zone_entered(zone : TriggerZone):
-	print(zone)
+	if zone.type == "door":
+		load_scene(zone.linkedScene, zone.newPosition)
+	if zone.type == "interact":
+		print("zone interact")
+	if zone.type == "encounter":
+		print("zone encounter")
 	pass
 
 func load_subscene(scene : PackedScene):

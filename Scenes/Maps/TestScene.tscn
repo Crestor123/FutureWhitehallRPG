@@ -26,3 +26,4 @@ EnemyFormations = Array[ExtResource("3_0d4co")]([ExtResource("3_mppdf")])
 
 [node name="TriggerZone" parent="." instance=ExtResource("2_vy57j")]
 position = Vector2(120, 24)
+type = "interact"

@@ -6,10 +6,11 @@ extends Node2D
 @onready var Player = $Player
 
 @export var StartingScene : PackedScene
+@export var StartingPosition : Vector2
 
 func _ready():
 	UI.buttonPressed.connect(ui_button)
-	SceneChanger.load_scene(StartingScene)
+	SceneChanger.load_scene(StartingScene, StartingPosition)
 	SceneChanger.encounter.connect(enter_battle)
 	Player.initialize()
 
