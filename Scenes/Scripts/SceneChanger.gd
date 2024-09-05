@@ -19,12 +19,15 @@ signal encounter()
 
 func load_scene(scene : PackedScene, newPosition : Vector2):
 	if CurrentScene:
-		CharacterPosition = Character.globalPosition
+		CharacterPosition = Character.global_position
 		PrevScene = CurrentPackedScene
 		CurrentScene.queue_free()
-		
-	CurrentPackedScene = scene
-	CurrentScene = scene.instantiate()
+		Character.queue_free()
+	if !scene:
+		CurrentScene = CurrentPackedScene.instantiate()
+	else:
+		CurrentPackedScene = scene
+		CurrentScene = scene.instantiate()
 	add_child(CurrentScene)
 	
 	if CurrentScene is Map:
@@ -37,22 +40,16 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 		Character.global_position = newPosition
 		
 		for item in CurrentScene.get_children():
-			if item is TriggerZone:
-				item.zoneEntered.connect(zone_entered)
-	pass
-
-func zone_entered(zone : TriggerZone):
-	if zone.type == "door":
-		load_scene(zone.linkedScene, zone.newPosition)
-	if zone.type == "interact":
-		print("zone interact")
-	if zone.type == "encounter":
-		print("zone encounter")
+			if item is RoomTransition:
+				item.roomTransition.connect(load_scene)
 	pass
 
 func load_subscene(scene : PackedScene):
 	if CurrentScene:
 		#Grab battle background from current map
+		if scene == BattleScene:
+			pass
+		
 		CharacterPosition = Character.global_position
 		PrevScene = CurrentPackedScene
 		Character.queue_free()
