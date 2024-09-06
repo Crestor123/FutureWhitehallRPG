@@ -15,8 +15,7 @@ func initialize(player : Node):
 	for item in Stats.get_children():
 		item.queue_free()
 		
-	var partyMembers = player.get_children()
-	for item in partyMembers:
+	for item in player.PartyMembers:
 		var newStatblock = partyStatblock.instantiate()
 		Stats.add_child(newStatblock)
 		newStatblock.initialize(item)

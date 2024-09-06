@@ -26,13 +26,8 @@ func enter_battle(enemyFormation):
 	SceneChanger.CurrentScene.battleFinished.connect(battle_victory)
 	pass
 
-func open_menu(menu : String):
-	var scene = SceneChanger.PauseMenu
-	
-	if menu == "inventory":
-		scene = SceneChanger.InventoryMenu
-	
-	await SceneChanger.load_subscene(scene)
+func open_menu(menu : PackedScene):
+	await SceneChanger.load_subscene(menu)
 	UILayer.visible = false
 	SceneChanger.CurrentScene.initialize(Player)
 	SceneChanger.CurrentScene.close.connect(close_menu)
