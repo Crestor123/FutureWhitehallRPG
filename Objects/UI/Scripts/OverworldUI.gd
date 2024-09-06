@@ -3,6 +3,7 @@ extends Control
 @onready var menuPanel = $PanelContainer
 
 signal buttonPressed(which)
+signal menuButtonPressed(which)
 
 func _ready():
 	#Move the menu panel offscreen
@@ -17,15 +18,15 @@ func _on_btn_menu_pressed():
 	pass
 
 func _on_btn_status_pressed():
-	buttonPressed.emit("status")
+	menuButtonPressed.emit("status")
 	pass
 
 func _on_btn_items_pressed():
-	buttonPressed.emit("items")
+	menuButtonPressed.emit("inventory")
 	pass
 
 func _on_btn_equipment_pressed():
-	buttonPressed.emit("equip")
+	menuButtonPressed.emit("equip")
 	pass
 
 func _on_btn_close_pressed():

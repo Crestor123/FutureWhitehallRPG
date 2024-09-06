@@ -2,7 +2,7 @@ extends Node
 
 class_name PartyMember
 
-@export var data : Resource
+@export var data : PartyMemberResource
 
 @onready var Abilities = $AbilityComponent
 @onready var Stats = $StatComponent

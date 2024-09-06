@@ -10,3 +10,5 @@ class_name ConsumableResource
 
 @export var bonus : int
 @export var turns : int
+
+@export var additionalEffectss : Array[EffectResource]

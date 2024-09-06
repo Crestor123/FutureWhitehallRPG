@@ -24,3 +24,12 @@ class_name EquipResource
 	"void": 0,
 	"earth": 0
 }
+
+@export var statusResists = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
+}

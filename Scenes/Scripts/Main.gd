@@ -10,13 +10,13 @@ extends Node2D
 
 func _ready():
 	UI.buttonPressed.connect(ui_button)
+	UI.menuButtonPressed.connect(open_menu)
 	SceneChanger.load_scene(StartingScene, StartingPosition)
 	SceneChanger.encounter.connect(enter_battle)
 	Player.initialize()
 
 func ui_button(button : String):
-	if button == "status":
-		open_menu()
+	pass
 
 func enter_battle(enemyFormation):
 	print(enemyFormation.enemyList)
@@ -26,10 +26,15 @@ func enter_battle(enemyFormation):
 	SceneChanger.CurrentScene.battleFinished.connect(battle_victory)
 	pass
 
-func open_menu():
-	await SceneChanger.load_subscene(SceneChanger.PauseMenu)
+func open_menu(menu : String):
+	var scene = SceneChanger.PauseMenu
+	
+	if menu == "inventory":
+		scene = SceneChanger.InventoryMenu
+	
+	await SceneChanger.load_subscene(scene)
 	UILayer.visible = false
-	SceneChanger.CurrentScene.initialize(Player.PartyMembers)
+	SceneChanger.CurrentScene.initialize(Player)
 	SceneChanger.CurrentScene.close.connect(close_menu)
 	pass
 

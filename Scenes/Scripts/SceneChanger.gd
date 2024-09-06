@@ -3,6 +3,7 @@ extends Node
 @export var CharacterObject : PackedScene
 @export var BattleScene : PackedScene
 @export var PauseMenu : PackedScene
+@export var InventoryMenu : PackedScene
 
 @export var tileSize = 32
 
@@ -58,6 +59,16 @@ func load_subscene(scene : PackedScene):
 	CurrentScene = scene.instantiate()
 	add_child(CurrentScene)
 	return CurrentScene
+
+func change_subscene(scene : PackedScene):
+	#Do not update character position or previous scene
+	if CurrentScene:
+		CurrentScene.queue_free()
+	
+	CurrentScene = scene.instantiate()
+	add_child(CurrentScene)
+	return CurrentScene
+	pass
 
 func return_from_subscene():
 	if !PrevScene: return

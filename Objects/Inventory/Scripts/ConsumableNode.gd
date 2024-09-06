@@ -10,3 +10,13 @@ class_name ConsumableNode
 
 @export var bonus : int
 @export var turns : int
+
+@export var additionalEffects : Array[EffectResource]
+
+func initialize():
+	super.initialize()
+	stat = data.stat
+	element = data.element
+	bonus = data.bonus
+	turns = data.turns
+	additionalEffects = data.additionalEffects

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4q55h78engfb"]
+[gd_scene load_steps=7 format=3 uid="uid://4q55h78engfb"]
 
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_bfsu8"]
 [ext_resource type="Script" path="res://Objects/UI/Scripts/PauseMenu.gd" id="1_dfk3x"]
+[ext_resource type="PackedScene" uid="uid://eeoynl4hfus7" path="res://Objects/UI/InventoryMenu.tscn" id="2_6lnpw"]
 [ext_resource type="PackedScene" uid="uid://b0uvi1e534jup" path="res://Objects/UI/PartyMemberStatblock.tscn" id="2_i224t"]
 
 [sub_resource type="Theme" id="Theme_3u5l8"]
@@ -27,6 +28,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_dfk3x")
+InventoryMenu = ExtResource("2_6lnpw")
 partyStatblock = ExtResource("2_i224t")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

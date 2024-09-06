@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://eeoynl4hfus7"]
+
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_4b0eh"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/InventoryMenu.gd" id="1_jy3al"]
+[ext_resource type="PackedScene" uid="uid://bce3sdywtuaux" path="res://Objects/UI/ItemUI.tscn" id="2_r1m4a"]
+
+[sub_resource type="Theme" id="Theme_5jcd1"]
+default_font = ExtResource("1_4b0eh")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gv1y"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="InventoryMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jy3al")
+ItemUI = ExtResource("2_r1m4a")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5jcd1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gv1y")
+
+[node name="ItemContainer" type="HFlowContainer" parent="PanelContainer"]
+layout_mode = 2

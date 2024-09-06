@@ -24,3 +24,22 @@ class_name EquipNode
 	"void": 0,
 	"earth": 0
 }
+
+@export var statusResists = {
+	"burn": 0,
+	"sleep": 0,
+	"silence": 0,
+	"slow": 0,
+	"stun": 0,
+	"blind": 0
+}
+
+func initialize():
+	super.initialize()
+	stackable = false
+	for stat in bonuses:
+		bonuses[stat] = data.bonuses[stat]
+	for stat in resistances:
+		resistances[stat] = data.resistances[stat]
+	for stat in statusResists:
+		statusResists[stat] = data.statusResists[stat]
