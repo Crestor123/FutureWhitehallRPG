@@ -39,3 +39,5 @@ class_name PartyMemberResource
 }
 
 @export var abilities : Array[AbilityResource]
+
+@export var inventory : Array[ItemResource]

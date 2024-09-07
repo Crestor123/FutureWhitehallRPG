@@ -26,11 +26,10 @@ func enter_battle(enemyFormation):
 	SceneChanger.CurrentScene.battleFinished.connect(battle_victory)
 	pass
 
-func open_menu(menu : PackedScene):
-	await SceneChanger.load_subscene(menu)
+func open_menu(menuState : String):
+	await SceneChanger.load_subscene(SceneChanger.PauseMenu)
+	SceneChanger.CurrentScene.initialize(menuState, Player)
 	UILayer.visible = false
-	SceneChanger.CurrentScene.initialize(Player)
-	SceneChanger.CurrentScene.close.connect(close_menu)
 	pass
 
 func close_menu():

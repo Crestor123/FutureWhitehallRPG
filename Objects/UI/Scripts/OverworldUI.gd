@@ -1,9 +1,5 @@
 extends Control
 
-@export var PauseMenu : PackedScene
-@export var InventoryMenu : PackedScene
-@export var EquipmentMenu : PackedScene
-
 @onready var menuPanel = $PanelContainer
 
 signal buttonPressed(which)
@@ -22,11 +18,11 @@ func _on_btn_menu_pressed():
 	pass
 
 func _on_btn_status_pressed():
-	menuButtonPressed.emit(PauseMenu)
+	menuButtonPressed.emit("status")
 	pass
 
 func _on_btn_items_pressed():
-	menuButtonPressed.emit(InventoryMenu)
+	menuButtonPressed.emit("inventory")
 	pass
 
 func _on_btn_equipment_pressed():

@@ -1,24 +1,15 @@
 extends Control
 
+@export var MainMenu : PackedScene
 @export var InventoryMenu : PackedScene
 
-@export var partyStatblock : PackedScene
-
-@onready var Stats = $PanelContainer/HBoxContainer/Stats
-@onready var btnItem = $PanelContainer/HBoxContainer/Buttons/Items
-@onready var btnEquipment = $PanelContainer/HBoxContainer/Buttons/Equipment
-@onready var btnClose = $PanelContainer/HBoxContainer/Buttons/Close
-
-signal close
-
-func initialize(player : Node):
-	for item in Stats.get_children():
-		item.queue_free()
+func initialize(menuState : String, Player : Node):
+	var menu : Node = null
+	if menuState == "status":
+		menu = MainMenu.instantiate()
+	elif menuState == "inventory":
+		menu = InventoryMenu.instantiate()
 		
-	for item in player.PartyMembers:
-		var newStatblock = partyStatblock.instantiate()
-		Stats.add_child(newStatblock)
-		newStatblock.initialize(item)
-
-func _on_close_pressed():
-	close.emit()
+	add_child(menu)
+	menu.initialize(Player)
+	pass

@@ -13,4 +13,5 @@ func initialize():
 		if item is PartyMember:
 			PartyMembers.append(item)
 			item.initialize()
+			Inventory.initialize(item.data.inventory)
 	pass

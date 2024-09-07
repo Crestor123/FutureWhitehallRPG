@@ -7,7 +7,7 @@ extends PanelContainer
 func initialize(itemData : ItemNode):
 	lblName.text = itemData.itemName
 	icon.texture = itemData.icon
-	lblQuantity.text = itemData.quantity
+	lblQuantity.text = str(itemData.quantity)
 	pass
 
 func _on_button_pressed():

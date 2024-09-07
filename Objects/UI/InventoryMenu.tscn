@@ -86,3 +86,5 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_1gv1y")
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

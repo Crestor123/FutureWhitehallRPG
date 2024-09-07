@@ -25,12 +25,15 @@ func initialize():
 	partyName = data.name
 	sprite = data.sprite
 	level = data.level
+	
 	for item in data.stats:
 		Stats.stats[item] = data.stats[item]
 	Stats.tempStats["health"] = Stats.stats["health"]
 	Stats.tempStats["mana"] = Stats.stats["mana"]
+	
 	for item in data.resistances:
 		Stats.resistances[item] = data.resistances[item]
+		
 	for item in data.abilities:
 		Abilities.add_ability(item)
 	
@@ -44,7 +47,4 @@ func level_up():
 	pass
 	
 func equip():
-	pass
-	
-func start_turn():
 	pass

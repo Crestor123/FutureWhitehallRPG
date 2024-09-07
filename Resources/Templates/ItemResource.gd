@@ -8,3 +8,4 @@ class_name ItemResource
 
 @export var cost : int
 @export var stackable : bool
+@export var quantity : int = 1	#Unused for non-stackable items

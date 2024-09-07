@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl7pjotc7ibe3"]
+[gd_scene load_steps=6 format=3 uid="uid://bl7pjotc7ibe3"]
 
 [ext_resource type="Script" path="res://Objects/UI/Scripts/OverworldUI.gd" id="1_a6sns"]
 [ext_resource type="Texture2D" uid="uid://t8wr247qndot" path="res://Assets/Options.png" id="1_clnle"]
-[ext_resource type="PackedScene" uid="uid://4q55h78engfb" path="res://Objects/UI/PauseMenu.tscn" id="2_4ga04"]
-[ext_resource type="PackedScene" uid="uid://eeoynl4hfus7" path="res://Objects/UI/InventoryMenu.tscn" id="3_f7isl"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="3_kkorv"]
 
 [sub_resource type="Theme" id="Theme_2qomv"]
@@ -28,8 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a6sns")
-PauseMenu = ExtResource("2_4ga04")
-InventoryMenu = ExtResource("3_f7isl")
 
 [node name="Menu" type="Button" parent="."]
 texture_filter = 1

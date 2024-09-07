@@ -2,6 +2,7 @@ extends Node
 
 @export var CharacterObject : PackedScene
 @export var BattleScene : PackedScene
+@export var PauseMenu : PackedScene
 
 @export var tileSize = 32
 

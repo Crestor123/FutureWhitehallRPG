@@ -2,9 +2,10 @@ extends Control
 
 @export var ItemUI : PackedScene
 
-@onready var ItemContainer = $PanelContainer/ItemContainer
+@onready var ItemContainer = $PanelContainer/VBoxContainer/ItemContainer
 
 signal close
+signal back
 
 func initialize(player : Node):
 	var inventory = player.Inventory
@@ -13,3 +14,6 @@ func initialize(player : Node):
 		ItemContainer.add_child(newItem)
 		newItem.initialize(item)
 	pass
+
+func _on_back_pressed():
+	back.emit()
