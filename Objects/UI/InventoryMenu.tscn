@@ -46,10 +46,24 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
+[node name="Close" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Close"
+flat = true
+
 [node name="Back" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
 text = "Back"
+flat = true
+
+[node name="AllItems" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "All"
 flat = true
 
 [node name="Consumables" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -58,7 +72,7 @@ size_flags_horizontal = 3
 text = "Consumables"
 flat = true
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="KeyItems" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Key Items"
@@ -87,4 +101,5 @@ layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -17,3 +17,6 @@ func initialize(player : Node):
 
 func _on_back_pressed():
 	back.emit()
+
+func _on_close_pressed():
+	close.emit()

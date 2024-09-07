@@ -29,6 +29,7 @@ func enter_battle(enemyFormation):
 func open_menu(menuState : String):
 	await SceneChanger.load_subscene(SceneChanger.PauseMenu)
 	SceneChanger.CurrentScene.initialize(menuState, Player)
+	SceneChanger.CurrentScene.close.connect(close_menu)
 	UILayer.visible = false
 	pass
 

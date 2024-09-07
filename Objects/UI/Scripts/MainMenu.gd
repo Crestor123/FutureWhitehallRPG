@@ -8,6 +8,7 @@ extends PanelContainer
 @onready var btnClose = $HBoxContainer/Buttons/Close
 
 signal close
+signal changeMenu
 
 func initialize(player : Node):
 	for item in Stats.get_children():
@@ -22,7 +23,9 @@ func _on_close_pressed():
 	close.emit()
 
 func _on_items_pressed():
+	changeMenu.emit("inventory")
 	pass
 
 func _on_equipment_pressed():
+	changeMenu.emit("equipment")
 	pass
