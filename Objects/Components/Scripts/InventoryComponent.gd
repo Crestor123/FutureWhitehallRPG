@@ -4,12 +4,21 @@ extends Node
 @export var equipmentScene : PackedScene
 @export var consumableScene : PackedScene
 
+signal itemChanged(item)
+signal itemRemoved(item)
+
 func initialize(itemList : Array[ItemResource]):
 	for item in itemList:
 		add_item(item)
 	pass
 	
-func use_item(item : Node, partyMember : PartyMember):
+func use_item(item : ItemNode, partyMember : PartyMember):
+	print("Using item ", item.itemName, " on ", partyMember.partyName)
+	if item.stackable and item.quantity > 1:
+		item.quantity -= 1
+	else:
+		remove_item(item)
+	itemChanged.emit(item)
 	pass
 	
 func add_item(item : ItemResource):
@@ -32,6 +41,7 @@ func add_item(item : ItemResource):
 	newItem.initialize()
 	
 func remove_item(item : Node):
+	itemRemoved.emit(item)
 	item.queue_free()
 	pass
 	

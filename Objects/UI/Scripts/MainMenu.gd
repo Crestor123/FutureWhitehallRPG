@@ -1,11 +1,11 @@
-extends PanelContainer
+extends Control
 
 @export var partyStatblock : PackedScene
 
-@onready var Stats = $HBoxContainer/Stats
-@onready var btnItem = $HBoxContainer/Buttons/Items
-@onready var btnEquipment = $HBoxContainer/Buttons/Equipment
-@onready var btnClose = $HBoxContainer/Buttons/Close
+@onready var Stats = $PanelContainer/HBoxContainer/Stats
+@onready var btnItem = $PanelContainer/HBoxContainer/Buttons/Items
+@onready var btnEquipment = $PanelContainer/HBoxContainer/Buttons/Equipment
+@onready var btnClose = $PanelContainer/HBoxContainer/Buttons/Close
 
 signal close
 signal changeMenu

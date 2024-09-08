@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0c521px3ymbq"]
+
+[ext_resource type="Script" path="res://Objects/UI/Scripts/PartySelector.gd" id="1_0ubiu"]
+[ext_resource type="PackedScene" uid="uid://dym7jkbfp2udy" path="res://Objects/UI/SmallPartyCard.tscn" id="2_roeku"]
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="3_0k20f"]
+
+[sub_resource type="Theme" id="Theme_x22pu"]
+default_font = ExtResource("3_0k20f")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5wc0"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="PartySelector" type="MarginContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("1_0ubiu")
+SmallPartyCard = ExtResource("2_roeku")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_x22pu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5wc0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PartyContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -4,11 +4,15 @@ extends PanelContainer
 @onready var icon = $MarginContainer/HBoxContainer/Icon
 @onready var lblQuantity = $MarginContainer/HBoxContainer/Quantity
 
+var data : ItemNode = null
+signal select
+
 func initialize(itemData : ItemNode):
-	lblName.text = itemData.itemName
-	icon.texture = itemData.icon
-	lblQuantity.text = str(itemData.quantity)
+	data = itemData
+	lblName.text = data.itemName
+	icon.texture = data.icon
+	lblQuantity.text = str(data.quantity)
 	pass
 
 func _on_button_pressed():
-	pass # Replace with function body.
+	select.emit(data)

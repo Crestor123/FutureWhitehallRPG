@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://eeoynl4hfus7"]
+[gd_scene load_steps=7 format=3 uid="uid://eeoynl4hfus7"]
 
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_4b0eh"]
 [ext_resource type="Script" path="res://Objects/UI/Scripts/InventoryMenu.gd" id="1_jy3al"]
 [ext_resource type="PackedScene" uid="uid://bce3sdywtuaux" path="res://Objects/UI/ItemUI.tscn" id="2_r1m4a"]
+[ext_resource type="PackedScene" uid="uid://d0c521px3ymbq" path="res://Objects/UI/PartySelector.tscn" id="3_jobdl"]
 
 [sub_resource type="Theme" id="Theme_5jcd1"]
 default_font = ExtResource("1_4b0eh")
@@ -20,13 +21,16 @@ corner_detail = 1
 [node name="InventoryMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 399.0
+offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jy3al")
 ItemUI = ExtResource("2_r1m4a")
+PartySelector = ExtResource("3_jobdl")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -82,15 +86,25 @@ flat = true
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_1gv1y")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer"]
+[node name="Description" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Item Description"
+
+[node name="Use" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Use"
+flat = true
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -103,3 +117,4 @@ columns = 2
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/Use" to="." method="_on_use_pressed"]
