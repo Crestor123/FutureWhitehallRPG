@@ -26,7 +26,7 @@ func _on_btn_items_pressed():
 	pass
 
 func _on_btn_equipment_pressed():
-	#menuButtonPressed.emit(EquipmentMenu)
+	menuButtonPressed.emit("equipment")
 	pass
 
 func _on_btn_close_pressed():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4q55h78engfb"]
+[gd_scene load_steps=5 format=3 uid="uid://4q55h78engfb"]
 
 [ext_resource type="Script" path="res://Objects/UI/Scripts/PauseMenu.gd" id="1_dfk3x"]
 [ext_resource type="PackedScene" uid="uid://vtk1f7ay8agw" path="res://Objects/UI/MainMenu.tscn" id="1_v3rh7"]
 [ext_resource type="PackedScene" uid="uid://eeoynl4hfus7" path="res://Objects/UI/InventoryMenu.tscn" id="2_6lnpw"]
+[ext_resource type="PackedScene" uid="uid://df46g44jqaloo" path="res://Objects/UI/EquipMenu.tscn" id="4_th8sy"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -16,3 +17,4 @@ size_flags_vertical = 3
 script = ExtResource("1_dfk3x")
 MainMenu = ExtResource("1_v3rh7")
 InventoryMenu = ExtResource("2_6lnpw")
+EquipmentMenu = ExtResource("4_th8sy")

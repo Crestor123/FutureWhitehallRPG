@@ -2,6 +2,7 @@ extends Control
 
 @export var MainMenu : PackedScene
 @export var InventoryMenu : PackedScene
+@export var EquipmentMenu : PackedScene
 
 signal close
 
@@ -18,6 +19,8 @@ func initialize(menuState : String = "", setPlayer : Node = null):
 		menu = MainMenu.instantiate()
 	elif menuState == "inventory":
 		menu = InventoryMenu.instantiate()
+	elif menuState == "equipment":
+		menu = EquipmentMenu.instantiate()
 	else:
 		menu = MainMenu.instantiate()
 		
