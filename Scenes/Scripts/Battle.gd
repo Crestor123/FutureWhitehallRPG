@@ -125,7 +125,7 @@ func start_battle():
 		
 func battler_defeated(battler):
 	#Remove battler from turn order
-	#TurnOrder.remove_battler(battler)
+	TurnOrder.remove_battler(battler)
 	
 	#Check if the battler was the last ally or enemy
 	victory = true

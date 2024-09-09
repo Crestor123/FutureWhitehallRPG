@@ -16,4 +16,5 @@ stats = {
 }
 value = 3
 customValue = 0
-status = 10
+status = ""
+debuff = false

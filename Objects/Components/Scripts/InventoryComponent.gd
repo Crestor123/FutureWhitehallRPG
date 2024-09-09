@@ -12,8 +12,12 @@ func initialize(itemList : Array[ItemResource]):
 		add_item(item)
 	pass
 	
-func use_item(item : ItemNode, partyMember : PartyMember):
-	print("Using item ", item.itemName, " on ", partyMember.partyName)
+func use_item(item : ItemNode, target : Node):
+	print("Using item ", item.itemName, " on ", target.name)
+	
+	var damage = 0
+	
+	
 	if item.stackable and item.quantity > 1:
 		item.quantity -= 1
 	else:

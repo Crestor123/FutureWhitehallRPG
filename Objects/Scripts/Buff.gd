@@ -50,6 +50,8 @@ func initialize(setSource : Node, setAbility : Node, effect : EffectResource):
 	
 	if effect.debuff: percent *= -1	#The effect will deal damage rather than heal
 	
+	
+	
 	for stat in effect.stats:
 		if effect.stats[stat]:	#If the stat is checked
 			statValues[stat] = target.stats[stat] * (float(percent) / 100)
