@@ -2,7 +2,7 @@ extends ItemNode
 
 class_name EquipNode
 
-@export_enum ("weapon", "armor", "accessory") var slot : String
+@export_enum ("weapon", "head", "body", "accessory") var slot : String
 
 @export var bonuses = {
 	"health": 0,
@@ -34,9 +34,12 @@ class_name EquipNode
 	"blind": 0
 }
 
+var Owner : PartyMember = null
+
 func initialize():
 	super.initialize()
 	stackable = false
+	slot = data.slot
 	for stat in bonuses:
 		bonuses[stat] = data.bonuses[stat]
 	for stat in resistances:

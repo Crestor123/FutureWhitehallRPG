@@ -12,6 +12,6 @@ func initialize():
 	for item in get_children():
 		if item is PartyMember:
 			PartyMembers.append(item)
-			item.initialize()
+			item.initialize(Inventory)
 			Inventory.initialize(item.data.inventory)
 	pass

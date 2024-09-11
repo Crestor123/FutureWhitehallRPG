@@ -122,5 +122,9 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Inventory" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Close" to="." method="_on_close_pressed"]

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EquipResource" load_steps=3 format=3 uid="uid://dwj4lnm2iw3kb"]
+
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_8i428"]
+[ext_resource type="Script" path="res://Resources/Templates/EquipResource.gd" id="1_8kpty"]
+
+[resource]
+script = ExtResource("1_8kpty")
+slot = "accessory"
+bonuses = {
+"dexterity": 5,
+"health": 0,
+"intelligence": 0,
+"mana": 0,
+"resistance": 0,
+"speed": 0,
+"strength": 0,
+"vitality": 0
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+statusResists = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+name = "Test Accessory"
+description = ""
+icon = ExtResource("1_8i428")
+cost = 0
+stackable = false
+quantity = 1

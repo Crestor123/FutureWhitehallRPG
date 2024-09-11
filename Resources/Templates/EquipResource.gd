@@ -2,7 +2,7 @@ extends ItemResource
 
 class_name EquipResource
 
-@export_enum ("weapon", "armor", "accessory") var slot : String
+@export_enum ("weapon", "head", "body", "accessory") var slot : String
 
 @export var bonuses = {
 	"health": 0,

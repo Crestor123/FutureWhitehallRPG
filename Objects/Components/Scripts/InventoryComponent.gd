@@ -35,7 +35,7 @@ func add_item(item : ItemResource):
 	var newItem : Node = null
 	if item is EquipResource:
 		newItem = equipmentScene.instantiate()
-	if item is ConsumableResource:
+	elif item is ConsumableResource:
 		newItem = consumableScene.instantiate()
 	else:
 		newItem = itemScene.instantiate()

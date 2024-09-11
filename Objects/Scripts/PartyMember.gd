@@ -8,6 +8,8 @@ class_name PartyMember
 @onready var Stats = $StatComponent
 @onready var Equipment = $EquipmentComponent
 
+var Inventory : Node = null
+
 var level : int = 0
 var experience : int = 0
 var xpToLevel : int = 0
@@ -20,8 +22,9 @@ var alive : bool = true
 signal updateHealthBar(value)
 signal dead(data)
 
-func initialize():
+func initialize(inventory : Node):
 	if !data: return
+	Inventory = inventory
 	partyName = data.name
 	sprite = data.sprite
 	level = data.level
@@ -36,6 +39,8 @@ func initialize():
 		
 	for item in data.abilities:
 		Abilities.add_ability(item)
+		
+	Equipment.Inventory = Inventory
 	
 func xp_to_next_level():
 	pass

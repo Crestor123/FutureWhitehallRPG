@@ -4,18 +4,32 @@ extends Control
 @onready var lblName = $HBoxContainer/Name
 @onready var btnSelect = $Select
 
-var slot : String = ""
+var slot
+var data : EquipNode
 
-signal select
+signal selectData
+signal selectSlot
 
-func initialize(setSlot, equipment : EquipNode = null):
+func set_slot(setSlot : String):
 	lblName.text = setSlot.capitalize()
-	if equipment:
-		Icon.texture = equipment.icon
-		lblName.text = equipment.name
-		
 	slot = setSlot
+
+func set_equipment(equipment : EquipNode, showOwner : bool = false):
+	slot = equipment.slot
+	lblName.text = equipment.itemName
+	Icon.texture = equipment.icon
+	lblName.text = equipment.itemName
+	
+	data = equipment
+	if showOwner: show_owner()
+
+func show_owner():
+	if data.Owner:
+		lblName.text = data.itemName + " (E)"
 	pass
 
 func _on_select_pressed() -> void:
-	select.emit(slot)
+	if data:
+		selectData.emit(data)
+	if slot:
+		selectSlot.emit(slot)
