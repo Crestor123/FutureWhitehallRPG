@@ -4,11 +4,11 @@ extends Node
 
 #Slots point to equipmentNodes that are children of this node
 var equipmentSlots = {
-	"weapon": null,
-	"sidearm": null,
-	"head": null,
-	"body": null,
-	"accessory": null
+	"mainhand": {"type": "weapon", "equip": null},
+	"offhand": {"type": "weapon", "equip": null},
+	"head": {"type": "head", "equip": null},
+	"body": {"type": "body", "equip": null},
+	"accessory": {"type": "accessory", "equip": null}
 }
 
 var equipStats = {
@@ -47,12 +47,20 @@ func equip(equipment: EquipNode, slot : String) -> bool:
 	
 	var equipped = false
 	
-	#Inventory.transfer_item(equipment, self)
-	if equipmentSlots[slot] != null:
-		equipmentSlots[slot].Owner = null
-		equipmentSlots[slot] = null
+	if equipment.Owner != null and equipment.Owner != get_parent():
+		return false
 	
-	equipmentSlots[slot] = equipment
+	if equipment.Owner == get_parent():
+		for i in equipmentSlots:
+			if equipmentSlots[i]["equip"] == equipment:
+				equipmentSlots[i]["equip"] = null
+	
+	#Inventory.transfer_item(equipment, self)
+	if equipmentSlots[slot]["equip"] != null:
+		equipmentSlots[slot]["equip"].Owner = null
+		equipmentSlots[slot]["equip"] = null
+	
+	equipmentSlots[slot]["equip"] = equipment
 	equipment.Owner = get_parent()
 	equipped = true
 	

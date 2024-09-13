@@ -21,6 +21,7 @@ signal close
 var Player : Node
 var currentPartyMember : PartyMember
 var currentSlot : String
+var currentType : String
 
 func initialize(setPlayer : Node):
 	Player = setPlayer
@@ -29,10 +30,14 @@ func initialize(setPlayer : Node):
 	Icon = currentPartyMember.sprite
 	update_stats()
 
-	for slot in currentPartyMember.Equipment.equipmentSlots:
+	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
+	for slot in equipmentSlots:
 		var newEquipSlot = EquipmentSlot.instantiate()
 		EquipmentSlotContainer.add_child(newEquipSlot)
-		newEquipSlot.set_slot(slot)
+		if equipmentSlots[slot]["equip"] == null:
+			newEquipSlot.set_slot(slot, equipmentSlots[slot]["type"])
+		else:
+			newEquipSlot.set_equipment(equipmentSlots[slot]["equip"])
 		newEquipSlot.selectSlot.connect(display_inventory)
 
 func change_partyMember():
@@ -50,14 +55,15 @@ func update_stats():
 	Resistance.text = "RES: " + str(currentPartyMember.Stats.get_stat("resistance"))
 	pass
 
-func display_inventory(slot : String):
+func display_inventory(slot : String, type : String):
 	for i in InventoryContainer.get_children():
 		i.queue_free()
 	
 	currentSlot = slot
+	currentType = type
 	for item in Player.Inventory.get_children():
 		if item is EquipNode:
-			if item.slot == slot:
+			if item.slot == type:
 				var newEquip = EquipmentSlot.instantiate()
 				InventoryContainer.add_child(newEquip)
 				newEquip.set_equipment(item, true)
@@ -68,12 +74,21 @@ func equip(item : EquipNode):
 	if !currentPartyMember.Equipment.equip(item, currentSlot):
 		return
 	
-	for i in EquipmentSlotContainer.get_children():
-		if i.slot == currentSlot:
-			i.set_equipment(item)
+	var i = 0
+	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
+	for j in equipmentSlots:
+		if equipmentSlots[j]["equip"] == null:
+			EquipmentSlotContainer.get_child(i).set_slot(j, equipmentSlots[j]["type"])
+		else:
+			EquipmentSlotContainer.get_child(i).set_equipment(equipmentSlots[j]["equip"])
+		i += 1
+	
+	for j in EquipmentSlotContainer.get_children():
+		if j.slot == currentSlot:
+			j.set_equipment(item)
 				
-	for i in InventoryContainer.get_children():
-			i.set_equipment(i.data, true)
+	for j in InventoryContainer.get_children():
+			j.set_equipment(j.data, true)
 			
 	update_stats()
 	pass
