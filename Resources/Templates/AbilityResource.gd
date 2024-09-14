@@ -10,8 +10,9 @@ class_name AbilityResource
 
 @export_enum ("health", "mana", "strength", "intelligence", 
 "dexterity", "speed", "vitality", "resistance") var mainStat : String
-@export_enum ("health", "mana", "strength", "intelligence", 
-"dexterity", "speed", "vitality", "resistance") var targetStat : String
+#@export_enum ("health", "mana", "strength", "intelligence", 
+#"dexterity", "speed", "vitality", "resistance") var targetStat : String
+@export_enum ("health", "mana") var targetStat : String
 
 @export var cost : int = 0
 @export var baseDamage : int

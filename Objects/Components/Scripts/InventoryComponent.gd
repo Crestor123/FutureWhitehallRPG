@@ -12,11 +12,17 @@ func initialize(itemList : Array[ItemResource]):
 		add_item(item)
 	pass
 	
-func use_item(item : ItemNode, target : Node):
-	print("Using item ", item.itemName, " on ", target.name)
+func use_item(item : ItemNode, targetList : Array[Node]):
+	for target in targetList:
+		print("Using item ", item.itemName, " on ", target.name)
 	
-	var damage = 0
-	
+	if item.bonus > 0:
+		if item.stat == "health":
+			for target in targetList:
+				target.Stats.take_damage(-item.bonus, "none", item.element)
+		elif item.stat == "mana":
+			for target in targetList:
+				target.tempStats["mana"] += item.bonus
 	
 	if item.stackable and item.quantity > 1:
 		item.quantity -= 1

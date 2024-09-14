@@ -3,8 +3,9 @@ extends Control
 @export var ItemUI : PackedScene
 @export var PartySelector : PackedScene
 
-@onready var ItemContainer = $PanelContainer/VBoxContainer/ItemContainer
+@onready var ItemContainer = $PanelContainer/VBoxContainer/ScrollContainer/ItemContainer
 @onready var Description = $PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer/Description
+@onready var btnUse = $PanelContainer/VBoxContainer/HBoxContainer2/Use
 
 signal close
 signal back
@@ -46,10 +47,15 @@ func remove_item(itemRemoved : ItemNode):
 func item_selected(itemData : ItemNode):
 	selectedItem = itemData
 	Description.text = selectedItem.description
+	if selectedItem is ConsumableNode and !selectedItem.battleOnly:
+		btnUse.visible = true
+	else:
+		btnUse.visible = false
 	pass
 
 func select_partyMember(partyMember : PartyMember):
-	useItem.emit(selectedItem, partyMember)
+	var targetArray : Array[Node] = [partyMember]
+	useItem.emit(selectedItem, targetArray)
 
 func _on_back_pressed():
 	back.emit()

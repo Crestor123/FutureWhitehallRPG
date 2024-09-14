@@ -100,6 +100,7 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="Use" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
@@ -110,8 +111,13 @@ flat = true
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_1gv1y")
 
-[node name="ItemContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 

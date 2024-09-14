@@ -82,9 +82,18 @@ func initialize():
 func revive():
 	reviveSignal.emit()
 
+func heal(value : int):
+	print(parent.partyName, " heals ", value)
+	tempStats.health += value
+	if tempStats.health > get_stat("health"):
+		tempStats.health = get_stat("health")
+
 func take_damage(value : int, type : String, element : String):
 	
 	var damage : int = value
+	if damage < 0:
+		heal(-damage)
+		return
 	
 	#Apply resistances
 	if element in resistances:
@@ -103,8 +112,8 @@ func take_damage(value : int, type : String, element : String):
 	
 	if tempStats.health < 0:
 		tempStats.health = 0
-	if tempStats.health > stats.health:
-		tempStats.health = stats.health
+	if tempStats.health > get_stat("health"):
+		tempStats.health = get_stat("health")
 	
 	healthChanged.emit(tempStats.health)
 	if tempStats.health == 0:
