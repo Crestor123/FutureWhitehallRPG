@@ -1,6 +1,6 @@
 extends Node
 
-@export var Inventory : Node = null
+#@export var Inventory : Node = null
 
 #Slots point to equipmentNodes that are children of this node
 var equipmentSlots = {
@@ -42,7 +42,6 @@ var equipStatusResist = {
 }
 
 func equip(equipment: EquipNode, slot : String) -> bool:
-	if Inventory == null: return false
 	if !slot in equipmentSlots: return false
 	
 	var equipped = false
@@ -70,13 +69,13 @@ func equip(equipment: EquipNode, slot : String) -> bool:
 	pass
 
 func unequip(equipment : EquipNode) -> bool:
-	if Inventory == null: return false
 	var unequipped = false
 	for item in equipmentSlots:
-		if equipmentSlots[item] == equipment:
-			equipment.reparent(Inventory)
-			equipmentSlots[item] = null
+		if equipmentSlots[item]["equip"] == equipment:
+			equipmentSlots[item]["equip"].Owner = null
+			equipmentSlots[item]["equip"] = null
 			unequipped = true
+			break
 	return unequipped
 	pass
 
@@ -87,14 +86,14 @@ func update_stats():
 		equipResistances[item] = 0
 	for item in equipStatusResist:
 		equipStatusResist[item] = 0
-		
-	for item in Inventory.get_children():
-		if !item is EquipNode: continue
-		if !item.Owner == get_parent(): continue
-		for stat in equipStats:
-			equipStats[stat] += item.bonuses[stat]
-		for stat in equipResistances:
-			equipResistances[stat] += item.resistances[stat]
-		for stat in equipStatusResist:
-			equipStatusResist[stat] += item.statusResists[stat]
+	
+	for item in equipmentSlots:
+		if equipmentSlots[item]["equip"] != null:
+			var equipment = equipmentSlots[item]["equip"]
+			for stat in equipStats:
+				equipStats[stat] += equipment.bonuses[stat]
+			for stat in equipResistances:
+				equipResistances[stat] += equipment.resistances[stat]
+			for stat in equipStatusResist:
+				equipStatusResist[stat] += equipment.statusResists[stat]
 	pass

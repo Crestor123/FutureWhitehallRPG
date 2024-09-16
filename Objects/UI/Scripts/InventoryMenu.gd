@@ -54,7 +54,12 @@ func item_selected(itemData : ItemNode):
 	pass
 
 func select_partyMember(partyMember : PartyMember):
-	var targetArray : Array[Node] = [partyMember]
+	var targetArray : Array[Node]
+	if selectedItem.targetAll:
+		for i in get_parent().Player.PartyMembers:
+			targetArray.append(i)
+	else:
+		targetArray = [partyMember]
 	useItem.emit(selectedItem, targetArray)
 
 func _on_back_pressed():

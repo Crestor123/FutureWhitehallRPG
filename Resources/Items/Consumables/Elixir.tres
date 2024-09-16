@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ConsumableResource" load_steps=4 format=3 uid="uid://1c2hlue172by"]
+
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_i1l6g"]
+[ext_resource type="Script" path="res://Resources/Templates/ConsumableResource.gd" id="2_26bex"]
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="2_vhn6j"]
+
+[resource]
+script = ExtResource("2_26bex")
+stat = "health"
+element = "water"
+bonus = 15
+turns = 0
+battleOnly = false
+targetAll = true
+additionalEffects = Array[ExtResource("1_i1l6g")]([])
+name = "Elixir"
+description = "Heals 15 HP for all party members."
+icon = ExtResource("2_vhn6j")
+cost = 0
+stackable = true
+quantity = 1

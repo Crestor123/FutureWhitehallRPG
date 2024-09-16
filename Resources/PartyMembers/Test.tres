@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://dwj4lnm2iw3kb" path="res://Resources/Items/Equipment/TestAccessory.tres" id="7_6bweq"]
 [ext_resource type="Resource" uid="uid://d07ihjdk063dj" path="res://Resources/Items/Equipment/TestHelmet.tres" id="8_7b261"]
 [ext_resource type="Resource" uid="uid://cv8lvtjtns48l" path="res://Resources/Items/Equipment/TestWeapon.tres" id="9_ef7n5"]
-[ext_resource type="Resource" uid="uid://iglkwmm40j4k" path="res://Resources/Items/Consumables/Grenade.tres" id="10_ytg7i"]
+[ext_resource type="Resource" uid="uid://1c2hlue172by" path="res://Resources/Items/Consumables/Elixir.tres" id="10_rr4x7"]
 
 [resource]
 script = ExtResource("1_yq1p7")
@@ -46,4 +46,4 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_bmu80")])
-inventory = Array[ExtResource("5_2jb22")]([ExtResource("6_xgtq2"), ExtResource("7_6bweq"), ExtResource("8_7b261"), ExtResource("9_ef7n5"), ExtResource("10_ytg7i")])
+inventory = Array[ExtResource("5_2jb22")]([ExtResource("6_xgtq2"), ExtResource("7_6bweq"), ExtResource("8_7b261"), ExtResource("9_ef7n5"), ExtResource("10_rr4x7")])

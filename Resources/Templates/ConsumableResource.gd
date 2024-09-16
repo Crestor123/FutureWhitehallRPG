@@ -12,5 +12,6 @@ class_name ConsumableResource
 @export var bonus : int
 @export var turns : int
 @export var battleOnly : bool
+@export var targetAll : bool
 
 @export var additionalEffects : Array[EffectResource]

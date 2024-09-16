@@ -59,6 +59,11 @@ func display_inventory(slot : String, type : String):
 	for i in InventoryContainer.get_children():
 		i.queue_free()
 	
+	var btnUnequip = EquipmentSlot.instantiate()
+	InventoryContainer.add_child(btnUnequip)
+	btnUnequip.set_unequip()
+	btnUnequip.selectSlot.connect(unequip)
+	
 	currentSlot = slot
 	currentType = type
 	for item in Player.Inventory.get_children():
@@ -88,10 +93,34 @@ func equip(item : EquipNode):
 			j.set_equipment(item)
 				
 	for j in InventoryContainer.get_children():
+		if j.slot != "unequip":
 			j.set_equipment(j.data, true)
 			
 	update_stats()
 	pass
+
+func unequip():
+	if !currentSlot: return
+	
+	var equipment
+	
+	var j = 0
+	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
+	for i in equipmentSlots:
+		if i == currentSlot:
+			if equipmentSlots[i]["equip"] != null:
+				equipment = equipmentSlots[i]["equip"]
+				break
+		j += 1
+	
+	if !equipment: return
+	if !currentPartyMember.Equipment.unequip(equipment): return
+	
+	EquipmentSlotContainer.get_child(j).set_slot(currentSlot, currentType)
+	
+	for i in InventoryContainer.get_children():
+		if i.slot != "unequip":
+			i.set_equipment(i.data, true)
 
 func _on_back_pressed() -> void:
 	back.emit()

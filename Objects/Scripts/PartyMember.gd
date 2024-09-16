@@ -40,7 +40,7 @@ func initialize(inventory : Node):
 	for item in data.abilities:
 		Abilities.add_ability(item)
 		
-	Equipment.Inventory = Inventory
+	#Equipment.Inventory = Inventory
 	
 func xp_to_next_level():
 	pass
