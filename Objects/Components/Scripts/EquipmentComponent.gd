@@ -76,6 +76,8 @@ func unequip(equipment : EquipNode) -> bool:
 			equipmentSlots[item]["equip"] = null
 			unequipped = true
 			break
+			
+	update_stats()
 	return unequipped
 	pass
 

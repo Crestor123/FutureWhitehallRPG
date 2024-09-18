@@ -121,6 +121,7 @@ func unequip():
 	for i in InventoryContainer.get_children():
 		if i.slot != "unequip":
 			i.set_equipment(i.data, true)
+	update_stats()
 
 func _on_back_pressed() -> void:
 	back.emit()
