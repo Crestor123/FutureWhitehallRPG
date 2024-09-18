@@ -9,6 +9,7 @@ extends Node2D
 
 var allies : Array[Node]
 var enemies : Array[Node]
+var inventory : Node
 
 var victory = false
 var defeat = false
@@ -22,9 +23,11 @@ var currentTarget : Node = null
 signal battleFinished()
 signal battleLoss()
 
-func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormation):
+func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormation, setInventory):
 	#Takes a list of party members and enemies
 	#Creates a battler node for each of them
+	inventory = setInventory
+	
 	for item in partyMembers:
 		var newAlly = allyScene.instantiate()
 		TurnOrder.add_child(newAlly)
@@ -94,10 +97,11 @@ func start_battle():
 			
 			if currentBattler in allies:
 				#The current battler is an ally; show the ability selection UI
-				UI.create_buttons(currentBattler.Abilities.get_children())
+				ui_show_abilities()
 				UI.move_cursor(enemies[0])
 				currentTarget = enemies[0]
 				UI.on_button_pressed.connect(ability_button)
+				UI.inventory.connect(ui_show_inventory)
 				currentBattler.start_turn()
 				
 				await currentBattler.endTurn
@@ -122,6 +126,15 @@ func start_battle():
 	if defeat:
 		#Game over
 		battleFinished.emit()
+		
+func ui_show_abilities():
+	UI.create_buttons(currentBattler.Abilities.get_children())
+	pass
+		
+func ui_show_inventory():
+	UI.show_inventory(inventory)
+	UI.back.connect(ui_show_abilities)
+	pass
 		
 func battler_defeated(battler):
 	#Remove battler from turn order

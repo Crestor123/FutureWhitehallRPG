@@ -22,7 +22,7 @@ func enter_battle(enemyFormation):
 	print(enemyFormation.enemyList)
 	await SceneChanger.load_subscene(SceneChanger.BattleScene)
 	UILayer.visible = false
-	SceneChanger.CurrentScene.initialize(Player.PartyMembers, enemyFormation)
+	SceneChanger.CurrentScene.initialize(Player.PartyMembers, enemyFormation, Player.Inventory)
 	SceneChanger.CurrentScene.battleFinished.connect(battle_victory)
 	pass
 

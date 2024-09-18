@@ -18,6 +18,8 @@ extends Control
 @onready var Cursor = $Cursor
 
 signal on_button_pressed()
+signal inventory()
+signal back()
 
 #Deletes any ability buttons and hides the ability menu
 func delete_buttons():
@@ -29,9 +31,17 @@ func delete_buttons():
 
 #Creates ability buttons for the current battler
 func create_buttons(abilityList : Array[Node]):
+	for i in AbilityContainer.get_children():
+		i.queue_free()
 	rightBar.visible = false
 	#AbilityContainer.visible = false
 	Cursor.visible = false
+	var itemButton = abilityButton.instantiate()
+	AbilityContainer.add_child(itemButton)
+	itemButton.set_label("Item")
+	itemButton.data = "item"
+	itemButton.pressed.connect(button_pressed)
+	
 	for item in abilityList:
 		var newButton = abilityButton.instantiate()
 		AbilityContainer.add_child(newButton)
@@ -72,8 +82,33 @@ func move_cursor(target : Node):
 	Cursor.global_position = Vector2(targetPos.x, targetPos.y - 32)
 	pass
 
+func show_inventory(inventory : Node):
+	for i in AbilityContainer.get_children():
+		i.queue_free()
+	
+	var backButton = abilityButton.instantiate()
+	AbilityContainer.add_child(backButton)
+	backButton.set_label("Back")
+	backButton.data = "back"
+	backButton.pressed.connect(button_pressed)
+	
+	for item in inventory.get_children():
+		if !item is ConsumableNode: continue
+		var itemButton = abilityButton.instantiate()
+		AbilityContainer.add_child(itemButton)
+		itemButton.initialize(item)
+		itemButton.pressed.connect(use_item)
+	pass
+
+func use_item(item : ItemNode):
+	pass
+
 #Called when an ability button is pressed
 #Sends a signal to the battler to use the ability
 func button_pressed(ability):
+	if ability == "item":
+		inventory.emit()
+	if ability == "back":
+		back.emit()
 	on_button_pressed.emit(ability)
 	pass
