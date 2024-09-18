@@ -16,7 +16,7 @@ func use_item(item : ItemNode, targetList : Array[Node]):
 	for target in targetList:
 		print("Using item ", item.itemName, " on ", target.name)
 	
-	if item.bonus > 0:
+	if item.bonus != 0:
 		if item.stat == "health":
 			for target in targetList:
 				target.Stats.take_damage(-item.bonus, "none", item.element)

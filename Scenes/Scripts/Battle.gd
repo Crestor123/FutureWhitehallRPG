@@ -80,6 +80,17 @@ func ability_button(ability : Node):
 		var targetArray : Array[Node] = [currentTarget]
 		currentBattler.Abilities.use_ability(ability, targetArray)
 
+func use_item(item : ConsumableNode):
+	if item.targetAll:
+		if currentTarget in allies:
+			inventory.use_item(item, allies)
+		else:
+			inventory.use_item(item, enemies)
+	else:
+		var targetArray : Array[Node] = [currentTarget]
+		inventory.use_item(item, targetArray)
+	currentBattler.end_turn()
+
 func move_cursor(target : Node):
 	currentTarget = target
 	UI.move_cursor(target)
@@ -93,6 +104,9 @@ func start_battle():
 		print("Start of Round")
 		while !TurnOrder.Round.is_empty():
 			print("Start of Turn")
+			if victory or defeat:
+				break
+				
 			currentBattler = TurnOrder.get_next_battler()
 			
 			if currentBattler in allies:
@@ -134,6 +148,7 @@ func ui_show_abilities():
 func ui_show_inventory():
 	UI.show_inventory(inventory)
 	UI.back.connect(ui_show_abilities)
+	UI.useItem.connect(use_item)
 	pass
 		
 func battler_defeated(battler):

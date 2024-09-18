@@ -36,7 +36,7 @@ func start_turn():
 	Abilities.used_ability.connect(end_turn)
 	pass
 
-func end_turn(abilityName):
+func end_turn(abilityName = ""):
 	Abilities.used_ability.disconnect(end_turn)
 	endTurn.emit()
 	pass

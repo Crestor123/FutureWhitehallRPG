@@ -18,6 +18,7 @@ extends Control
 @onready var Cursor = $Cursor
 
 signal on_button_pressed()
+signal useItem()
 signal inventory()
 signal back()
 
@@ -101,14 +102,16 @@ func show_inventory(inventory : Node):
 	pass
 
 func use_item(item : ItemNode):
+	useItem.emit(item)
 	pass
 
 #Called when an ability button is pressed
 #Sends a signal to the battler to use the ability
 func button_pressed(ability):
-	if ability == "item":
+	if ability is Node:
+		on_button_pressed.emit(ability)
+	elif ability == "item":
 		inventory.emit()
-	if ability == "back":
+	elif ability == "back":
 		back.emit()
-	on_button_pressed.emit(ability)
 	pass
