@@ -20,7 +20,7 @@ var enemyColumn = 112
 var currentBattler : Node = null
 var currentTarget : Node = null
 
-signal battleFinished()
+signal battleWon()
 signal battleLoss()
 
 func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormation, setInventory):
@@ -135,11 +135,11 @@ func start_battle():
 			print("End Turn")
 		print("End Round")
 	if victory:	 #return to previous map
-		battleFinished.emit()
+		tally_rewards()
 		
 	if defeat:
 		#Game over
-		battleFinished.emit()
+		battleLoss.emit()
 		
 func ui_show_abilities():
 	UI.create_buttons(currentBattler.Abilities.get_children())
@@ -150,7 +150,22 @@ func ui_show_inventory():
 	UI.back.connect(ui_show_abilities)
 	UI.useItem.connect(use_item)
 	pass
-		
+
+func tally_rewards():
+	#Tally up experience points
+	#Roll to see if any items are dropped
+	var experience : Array
+	var itemDrops : Array[ItemResource]
+	for enemy in enemies:
+		if enemy.Stats.dead:
+			experience.append([enemy.level, enemy.experience])
+			for item in enemy.itemDrops:
+				var rand = randi_range(1, 100)
+				if rand < enemy.itemDrops[item]:
+					itemDrops.append(item)
+	battleWon.emit(experience, itemDrops)
+	pass
+
 func battler_defeated(battler):
 	#Remove battler from turn order
 	TurnOrder.remove_battler(battler)

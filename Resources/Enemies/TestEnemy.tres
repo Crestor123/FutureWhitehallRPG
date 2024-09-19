@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://cs7ihaymb71kn"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://cs7ihaymb71kn"]
 
 [ext_resource type="Script" path="res://Resources/Templates/EnemyResource.gd" id="1_4muml"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="1_10r3u"]
 [ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_84yk8"]
+[ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="3_d6dl5"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="3_i6xer"]
 
 [resource]
 script = ExtResource("1_4muml")
 name = "Test Enemy"
 level = 1
+experience = 1
 sprite = ExtResource("3_i6xer")
 element = "earth"
 stats = {
@@ -39,3 +41,6 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_84yk8")]([ExtResource("1_10r3u")])
+itemDrops = {
+ExtResource("3_d6dl5"): 100
+}

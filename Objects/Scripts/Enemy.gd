@@ -9,7 +9,11 @@ extends Node2D
 @export var data : EnemyResource
 
 var enemyName : String = ""
+var level : int
+var experience : int
 var icon : Texture2D = null
+
+var itemDrops : Dictionary
 
 var targets : Array[Node]
 var allies : Array[Node]
@@ -22,15 +26,21 @@ func initialize():
 	if !data: return
 	
 	enemyName = data.name
+	level = data.level
+	experience = data.experience
+	
 	for item in data.stats:
 		Stats.stats[item] = data.stats[item]
 	Stats.tempStats["health"] = Stats.stats["health"]
 	Stats.tempStats["mana"] = Stats.stats["mana"]
 	for item in data.resistances:
 		Stats.resistances[item] = data.resistances[item]
+		
 	Abilities.initialize(data.abilities)
+	itemDrops = data.itemDrops
 	Sprite.texture = data.sprite
 	icon = data.sprite
+	
 	
 	Stats.reviveSignal.connect(revive)
 	Stats.healthChanged.connect(update_healthbar)

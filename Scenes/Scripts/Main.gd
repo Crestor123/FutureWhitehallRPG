@@ -23,7 +23,7 @@ func enter_battle(enemyFormation):
 	await SceneChanger.load_subscene(SceneChanger.BattleScene)
 	UILayer.visible = false
 	SceneChanger.CurrentScene.initialize(Player.PartyMembers, enemyFormation, Player.Inventory)
-	SceneChanger.CurrentScene.battleFinished.connect(battle_victory)
+	SceneChanger.CurrentScene.battleWon.connect(battle_victory)
 	pass
 
 func open_menu(menuState : String):
@@ -38,9 +38,22 @@ func close_menu():
 	UILayer.visible = true
 	pass
 
-func battle_victory():
+func battle_victory(experience, itemDrops):
 	print("Battle won!")
+	print(experience)
+	print(itemDrops)
+	for item in itemDrops:
+		Player.Inventory.add_item(item)
+	for partyMember in Player.PartyMembers:
+		partyMember.add_battle_xp(experience)
 	SceneChanger.return_from_subscene()
 	SceneChanger.reset_stepcount()
+	UILayer.visible = true
+	pass
+
+func battle_loss():
+	print("Battle Lost...")
+	SceneChanger.return_from_subscene()
+	SceneChanger.reset_setpcount()
 	UILayer.visible = true
 	pass

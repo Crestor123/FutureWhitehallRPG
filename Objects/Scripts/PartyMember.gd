@@ -45,9 +45,20 @@ func initialize(inventory : Node):
 func xp_to_next_level():
 	pass
 	
-func add_xp():
+func add_xp(amount : int):
+	experience += amount
+	if experience > xpToLevel:
+		level_up()
 	pass
-	
+
+func add_battle_xp(expArray : Array):
+	#Takes an array of arrays: [level, exp]
+	#Scale xp based on difference between player level and enemy level
+	for i in expArray:
+		var gainedXP = i[1]
+		add_xp(gainedXP)
+	pass
+
 func level_up():
 	pass
 	

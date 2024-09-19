@@ -6,4 +6,4 @@
 
 [resource]
 script = ExtResource("1_him2o")
-enemyList = Array[ExtResource("1_nttjs")]([ExtResource("1_mda3b")])
+enemyList = Array[ExtResource("1_nttjs")]([ExtResource("1_mda3b"), ExtResource("1_mda3b")])

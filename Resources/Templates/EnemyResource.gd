@@ -4,6 +4,7 @@ class_name EnemyResource
 
 @export var name : String
 @export var level : int = 1
+@export var experience : int = 1
 @export var sprite : Texture2D
 
 @export_enum ("fire", "electricity", "water", 
@@ -40,3 +41,6 @@ class_name EnemyResource
 }
 
 @export var abilities : Array[AbilityResource]
+
+#Dictionary[item : ItemResource, dropChance : int]
+@export var itemDrops : Dictionary
