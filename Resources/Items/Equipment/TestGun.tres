@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="EquipResource" load_steps=5 format=3 uid="uid://dwigsjr0uffv"]
+[gd_resource type="Resource" script_class="FirearmResource" load_steps=4 format=3 uid="uid://cyuji8rf658t"]
 
 [ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_m30d7"]
-[ext_resource type="Script" path="res://Resources/Templates/EquipResource.gd" id="2_bjgam"]
-[ext_resource type="Resource" uid="uid://csbhiau5kslbo" path="res://Resources/Abilities/Shoot.tres" id="2_xla2u"]
+[ext_resource type="Script" path="res://Resources/Templates/FirearmResource.gd" id="2_3dq65"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_42abc"]
 
 [resource]
-script = ExtResource("2_bjgam")
+script = ExtResource("2_3dq65")
+chargePerShot = 5
+totalCharge = 50
 slot = "weapon"
 bonuses = {
 "dexterity": 5,
@@ -35,8 +36,9 @@ statusResists = {
 "slow": 0,
 "stun": 0
 }
-abilities = Array[ExtResource("1_m30d7")]([ExtResource("2_xla2u")])
+abilities = Array[ExtResource("1_m30d7")]([])
 name = "Test Gun"
+id = ""
 description = "A gun for testing purposes"
 icon = ExtResource("3_42abc")
 cost = 0

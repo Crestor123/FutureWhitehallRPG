@@ -67,6 +67,17 @@ func equip(equipment: EquipNode, slot : String) -> bool:
 	equipmentSlots[slot]["equip"] = equipment
 	equipment.Owner = Target
 	
+	#If the item is a firearm, add charge to it and the proper abilities
+	if equipment is FirearmNode:
+		Target.Abilities.add_ability(equipment.ShootAbility)
+		if Target.Inventory.CurrentCharge >= equipment.totalCharge:
+			Target.Inventory.CurrentCharge -= equipment.totalCharge
+			equipment.currentCharge = equipment.totalCharge
+		else:
+			var charge = Target.Inventory.CurrentCharge
+			Target.Inventory.CurrentCharge = 0
+			equipment.currentCharge = charge
+	
 	#If the item has abilities, add those to the party member
 	if equipment.abilities.size() > 0:
 		for i in equipment.abilities:
@@ -86,6 +97,11 @@ func unequip(equipment : EquipNode) -> bool:
 			equipmentSlots[item]["equip"].Owner = null
 			equipmentSlots[item]["equip"] = null
 			
+			if equipment is FirearmNode:
+				Target.Abilities.remove_ability(equipment.ShootAbility)
+				Target.Inventory.CurrentCharge += equipment.currentCharge
+				equipment.currentCharge = 0
+				
 			#If the item has abilities, remove those from the party member
 			if equipment.abilities.size() > 0:
 				for i in equipment.abilities:
@@ -114,4 +130,16 @@ func update_stats():
 				equipResistances[stat] += equipment.resistances[stat]
 			for stat in equipStatusResist:
 				equipStatusResist[stat] += equipment.statusResists[stat]
+				
+func spend_charge(amount : int):
+	for item in equipmentSlots:
+		if equipmentSlots[item]["equip"] is FirearmNode:
+			equipmentSlots[item]["equip"].currentCharge -= amount
 	pass
+
+func get_charge_cost() -> int:
+	var chargeCost = 0
+	for item in equipmentSlots:
+		if equipmentSlots[item]["equip"] is FirearmNode:
+			chargeCost += equipmentSlots[item]["equip"].chargePerShot
+	return chargeCost

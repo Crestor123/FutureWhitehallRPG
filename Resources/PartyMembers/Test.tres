@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Resources/Templates/ItemResource.gd" id="5_2jb22"]
 [ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="6_xgtq2"]
 [ext_resource type="Resource" uid="uid://iglkwmm40j4k" path="res://Resources/Items/Consumables/Grenade.tres" id="8_u6bys"]
-[ext_resource type="Resource" uid="uid://dwigsjr0uffv" path="res://Resources/Items/Equipment/TestGun.tres" id="9_4r6no"]
+[ext_resource type="Resource" uid="uid://cyuji8rf658t" path="res://Resources/Items/Equipment/TestGun.tres" id="9_4r6no"]
 [ext_resource type="Resource" uid="uid://1c2hlue172by" path="res://Resources/Items/Consumables/Elixir.tres" id="10_rr4x7"]
 
 [resource]

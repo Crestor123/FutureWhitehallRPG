@@ -12,6 +12,7 @@ class_name EffectResource
 @export var customValue : int = 0
 
 @export_enum ("burn", "sleep", "death", "silence", "haste", "slow", "stun", 
-"shield", "m-shield", "blind", "defend", "regen", "analyze", "revive", "item") var status : String
+"shield", "m-shield", "blind", "defend", "regen", "analyze", "revive", "item",
+"reload") var status : String
 
 @export var debuff : bool = false

@@ -82,6 +82,9 @@ func initialize():
 func revive():
 	reviveSignal.emit()
 
+func spend_mana(value : int):
+	tempStats.mana -= value
+
 func heal(value : int):
 	print(parent.partyName, " heals ", value)
 	tempStats.health += value

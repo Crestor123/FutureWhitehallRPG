@@ -3,6 +3,10 @@ extends Node
 @export var itemScene : PackedScene
 @export var equipmentScene : PackedScene
 @export var consumableScene : PackedScene
+@export var firearmScene : PackedScene
+
+@export var TotalCharge : int = 100
+@export var CurrentCharge : int = 100
 
 signal itemChanged(item)
 signal itemRemoved(item)
@@ -39,7 +43,9 @@ func add_item(item : ItemResource):
 			return
 	
 	var newItem : Node = null
-	if item is EquipResource:
+	if item is FirearmResource:
+		newItem = firearmScene.instantiate()
+	elif item is EquipResource:
 		newItem = equipmentScene.instantiate()
 	elif item is ConsumableResource:
 		newItem = consumableScene.instantiate()
@@ -49,6 +55,10 @@ func add_item(item : ItemResource):
 	add_child(newItem)
 	newItem.data = item
 	newItem.initialize()
+	
+	if newItem.id == "battery":
+		TotalCharge += 50
+		CurrentCharge += 50
 	
 func remove_item(item : Node):
 	itemRemoved.emit(item)
