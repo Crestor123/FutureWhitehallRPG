@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://csbhiau5kslbo"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_rt30l"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_4lrw0"]
+
+[resource]
+script = ExtResource("1_rt30l")
+name = "Shoot"
+description = "Fire a weapon."
+target = "single"
+mainStat = "dexterity"
+targetStat = "health"
+manaCost = 0
+ammoCost = 1
+baseDamage = 5
+multiplier = 1.2
+turns = 0
+type = "ranged"
+element = "none"
+statusEffects = Array[ExtResource("2_4lrw0")]([])

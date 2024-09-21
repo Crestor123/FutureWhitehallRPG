@@ -1,6 +1,7 @@
 extends Control
 
-@onready var label = $Label
+@onready var lblName = $HBoxContainer/Name
+@onready var lblCost = $HBoxContainer/Cost
 @onready var button = $Button
 
 var data 
@@ -8,15 +9,23 @@ var data
 signal pressed()
 
 func set_label(labelText : String):
-	label.text = labelText
+	lblName.text = labelText
 	pass
 
 func initialize(setData : Node):
 	data = setData
 	if data is ItemNode:
-		label.text = data.itemName
+		lblName.text = data.itemName
 	else:
-		label.text = data.abilityName
+		lblName.text = data.abilityName
+		if data.manaCost > 0:
+			lblCost.set("theme_override_colors/font_color", Color.BLUE)
+			lblCost.text = "(" + str(data.manaCost) + ")"
+			lblCost.visible = true
+		if data.ammoCost > 0:
+			lblCost.set("theme_override_colors/font_color", Color.ORANGE_RED)
+			lblCost.text = "(" + str(data.ammoCost) + ")"
+			lblCost.visible = true
 	pass
 
 func _on_button_pressed():

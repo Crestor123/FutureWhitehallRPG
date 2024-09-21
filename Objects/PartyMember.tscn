@@ -12,7 +12,8 @@ script = ExtResource("1_t2p47")
 parent = NodePath("..")
 equipment = NodePath("../EquipmentComponent")
 
-[node name="EquipmentComponent" parent="." instance=ExtResource("2_cpuku")]
+[node name="EquipmentComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("2_cpuku")]
+Target = NodePath("..")
 
 [node name="AbilityComponent" parent="." node_paths=PackedStringArray("stats", "parent") instance=ExtResource("4_6v3ia")]
 stats = NodePath("../StatComponent")

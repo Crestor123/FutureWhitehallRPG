@@ -1,6 +1,7 @@
 extends Node
 
 #@export var Inventory : Node = null
+@export var Target : Node = null
 
 #Slots point to equipmentNodes that are children of this node
 var equipmentSlots = {
@@ -46,21 +47,31 @@ func equip(equipment: EquipNode, slot : String) -> bool:
 	
 	var equipped = false
 	
-	if equipment.Owner != null and equipment.Owner != get_parent():
+	#The item is equipped by another party member
+	if equipment.Owner != null and equipment.Owner != Target:
 		return false
 	
-	if equipment.Owner == get_parent():
+	#The item is equipped in a different slot
+	if equipment.Owner == Target:
 		for i in equipmentSlots:
 			if equipmentSlots[i]["equip"] == equipment:
 				equipmentSlots[i]["equip"] = null
 	
-	#Inventory.transfer_item(equipment, self)
+	#There is already an item in the selected slot
 	if equipmentSlots[slot]["equip"] != null:
-		equipmentSlots[slot]["equip"].Owner = null
-		equipmentSlots[slot]["equip"] = null
+		unequip(equipmentSlots[slot]["equip"])
+		#equipmentSlots[slot]["equip"].Owner = null
+		#equipmentSlots[slot]["equip"] = null
 	
+	#Equip the item
 	equipmentSlots[slot]["equip"] = equipment
-	equipment.Owner = get_parent()
+	equipment.Owner = Target
+	
+	#If the item has abilities, add those to the party member
+	if equipment.abilities.size() > 0:
+		for i in equipment.abilities:
+			Target.Abilities.add_ability(i)
+	
 	equipped = true
 	
 	update_stats()
@@ -74,6 +85,11 @@ func unequip(equipment : EquipNode) -> bool:
 		if equipmentSlots[item]["equip"] == equipment:
 			equipmentSlots[item]["equip"].Owner = null
 			equipmentSlots[item]["equip"] = null
+			
+			#If the item has abilities, remove those from the party member
+			if equipment.abilities.size() > 0:
+				for i in equipment.abilities:
+					Target.Abilities.remove_ability(i)
 			unequipped = true
 			break
 			

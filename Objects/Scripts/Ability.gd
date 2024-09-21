@@ -14,7 +14,8 @@ extends Node
 #"dexterity", "speed", "vitality", "resistance") var targetStat : String
 @export_enum ("health", "mana") var targetStat : String
 
-@export var cost : int = 0
+@export var manaCost : int = 0
+@export var ammoCost : int = 0
 @export var baseDamage : int
 @export var multiplier : float
 @export var turns : int = 0	#Turns > 0 indicate a buff or debuff
@@ -34,7 +35,8 @@ func initialize():
 	target = data.target
 	mainStat = data.mainStat
 	targetStat = data.targetStat
-	cost = data.cost
+	manaCost = data.manaCost
+	ammoCost = data.ammoCost
 	baseDamage = data.baseDamage
 	multiplier = data.multiplier
 	turns = data.turns

@@ -14,7 +14,8 @@ class_name AbilityResource
 #"dexterity", "speed", "vitality", "resistance") var targetStat : String
 @export_enum ("health", "mana") var targetStat : String
 
-@export var cost : int = 0
+@export var manaCost : int = 0
+@export var ammoCost : int = 0
 @export var baseDamage : int
 @export var multiplier : float
 @export var turns : int = 0

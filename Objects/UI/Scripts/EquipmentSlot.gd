@@ -25,6 +25,7 @@ func set_equipment(equipment : EquipNode, showOwner : bool = false):
 	lblName.text = equipment.itemName
 	Icon.texture = equipment.icon
 	lblName.text = equipment.itemName
+	type = equipment.slot
 	
 	data = equipment
 	if showOwner: show_owner()

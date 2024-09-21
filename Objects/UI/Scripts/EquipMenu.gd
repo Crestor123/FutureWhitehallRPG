@@ -37,6 +37,7 @@ func initialize(setPlayer : Node):
 		if equipmentSlots[slot]["equip"] == null:
 			newEquipSlot.set_slot(slot, equipmentSlots[slot]["type"])
 		else:
+			newEquipSlot.set_slot(slot, equipmentSlots[slot]["type"])
 			newEquipSlot.set_equipment(equipmentSlots[slot]["equip"])
 		newEquipSlot.selectSlot.connect(display_inventory)
 

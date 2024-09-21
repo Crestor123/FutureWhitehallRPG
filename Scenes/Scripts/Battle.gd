@@ -112,8 +112,11 @@ func start_battle():
 			if currentBattler in allies:
 				#The current battler is an ally; show the ability selection UI
 				ui_show_abilities()
-				UI.move_cursor(enemies[0])
-				currentTarget = enemies[0]
+				for i in enemies:
+					if !i.Stats.dead:
+						UI.move_cursor(i)
+						currentTarget = i
+						break
 				UI.on_button_pressed.connect(ability_button)
 				UI.inventory.connect(ui_show_inventory)
 				currentBattler.start_turn()

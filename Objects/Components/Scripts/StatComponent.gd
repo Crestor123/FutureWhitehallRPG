@@ -87,6 +87,7 @@ func heal(value : int):
 	tempStats.health += value
 	if tempStats.health > get_stat("health"):
 		tempStats.health = get_stat("health")
+	healthChanged.emit(tempStats.health)
 
 func take_damage(value : int, type : String, element : String):
 	

@@ -34,6 +34,8 @@ class_name EquipNode
 	"blind": 0
 }
 
+@export var abilities : Array[AbilityResource]
+
 var Owner : PartyMember = null
 
 func initialize():
@@ -46,3 +48,4 @@ func initialize():
 		resistances[stat] = data.resistances[stat]
 	for stat in statusResists:
 		statusResists[stat] = data.statusResists[stat]
+	abilities = data.abilities

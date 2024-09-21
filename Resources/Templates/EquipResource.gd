@@ -33,3 +33,5 @@ class_name EquipResource
 	"stun": 0,
 	"blind": 0
 }
+
+@export var abilities : Array[AbilityResource]

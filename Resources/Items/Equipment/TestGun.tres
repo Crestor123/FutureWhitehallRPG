@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EquipResource" load_steps=5 format=3 uid="uid://dwigsjr0uffv"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_m30d7"]
+[ext_resource type="Script" path="res://Resources/Templates/EquipResource.gd" id="2_bjgam"]
+[ext_resource type="Resource" uid="uid://csbhiau5kslbo" path="res://Resources/Abilities/Shoot.tres" id="2_xla2u"]
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_42abc"]
+
+[resource]
+script = ExtResource("2_bjgam")
+slot = "weapon"
+bonuses = {
+"dexterity": 5,
+"health": 0,
+"intelligence": 0,
+"mana": 0,
+"resistance": 0,
+"speed": 0,
+"strength": 0,
+"vitality": 0
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+statusResists = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_m30d7")]([ExtResource("2_xla2u")])
+name = "Test Gun"
+description = "A gun for testing purposes"
+icon = ExtResource("3_42abc")
+cost = 0
+stackable = false
+quantity = 1

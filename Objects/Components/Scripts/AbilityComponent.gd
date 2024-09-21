@@ -22,6 +22,12 @@ func add_ability(abilityData : AbilityResource):
 	newAbility.initialize()
 	pass
 	
+func remove_ability(abilityData : AbilityResource):
+	for i in get_children():
+		if i.data == abilityData:
+			i.queue_free()
+			break
+	
 func use_ability(ability : Node, targetList : Array[Node]):
 	print(ability.abilityName)
 	if ability not in get_children():
