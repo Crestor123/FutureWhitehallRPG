@@ -69,19 +69,20 @@ func equip(equipment: EquipNode, slot : String) -> bool:
 	
 	#If the item is a firearm, add charge to it and the proper abilities
 	if equipment is FirearmNode:
-		Target.Abilities.add_ability(equipment.ShootAbility)
-		if Target.Inventory.CurrentCharge >= equipment.totalCharge:
-			Target.Inventory.CurrentCharge -= equipment.totalCharge
-			equipment.currentCharge = equipment.totalCharge
-		else:
-			var charge = Target.Inventory.CurrentCharge
-			Target.Inventory.CurrentCharge = 0
-			equipment.currentCharge = charge
+		reload(equipment)
+			
+		#if Target.Inventory.CurrentCharge >= equipment.totalCharge:
+			#Target.Inventory.CurrentCharge -= equipment.totalCharge
+			#equipment.currentCharge = equipment.totalCharge
+		#else:
+			#var charge = Target.Inventory.CurrentCharge
+			#Target.Inventory.CurrentCharge = 0
+			#equipment.currentCharge = charge
 	
 	#If the item has abilities, add those to the party member
 	if equipment.abilities.size() > 0:
 		for i in equipment.abilities:
-			Target.Abilities.add_ability(i)
+			Target.Abilities.add_ability(i, equipment)
 	
 	equipped = true
 	
@@ -98,14 +99,13 @@ func unequip(equipment : EquipNode) -> bool:
 			equipmentSlots[item]["equip"] = null
 			
 			if equipment is FirearmNode:
-				Target.Abilities.remove_ability(equipment.ShootAbility)
 				Target.Inventory.CurrentCharge += equipment.currentCharge
 				equipment.currentCharge = 0
 				
 			#If the item has abilities, remove those from the party member
 			if equipment.abilities.size() > 0:
 				for i in equipment.abilities:
-					Target.Abilities.remove_ability(i)
+					Target.Abilities.remove_ability(i, equipment)
 			unequipped = true
 			break
 			
@@ -130,7 +130,13 @@ func update_stats():
 				equipResistances[stat] += equipment.resistances[stat]
 			for stat in equipStatusResist:
 				equipStatusResist[stat] += equipment.statusResists[stat]
-				
+
+func reload(equipment : EquipNode):
+	while equipment.currentCharge < equipment.totalCharge and Target.Inventory.CurrentCharge > equipment.chargePerShot:
+			equipment.currentCharge += equipment.chargePerShot
+			Target.Inventory.CurrentCharge -= equipment.chargePerShot
+	pass
+
 func spend_charge(amount : int):
 	for item in equipmentSlots:
 		if equipmentSlots[item]["equip"] is FirearmNode:

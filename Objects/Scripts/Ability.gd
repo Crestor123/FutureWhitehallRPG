@@ -26,7 +26,9 @@ extends Node
 
 @export var statusEffects : Array[EffectResource]
 
-func initialize():
+var source : Node = null
+
+func initialize(setSource : Node = null):
 	if !data: return
 	
 	abilityName = data.name
@@ -43,5 +45,7 @@ func initialize():
 	type = data.type
 	element = data.element
 	statusEffects = data.statusEffects
+	if setSource:
+		source = setSource
 	
 	print("New ability ", abilityName, " created")

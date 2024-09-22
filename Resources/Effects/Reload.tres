@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EffectResource" load_steps=2 format=3 uid="uid://c4qaweqga0tae"]
+
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_vsm24"]
+
+[resource]
+script = ExtResource("1_vsm24")
+stats = {
+"dexterity": false,
+"health": false,
+"intelligence": false,
+"mana": false,
+"resistance": false,
+"speed": false,
+"strength": false,
+"vitality": false
+}
+value = null
+customValue = 0
+status = "reload"
+debuff = false

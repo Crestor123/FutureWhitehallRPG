@@ -13,20 +13,22 @@ func initialize(abilityList : Array[AbilityResource]):
 	for item in abilityList:
 		add_ability(item)
 		
-func add_ability(abilityData : AbilityResource):
+func add_ability(abilityData : AbilityResource, source : Node = null):
 	var newAbility = abilityObject.instantiate()
 	add_child(newAbility)
 	newAbility.data = abilityData
-	newAbility.initialize()
+	newAbility.initialize(source)
 	
 	if newAbility.ammoCost > 0:
-		if equipment:
+		if source and source is FirearmNode:
+			newAbility.ammoCost = newAbility.ammoCost * source.chargePerShot
+		elif equipment:
 			newAbility.ammoCost = newAbility.ammoCost * equipment.get_charge_cost()
 	pass
 	
-func remove_ability(abilityData : AbilityResource):
+func remove_ability(abilityData : AbilityResource, source : Node = null):
 	for i in get_children():
-		if i.data == abilityData:
+		if i.data == abilityData and i.source == source:
 			i.queue_free()
 			break
 	
@@ -55,7 +57,11 @@ func use_ability(ability : Node, targetList : Array[Node]):
 	
 	for effect in ability.statusEffects:
 		for target in targetList:
-			target.Stats.add_buff(self, ability, effect)
+			if effect.status == "reload":
+				if ability.source:
+					equipment.reload(ability.source)
+			else:
+				target.Stats.add_buff(self, ability, effect)
 	
 	if ability.ammoCost > 0:
 		parent.Equipment.spend_charge(ability.ammoCost)

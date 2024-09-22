@@ -73,7 +73,8 @@ func display_inventory(slot : String, type : String):
 				var newEquip = EquipmentSlot.instantiate()
 				InventoryContainer.add_child(newEquip)
 				newEquip.set_equipment(item, true)
-				newEquip.selectData.connect(equip)
+				if !item.Owner == currentPartyMember:
+					newEquip.selectData.connect(equip)
 				
 
 func equip(item : EquipNode):
@@ -96,6 +97,10 @@ func equip(item : EquipNode):
 	for j in InventoryContainer.get_children():
 		if j.slot != "unequip":
 			j.set_equipment(j.data, true)
+			if j.data.Owner == currentPartyMember:
+				j.selectData.disconnect(equip)
+			else:
+				j.selectData.connect(equip)
 			
 	update_stats()
 	pass
@@ -122,6 +127,9 @@ func unequip():
 	for i in InventoryContainer.get_children():
 		if i.slot != "unequip":
 			i.set_equipment(i.data, true)
+			if i.data.Owner != currentPartyMember:
+				i.selectData.connect(equip)
+
 	update_stats()
 
 func _on_back_pressed() -> void:

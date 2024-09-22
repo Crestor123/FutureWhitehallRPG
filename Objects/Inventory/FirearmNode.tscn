@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cywwqqhwlnrrn"]
+[gd_scene load_steps=4 format=3 uid="uid://cywwqqhwlnrrn"]
 
 [ext_resource type="Script" path="res://Objects/Inventory/Scripts/FirearmNode.gd" id="1_p3k74"]
 [ext_resource type="Resource" uid="uid://csbhiau5kslbo" path="res://Resources/Abilities/Shoot.tres" id="2_t71xg"]
+[ext_resource type="Resource" uid="uid://vdnvhgksedn5" path="res://Resources/Abilities/Reload.tres" id="3_4cx2e"]
 
 [node name="FirearmNode" type="Node"]
 script = ExtResource("1_p3k74")
 ShootAbility = ExtResource("2_t71xg")
+ReloadAbility = ExtResource("3_4cx2e")

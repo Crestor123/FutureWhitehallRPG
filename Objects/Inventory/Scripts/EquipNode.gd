@@ -48,4 +48,4 @@ func initialize():
 		resistances[stat] = data.resistances[stat]
 	for stat in statusResists:
 		statusResists[stat] = data.statusResists[stat]
-	abilities = data.abilities
+	abilities = data.abilities.duplicate()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=12 format=3 uid="uid://n6mrngv536uj"]
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=13 format=3 uid="uid://n6mrngv536uj"]
 
 [ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_wnyj5"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="1_xjbqw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="6_xgtq2"]
 [ext_resource type="Resource" uid="uid://iglkwmm40j4k" path="res://Resources/Items/Consumables/Grenade.tres" id="8_u6bys"]
 [ext_resource type="Resource" uid="uid://cyuji8rf658t" path="res://Resources/Items/Equipment/TestGun.tres" id="9_4r6no"]
+[ext_resource type="Resource" uid="uid://r6v50rv3kn2p" path="res://Resources/Items/Equipment/TestRifle.tres" id="10_e177f"]
 [ext_resource type="Resource" uid="uid://1c2hlue172by" path="res://Resources/Items/Consumables/Elixir.tres" id="10_rr4x7"]
 
 [resource]
@@ -45,4 +46,4 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_bmu80")])
-inventory = Array[ExtResource("5_2jb22")]([ExtResource("6_xgtq2"), ExtResource("10_rr4x7"), ExtResource("8_u6bys"), ExtResource("9_4r6no")])
+inventory = Array[ExtResource("5_2jb22")]([ExtResource("6_xgtq2"), ExtResource("10_rr4x7"), ExtResource("8_u6bys"), ExtResource("9_4r6no"), ExtResource("10_e177f")])

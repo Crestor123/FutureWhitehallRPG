@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="FirearmResource" load_steps=3 format=3 uid="uid://r6v50rv3kn2p"]
+
+[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_lfrqn"]
+[ext_resource type="Script" path="res://Resources/Templates/FirearmResource.gd" id="2_fnly5"]
+
+[resource]
+script = ExtResource("2_fnly5")
+chargePerShot = 3
+totalCharge = 60
+slot = "weapon"
+bonuses = {
+"dexterity": 10,
+"health": 0,
+"intelligence": 0,
+"mana": 0,
+"resistance": 0,
+"speed": 0,
+"strength": 0,
+"vitality": 0
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+statusResists = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_lfrqn")]([])
+name = "Test Rifle"
+id = ""
+description = "A rifle for testing purposes"
+cost = 0
+stackable = false
+quantity = 1
