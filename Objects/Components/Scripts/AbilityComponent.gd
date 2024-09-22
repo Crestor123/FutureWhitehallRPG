@@ -21,16 +21,26 @@ func add_ability(abilityData : AbilityResource, source : Node = null):
 	
 	if newAbility.ammoCost > 0:
 		if source and source is FirearmNode:
-			newAbility.ammoCost = newAbility.ammoCost * source.chargePerShot
+			newAbility.realAmmoCost = newAbility.ammoCost * source.chargePerShot
 		elif equipment:
-			newAbility.ammoCost = newAbility.ammoCost * equipment.get_charge_cost()
-	pass
+			newAbility.realAmmoCost = newAbility.ammoCost * equipment.get_charge_cost()
 	
 func remove_ability(abilityData : AbilityResource, source : Node = null):
 	for i in get_children():
 		if i.data == abilityData and i.source == source:
 			i.queue_free()
 			break
+	
+func has_ability(abilityData : AbilityResource, source : Node = null):
+	for i in get_children():
+		if i.data == abilityData:
+			if source and i.source == source:
+				return true
+			elif !source:
+				return true
+			break
+	return false
+	pass
 	
 func use_ability(ability : Node, targetList : Array[Node]):
 	print(ability.abilityName)
@@ -39,6 +49,8 @@ func use_ability(ability : Node, targetList : Array[Node]):
 	
 	var damage = 0
 	damage = (ability.baseDamage + stats.get_stat(ability.mainStat)) * ability.multiplier
+	if ability.realAmmoCost > 0:
+		damage = (ability.baseDamage) * ability.realAmmoCost * ability.multiplier
 	
 	if targetList == null:
 		print("Error: no target found")
@@ -63,8 +75,8 @@ func use_ability(ability : Node, targetList : Array[Node]):
 			else:
 				target.Stats.add_buff(self, ability, effect)
 	
-	if ability.ammoCost > 0:
-		parent.Equipment.spend_charge(ability.ammoCost)
+	if ability.realAmmoCost > 0:
+		parent.Equipment.spend_charge(ability.realAmmoCost)
 	if ability.manaCost > 0:
 		parent.Stats.spend_mana(ability.manaCost)
 		

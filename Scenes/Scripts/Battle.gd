@@ -145,7 +145,7 @@ func start_battle():
 		battleLoss.emit()
 		
 func ui_show_abilities():
-	UI.create_buttons(currentBattler.Abilities.get_children())
+	UI.create_buttons(currentBattler, currentBattler.Abilities.get_children())
 	pass
 		
 func ui_show_inventory():

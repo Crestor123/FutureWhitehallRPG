@@ -16,6 +16,9 @@ class_name AbilityResource
 
 @export var manaCost : int = 0
 @export var ammoCost : int = 0
+#The ability uses all equipped guns, spending ammo from each
+@export var allGuns : bool = false
+
 @export var baseDamage : int
 @export var multiplier : float
 @export var turns : int = 0

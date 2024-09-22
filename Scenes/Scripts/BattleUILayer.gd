@@ -31,7 +31,7 @@ func delete_buttons():
 		item.queue_free()
 
 #Creates ability buttons for the current battler
-func create_buttons(abilityList : Array[Node]):
+func create_buttons(partyMember : Node, abilityList : Array[Node]):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	rightBar.visible = false

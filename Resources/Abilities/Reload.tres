@@ -13,6 +13,7 @@ mainStat = ""
 targetStat = ""
 manaCost = 0
 ammoCost = 0
+allGuns = false
 baseDamage = 0
 multiplier = 0.0
 turns = 0

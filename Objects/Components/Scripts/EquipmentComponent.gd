@@ -143,7 +143,7 @@ func spend_charge(amount : int):
 			equipmentSlots[item]["equip"].currentCharge -= amount
 	pass
 
-func get_charge_cost() -> int:
+func get_total_charge_cost() -> int:
 	var chargeCost = 0
 	for item in equipmentSlots:
 		if equipmentSlots[item]["equip"] is FirearmNode:

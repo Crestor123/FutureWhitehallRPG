@@ -16,6 +16,9 @@ extends Node
 
 @export var manaCost : int = 0
 @export var ammoCost : int = 0
+var realAmmoCost : int = 0
+@export var allGuns : bool = false
+
 @export var baseDamage : int
 @export var multiplier : float
 @export var turns : int = 0	#Turns > 0 indicate a buff or debuff
@@ -37,10 +40,14 @@ func initialize(setSource : Node = null):
 	target = data.target
 	mainStat = data.mainStat
 	targetStat = data.targetStat
+	
 	manaCost = data.manaCost
 	ammoCost = data.ammoCost
+	allGuns = data.allGuns
+	
 	baseDamage = data.baseDamage
 	multiplier = data.multiplier
+	
 	turns = data.turns
 	type = data.type
 	element = data.element
@@ -49,3 +56,6 @@ func initialize(setSource : Node = null):
 		source = setSource
 	
 	print("New ability ", abilityName, " created")
+	
+func set_real_ammo_cost(amount):
+	realAmmoCost = amount
