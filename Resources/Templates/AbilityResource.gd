@@ -21,6 +21,7 @@ class_name AbilityResource
 
 @export var baseDamage : int
 @export var multiplier : float
+@export var accuracy : float
 @export var turns : int = 0
 
 @export_enum ("melee", "ranged", "magical") var type : String

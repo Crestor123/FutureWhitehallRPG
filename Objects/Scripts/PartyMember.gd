@@ -8,6 +8,9 @@ class_name PartyMember
 @onready var Stats = $StatComponent
 @onready var Equipment = $EquipmentComponent
 
+@export var baseXP : int = 10
+@export var exponent : float = 1.5
+
 var Inventory : Node = null
 
 var level : int = 0
@@ -42,7 +45,8 @@ func initialize(inventory : Node):
 		
 	#Equipment.Inventory = Inventory
 	
-func xp_to_next_level():
+func xp_to_next_level(level : int):
+	return floor(baseXP * (pow(level, exponent)))
 	pass
 	
 func add_xp(amount : int):
@@ -60,7 +64,11 @@ func add_battle_xp(expArray : Array):
 	pass
 
 func level_up():
-	pass
+	level += 1
+	xpToLevel = xp_to_next_level(level)
 	
-func equip():
+	for i in data.statGrowths:
+		Stats.stats[i] += data.statGrowths[i]
+	Stats.tempStats["health"] = Stats.stats["health"]
+	Stats.tempStats["mana"] = Stats.stats["mana"]
 	pass

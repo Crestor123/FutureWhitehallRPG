@@ -13,10 +13,21 @@ class_name PartyMemberResource
 	"mana": 0,
 	"strength": 0,	#Affects physical melee damage
 	"intelligence": 0,	#Affects magic damage
-	"dexterity": 0,	#Affects ranged damage
+	"dexterity": 0,	#Affects accuracy
 	"speed": 0,
 	"vitality": 0,
 	"resistance": 0,
+}
+
+@export var statGrowths = {
+	"health": 5,
+	"mana": 2,
+	"strength": 1.2,
+	"intelligence": 2.2,
+	"dexterity": 1.8,
+	"speed": 0.6,
+	"vitality": 1.5,
+	"resistance": 1.8,
 }
 
 @export var resistances = {

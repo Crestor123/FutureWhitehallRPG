@@ -10,7 +10,7 @@
 script = ExtResource("1_4muml")
 name = "Test Enemy"
 level = 1
-experience = 1
+experience = 5
 sprite = ExtResource("3_i6xer")
 element = "earth"
 stats = {

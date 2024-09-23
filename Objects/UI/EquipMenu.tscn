@@ -113,6 +113,21 @@ size_flags_horizontal = 3
 text = "Back"
 flat = true
 
+[node name="SelectorButtons" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Statblock"]
+layout_mode = 2
+
+[node name="Left" type="Button" parent="PanelContainer/HBoxContainer/Statblock/SelectorButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "< -"
+flat = true
+
+[node name="Right" type="Button" parent="PanelContainer/HBoxContainer/Statblock/SelectorButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "- >"
+flat = true
+
 [node name="Close" type="Button" parent="PanelContainer/HBoxContainer/Statblock"]
 layout_mode = 2
 text = "Close"
@@ -127,4 +142,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/SelectorButtons/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/SelectorButtons/Right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Close" to="." method="_on_close_pressed"]

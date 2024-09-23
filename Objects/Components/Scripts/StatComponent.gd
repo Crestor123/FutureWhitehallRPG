@@ -120,7 +120,7 @@ func take_damage(value : int, type : String, element : String):
 		tempStats.health = get_stat("health")
 	
 	healthChanged.emit(tempStats.health)
-	if tempStats.health == 0:
+	if tempStats.health < 1:
 		healthZero.emit()
 	
 func add_buff(source, ability, effect):
@@ -150,14 +150,14 @@ func tick_buffs():
 #Returns current health value
 func get_health(percent : bool = false):
 	if percent:
-		return 100 * (float(tempStats["health"]) / float(get_stat("health")))
+		return 100 * (floor(float(tempStats["health"])) / floor(float(get_stat("health"))))
 	else:
 		return tempStats["health"]
 
 #Returns current mana value
 func get_mana(percent : bool = false):
 	if percent:
-		return 100 * (float(tempStats["mana"]) / float(get_stat("mana")))
+		return 100 * (floor(float(tempStats["mana"])) / floor(float(get_stat("mana"))))
 	else:
 		return tempStats["mana"]
 	pass
@@ -173,7 +173,7 @@ func get_stat(stat : String):
 		if stat in equipment.equipStats:
 			result += equipment.equipStats[stat]
 			
-	return result
+	return floor(result)
 	
 func get_resistance(res : String):
 	var result : int = 0
@@ -189,4 +189,4 @@ func get_resistance(res : String):
 		if res in equipment.equipStatusResist:
 			result += equipment.equipStatusResist[res]
 	
-	return result
+	return floor(result)

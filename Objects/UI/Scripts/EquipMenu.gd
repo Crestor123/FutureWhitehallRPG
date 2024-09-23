@@ -19,16 +19,24 @@ signal back
 signal close
 
 var Player : Node
+
 var currentPartyMember : PartyMember
+var currentPartyIndex : int = 0
+
 var currentSlot : String
 var currentType : String
 
 func initialize(setPlayer : Node):
 	Player = setPlayer
-	currentPartyMember = Player.PartyMembers[0]
+	currentPartyMember = Player.PartyMembers[currentPartyIndex]
 	
 	Icon = currentPartyMember.sprite
 	update_stats()
+
+	for i in EquipmentSlotContainer.get_children():
+		i.queue_free()
+	for i in InventoryContainer.get_children():
+		i.queue_free()
 
 	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
 	for slot in equipmentSlots:
@@ -137,3 +145,15 @@ func _on_back_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	close.emit()
+
+func _on_left_pressed():
+	currentPartyIndex -= 1
+	if currentPartyIndex < 0:
+		currentPartyIndex = Player.PartyMembers.size() - 1
+	initialize(Player)
+
+func _on_right_pressed():
+	currentPartyIndex += 1
+	if currentPartyIndex >= Player.PartyMembers.size():
+		currentPartyIndex = 0
+	initialize(Player)
