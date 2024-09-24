@@ -16,6 +16,7 @@ ammoCost = 0
 allGuns = false
 baseDamage = 0
 multiplier = 0.0
+accuracy = 0.0
 turns = 1
 type = "melee"
 element = "none"

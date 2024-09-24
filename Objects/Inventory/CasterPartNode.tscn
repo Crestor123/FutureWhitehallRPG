@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyfgy4s1vqnhk"]
+
+[ext_resource type="Script" path="res://Objects/Inventory/Scripts/CasterPartNode.gd" id="1_qp1s5"]
+
+[node name="CasterPartNode" type="Node"]
+script = ExtResource("1_qp1s5")

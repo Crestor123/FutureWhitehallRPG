@@ -3,7 +3,7 @@ extends Node
 #@export var Inventory : Node = null
 @export var Target : Node = null
 
-#Slots point to equipmentNodes that are children of this node
+#Slots point to equipmentNodes
 var equipmentSlots = {
 	"mainhand": {"type": "weapon", "equip": null},
 	"offhand": {"type": "weapon", "equip": null},
@@ -17,7 +17,7 @@ var equipStats = {
 	"mana": 0,
 	"strength": 0,	#Affects physical melee damage
 	"intelligence": 0,	#Affects magic damage
-	"dexterity": 0,	#Affects ranged damage
+	"dexterity": 0,	#Affects accuracy
 	"speed": 0,
 	"vitality": 0,
 	"resistance": 0,

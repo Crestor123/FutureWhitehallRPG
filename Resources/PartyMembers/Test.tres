@@ -28,6 +28,16 @@ stats = {
 "strength": 5,
 "vitality": 5
 }
+statGrowths = {
+"dexterity": 1.8,
+"health": 5,
+"intelligence": 2.2,
+"mana": 2,
+"resistance": 1.8,
+"speed": 0.6,
+"strength": 1.2,
+"vitality": 1.5
+}
 resistances = {
 "acid": 0,
 "air": 0,

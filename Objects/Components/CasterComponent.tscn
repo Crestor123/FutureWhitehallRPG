@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7gc8r1bebycp"]
+
+[ext_resource type="Script" path="res://Objects/Components/Scripts/CasterComponent.gd" id="1_7nnmb"]
+
+[node name="CasterComponent" type="Node"]
+script = ExtResource("1_7nnmb")

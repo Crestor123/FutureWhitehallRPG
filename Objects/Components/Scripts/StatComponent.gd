@@ -4,6 +4,7 @@ extends Node
 
 @export var parent : Node
 @export var equipment : Node
+@export var caster : Node
 @export var battler : Node
 
 signal reviveSignal
@@ -172,6 +173,9 @@ func get_stat(stat : String):
 	if equipment:
 		if stat in equipment.equipStats:
 			result += equipment.equipStats[stat]
+	if caster:
+		if stat in caster.stats:
+			result += caster.stats[stat]
 			
 	return floor(result)
 	
@@ -188,5 +192,10 @@ func get_resistance(res : String):
 			result += equipment.equipResistances[res]
 		if res in equipment.equipStatusResist:
 			result += equipment.equipStatusResist[res]
+	if caster:
+		if res in caster.resistances:
+			result += caster.resistances[res]
+		if res in caster.statusResist:
+			result += caster.statusResist[res]
 	
 	return floor(result)

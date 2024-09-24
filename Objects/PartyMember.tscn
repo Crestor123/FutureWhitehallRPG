@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciubsoqne0anu"]
+[gd_scene load_steps=6 format=3 uid="uid://ciubsoqne0anu"]
 
 [ext_resource type="Script" path="res://Objects/Scripts/PartyMember.gd" id="1_t2p47"]
 [ext_resource type="PackedScene" uid="uid://2sabk1qf7cl4" path="res://Objects/Components/StatComponent.tscn" id="1_vm0ts"]
 [ext_resource type="PackedScene" uid="uid://cv6ldxepmuas5" path="res://Objects/Components/EquipmentComponent.tscn" id="2_cpuku"]
 [ext_resource type="PackedScene" uid="uid://bya0ps2ufov22" path="res://Objects/Components/AbilityComponent.tscn" id="4_6v3ia"]
+[ext_resource type="PackedScene" uid="uid://c7gc8r1bebycp" path="res://Objects/Components/CasterComponent.tscn" id="5_vhca0"]
 
 [node name="PartyMember" type="Node"]
 script = ExtResource("1_t2p47")
@@ -19,3 +20,6 @@ Target = NodePath("..")
 stats = NodePath("../StatComponent")
 parent = NodePath("..")
 equipment = NodePath("../EquipmentComponent")
+
+[node name="CasterComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_vhca0")]
+parent = NodePath("..")
