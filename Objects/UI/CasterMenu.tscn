@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcrulihdxoypq"]
+
+[ext_resource type="Script" path="res://Objects/UI/Scripts/CasterMenu.gd" id="1_7mf3o"]
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_bonts"]
+[ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="2_q4wk2"]
+[ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/CasterPartButton.tscn" id="2_rma8k"]
+
+[sub_resource type="Theme" id="Theme_2ov7f"]
+default_font = ExtResource("1_bonts")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b872"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="CasterMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7mf3o")
+CasterPartButton = ExtResource("2_rma8k")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_2ov7f")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b872")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Statblock" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_q4wk2")]
+layout_mode = 2
+
+[node name="CasterSlots" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Inventory" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

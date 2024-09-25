@@ -29,6 +29,10 @@ func _on_btn_equipment_pressed():
 	menuButtonPressed.emit("equipment")
 	pass
 
+func _on_btn_caster_pressed():
+	menuButtonPressed.emit("caster")
+	pass
+
 func _on_btn_close_pressed():
 	var T = self.create_tween()
 	T.tween_property(menuPanel, "position", Vector2(-menuPanel.size.x, 0), 0.5)

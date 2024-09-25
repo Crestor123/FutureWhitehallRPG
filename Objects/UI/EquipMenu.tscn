@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Objects/UI/Scripts/EquipMenu.gd" id="1_vqg7w"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="2_1lib3"]
 [ext_resource type="PackedScene" uid="uid://c0gj3ci6ekhxu" path="res://Objects/UI/EquipmentSlot.tscn" id="2_ebuun"]
-[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="3_1ik6u"]
+[ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="4_mfuy6"]
 
 [sub_resource type="Theme" id="Theme_4tk66"]
 default_font = ExtResource("2_1lib3")
@@ -42,96 +42,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i1aqx")
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Statblock" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+[node name="Statblock" parent="PanelContainer/HBoxContainer" instance=ExtResource("4_mfuy6")]
 layout_mode = 2
-
-[node name="Icon" type="TextureRect" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-texture = ExtResource("3_1ik6u")
-stretch_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="PanelContainer/HBoxContainer/Statblock/HBoxContainer"]
-layout_mode = 2
-text = "Name"
-
-[node name="Level" type="Label" parent="PanelContainer/HBoxContainer/Statblock/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Level"
-horizontal_alignment = 2
-
-[node name="Health" type="Label" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-text = "HP: 10 / 10"
-horizontal_alignment = 2
-
-[node name="Mana" type="Label" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-text = "MP: 10/  10"
-horizontal_alignment = 2
-
-[node name="Stats" type="GridContainer" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-columns = 2
-
-[node name="Strength" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "STR: 10"
-horizontal_alignment = 2
-
-[node name="Intelligence" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "INT: 10"
-horizontal_alignment = 2
-
-[node name="Dexterity" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "DEX: 10"
-horizontal_alignment = 2
-
-[node name="Speed" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "SPD: 10"
-horizontal_alignment = 2
-
-[node name="Vitality" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "VIT: 10"
-horizontal_alignment = 2
-
-[node name="Resistance" type="Label" parent="PanelContainer/HBoxContainer/Statblock/Stats"]
-layout_mode = 2
-text = "RES: 10"
-horizontal_alignment = 2
-
-[node name="Back" type="Button" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Back"
-flat = true
-
-[node name="SelectorButtons" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-
-[node name="Left" type="Button" parent="PanelContainer/HBoxContainer/Statblock/SelectorButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "< -"
-flat = true
-
-[node name="Right" type="Button" parent="PanelContainer/HBoxContainer/Statblock/SelectorButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "- >"
-flat = true
-
-[node name="Close" type="Button" parent="PanelContainer/HBoxContainer/Statblock"]
-layout_mode = 2
-text = "Close"
-flat = true
 
 [node name="EquipmentSlots" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -140,8 +52,3 @@ size_flags_horizontal = 3
 [node name="Inventory" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/SelectorButtons/Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/SelectorButtons/Right" to="." method="_on_right_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Statblock/Close" to="." method="_on_close_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8huwo6ppqdrt"]
+
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="1_4uqvq"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/CasterPartButton.gd" id="1_on1dg"]
+
+[node name="CasterPartButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_on1dg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("1_4uqvq")
+stretch_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Name"
+vertical_alignment = 1
+
+[node name="Select" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

@@ -2,18 +2,9 @@ extends Control
 
 @export var EquipmentSlot : PackedScene
 
-@onready var Icon = $PanelContainer/HBoxContainer/Statblock/Icon
-@onready var Health = $PanelContainer/HBoxContainer/Statblock/Health
-@onready var Mana = $PanelContainer/HBoxContainer/Statblock/Mana
 @onready var EquipmentSlotContainer = $PanelContainer/HBoxContainer/EquipmentSlots
 @onready var InventoryContainer = $PanelContainer/HBoxContainer/Inventory
-
-@onready var Strength = $PanelContainer/HBoxContainer/Statblock/Stats/Strength
-@onready var Intelligence = $PanelContainer/HBoxContainer/Statblock/Stats/Intelligence
-@onready var Dexterity = $PanelContainer/HBoxContainer/Statblock/Stats/Dexterity
-@onready var Speed = $PanelContainer/HBoxContainer/Statblock/Stats/Speed
-@onready var Vitality = $PanelContainer/HBoxContainer/Statblock/Stats/Vitality
-@onready var Resistance = $PanelContainer/HBoxContainer/Statblock/Stats/Resistance
+@onready var Statblock = $PanelContainer/HBoxContainer/Statblock
 
 signal back
 signal close
@@ -30,7 +21,11 @@ func initialize(setPlayer : Node):
 	Player = setPlayer
 	currentPartyMember = Player.PartyMembers[currentPartyIndex]
 	
-	Icon = currentPartyMember.sprite
+	Statblock.initialize(currentPartyMember)
+	Statblock.btnLeft.pressed.connect(_on_left_pressed)
+	Statblock.btnRight.pressed.connect(_on_right_pressed)
+	Statblock.btnBack.pressed.connect(_on_back_pressed)
+	Statblock.btnClose.pressed.connect(_on_close_pressed)
 	update_stats()
 
 	for i in EquipmentSlotContainer.get_children():
@@ -49,20 +44,8 @@ func initialize(setPlayer : Node):
 			newEquipSlot.set_equipment(equipmentSlots[slot]["equip"])
 		newEquipSlot.selectSlot.connect(display_inventory)
 
-func change_partyMember():
-	pass
-
 func update_stats():
-	Health.text = str(currentPartyMember.Stats.get_health()) + " / " + str(currentPartyMember.Stats.get_stat("health"))
-	Mana.text = str(currentPartyMember.Stats.get_mana()) + " / " + str(currentPartyMember.Stats.get_stat("mana"))
-	
-	Strength.text = "STR: " + str(currentPartyMember.Stats.get_stat("strength"))
-	Intelligence.text = "INT: " + str(currentPartyMember.Stats.get_stat("intelligence"))
-	Dexterity.text = "DEX: " + str(currentPartyMember.Stats.get_stat("dexterity"))
-	Speed.text = "SPD: " + str(currentPartyMember.Stats.get_stat("speed"))
-	Vitality.text = "VIT: " + str(currentPartyMember.Stats.get_stat("vitality"))
-	Resistance.text = "RES: " + str(currentPartyMember.Stats.get_stat("resistance"))
-	pass
+	Statblock.update_stats(currentPartyMember)
 
 func display_inventory(slot : String, type : String):
 	for i in InventoryContainer.get_children():

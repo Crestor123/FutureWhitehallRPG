@@ -5,8 +5,11 @@ extends Node
 var parts = {
 	"battery": null,	#Adds to MP total
 	"prism": null,		#Increases magic damage
-	"memory": null		#Determines number of spell slots
+	"memory": null		#Determines memory value, governing amount of spells that can be equipped
 }
+
+var maxMemory : int = 0
+var usedMemory : int = 0
 
 #Holds all currently equipped spells
 var spellCards : Array[Node]

@@ -5,6 +5,7 @@ extends Control
 @onready var Stats = $PanelContainer/HBoxContainer/Stats
 @onready var btnItem = $PanelContainer/HBoxContainer/Buttons/Items
 @onready var btnEquipment = $PanelContainer/HBoxContainer/Buttons/Equipment
+@onready var btnCaster = $PanelContainer/HBoxContainer/Buttons/Caster
 @onready var btnClose = $PanelContainer/HBoxContainer/Buttons/Close
 
 signal close
@@ -29,3 +30,6 @@ func _on_items_pressed():
 func _on_equipment_pressed():
 	changeMenu.emit("equipment")
 	pass
+	
+func _on_caster_pressed() -> void:
+	changeMenu.emit("caster")
