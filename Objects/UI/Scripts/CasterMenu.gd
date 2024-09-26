@@ -1,8 +1,10 @@
 extends Control
 
-@export var CasterPartButton : PackedScene
+@export var LabelButton : PackedScene
 
 @onready var Statblock = $PanelContainer/HBoxContainer/Statblock
+@onready var CasterContainer = $PanelContainer/HBoxContainer/CasterSlots
+@onready var InventoryContainer = $PanelContainer/HBoxContainer/Inventory
 
 var Player : Node
 

@@ -4,11 +4,12 @@ extends Control
 @onready var lblName = $HBoxContainer/Name
 @onready var btnSelect = $Select
 
+@export var defaultTexture : Texture2D
+
 signal pressed
 signal getData
 
 var data : Dictionary
-var emittedData : Array[String]
 
 func add_data(key : String, value):
 	data[key] = value

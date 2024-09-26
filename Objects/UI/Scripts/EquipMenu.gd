@@ -1,6 +1,5 @@
 extends Control
 
-@export var EquipmentSlot : PackedScene
 @export var LabelButton : PackedScene
 
 @onready var EquipmentSlotContainer = $PanelContainer/HBoxContainer/EquipmentSlots
@@ -22,6 +21,7 @@ func initialize(setPlayer : Node):
 	Player = setPlayer
 	currentPartyMember = Player.PartyMembers[currentPartyIndex]
 	
+	#Set up the statblock and all of its buttons
 	Statblock.initialize(currentPartyMember)
 	Statblock.btnLeft.pressed.connect(_on_left_pressed)
 	Statblock.btnRight.pressed.connect(_on_right_pressed)
@@ -29,84 +29,83 @@ func initialize(setPlayer : Node):
 	Statblock.btnClose.pressed.connect(_on_close_pressed)
 	update_stats()
 
+	#Empty out the containers
 	for i in EquipmentSlotContainer.get_children():
 		i.queue_free()
 	for i in InventoryContainer.get_children():
 		i.queue_free()
 
+	#Populate the equipment slot list
 	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
 	for slot in equipmentSlots:
 		var newEquipSlot = LabelButton.instantiate()
 		EquipmentSlotContainer.add_child(newEquipSlot)
 		
-		newEquipSlot.add_data("slot", slot)
-		newEquipSlot.add_data("type", equipmentSlots[slot]["type"])
 		if equipmentSlots[slot]["equip"] == null:
-			newEquipSlot.set_label(slot.capitalize())
+			#If there isn't anything equipped, show a blank slot
+			set_slot(newEquipSlot, slot, equipmentSlots[slot]["type"])
 		else:
-			newEquipSlot.add_data("equip", equipmentSlots[slot]["equip"])
-			newEquipSlot.set_label(equipmentSlots[slot]["equip"].name)
-		
+			#Otherwise, show the equipped item
+			set_equipment(newEquipSlot, equipmentSlots[slot]["equip"], false)
+
 		newEquipSlot.getData.connect(display_inventory)
 
 func update_stats():
 	Statblock.update_stats(currentPartyMember)
 
 func display_inventory(buttonData):
+	#Display the list of equippable items for a given slot
 	var slot = buttonData["slot"]
 	var type = buttonData["type"]
 	
 	for i in InventoryContainer.get_children():
 		i.queue_free()
 	
+	#Set up the unequip button
 	var btnUnequip = LabelButton.instantiate()
 	InventoryContainer.add_child(btnUnequip)
 	btnUnequip.set_label("Unequip")
+	btnUnequip.add_data("slot", "unequip")
 	btnUnequip.pressed.connect(unequip)
 	
 	currentSlot = slot
 	currentType = type
+	#Show all items in the inventory of the proper slot
 	for item in Player.Inventory.get_children():
 		if item is EquipNode:
 			if item.slot == type:
 				var newEquip = LabelButton.instantiate()
 				InventoryContainer.add_child(newEquip)
-				newEquip.add_data("item", item)
-				newEquip.set_icon(item.icon)
-				
-				#Show the equipped status of the item
-				if !item.Owner:
-					newEquip.set_label(item.name)
-				else:
-					newEquip.set_label(item.name + " (E)")
-				if !item.Owner == currentPartyMember:
-					newEquip.getData.connect(equip)
-				
+				set_equipment(newEquip, item, true)
+				newEquip.getData.connect(equip)
 
-func equip(item : EquipNode):
+func equip(buttonData):
+	var item = buttonData["item"]
+	
+	#If the equip fails, break out
 	if !currentPartyMember.Equipment.equip(item, currentSlot):
 		return
 	
+	#Update the equipment slot list to show the newly equipped item
+	#If an item was unequipped from another slot, this will update here as well
 	var i = 0
 	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
 	for j in equipmentSlots:
 		if equipmentSlots[j]["equip"] == null:
-			EquipmentSlotContainer.get_child(i).set_slot(j, equipmentSlots[j]["type"])
+			set_slot(EquipmentSlotContainer.get_child(i), j, equipmentSlots[j]["type"])
 		else:
-			EquipmentSlotContainer.get_child(i).set_equipment(equipmentSlots[j]["equip"])
+			set_equipment(EquipmentSlotContainer.get_child(i), equipmentSlots[j]["equip"])
 		i += 1
 	
-	for j in EquipmentSlotContainer.get_children():
-		if j.slot == currentSlot:
-			j.set_equipment(item)
-				
+	#Update the inventory list
 	for j in InventoryContainer.get_children():
-		if j.slot != "unequip":
-			j.set_equipment(j.data, true)
-			if j.data.Owner == currentPartyMember:
-				j.selectData.disconnect(equip)
+		if j.data["slot"] != "unequip":
+			set_equipment(j, j.data["item"], true)
+			if j.data["item"].Owner == currentPartyMember:
+				#The same item can't be equipped multiple times
+				j.getData.disconnect(equip)
 			else:
-				j.selectData.connect(equip)
+				j.getData.connect(equip)
 			
 	update_stats()
 	pass
@@ -116,29 +115,34 @@ func unequip():
 	
 	var equipment
 	
+	#Find the item to be unequipped
 	var j = 0
 	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
 	for i in equipmentSlots:
 		if i == currentSlot:
 			if equipmentSlots[i]["equip"] != null:
+				#This is only set if there is an item equipped to the given slot
 				equipment = equipmentSlots[i]["equip"]
 				break
 		j += 1
 	
+	#Break out if there is nothing to unequip, or if it fails
 	if !equipment: return
 	if !currentPartyMember.Equipment.unequip(equipment): return
 	
-	EquipmentSlotContainer.get_child(j).set_slot(currentSlot, currentType)
+	set_slot(EquipmentSlotContainer.get_child(j), currentSlot, currentType)
 	
 	for i in InventoryContainer.get_children():
-		if i.slot != "unequip":
-			i.set_equipment(i.data, true)
-			if i.data.Owner != currentPartyMember:
-				i.selectData.connect(equip)
+		if i.data["slot"] != "unequip":
+			set_equipment(i, i.data["item"], true)
+			if i.data["item"].Owner != currentPartyMember:
+				i.getData.connect(equip)
 
 	update_stats()
 
+#Button helper functions
 func set_slot(button : Node, slot : String, type : String):
+	button.set_icon(button.defaultTexture)
 	button.set_label(slot.capitalize())
 	button.add_data("slot", slot)
 	button.add_data("type", type)
@@ -147,7 +151,7 @@ func set_slot(button : Node, slot : String, type : String):
 func set_equipment(button : Node, equipment : EquipNode, showOwner : bool = false):
 	button.set_icon(equipment.icon)
 	button.add_data("item", equipment)
-	button.add_data("equip", equipment.slot)
+	button.add_data("slot", equipment.slot)
 	
 	if showOwner:
 		button.set_label(equipment.itemName + " (E)")
