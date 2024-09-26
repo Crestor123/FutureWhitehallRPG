@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Objects/UI/Scripts/CasterMenu.gd" id="1_7mf3o"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_bonts"]
 [ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="2_q4wk2"]
-[ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/CasterPartButton.tscn" id="2_rma8k"]
+[ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/LabelButton.tscn" id="2_rma8k"]
 
 [sub_resource type="Theme" id="Theme_2ov7f"]
 default_font = ExtResource("1_bonts")

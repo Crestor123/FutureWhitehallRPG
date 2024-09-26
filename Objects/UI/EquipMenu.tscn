@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://df46g44jqaloo"]
+[gd_scene load_steps=8 format=3 uid="uid://df46g44jqaloo"]
 
 [ext_resource type="Script" path="res://Objects/UI/Scripts/EquipMenu.gd" id="1_vqg7w"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="2_1lib3"]
 [ext_resource type="PackedScene" uid="uid://c0gj3ci6ekhxu" path="res://Objects/UI/EquipmentSlot.tscn" id="2_ebuun"]
+[ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/LabelButton.tscn" id="3_4avlj"]
 [ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="4_mfuy6"]
 
 [sub_resource type="Theme" id="Theme_4tk66"]
@@ -28,6 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vqg7w")
 EquipmentSlot = ExtResource("2_ebuun")
+LabelButton = ExtResource("3_4avlj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

@@ -1,6 +1,7 @@
 extends Control
 
 @export var EquipmentSlot : PackedScene
+@export var LabelButton : PackedScene
 
 @onready var EquipmentSlotContainer = $PanelContainer/HBoxContainer/EquipmentSlots
 @onready var InventoryContainer = $PanelContainer/HBoxContainer/Inventory
@@ -35,37 +36,51 @@ func initialize(setPlayer : Node):
 
 	var equipmentSlots = currentPartyMember.Equipment.equipmentSlots
 	for slot in equipmentSlots:
-		var newEquipSlot = EquipmentSlot.instantiate()
+		var newEquipSlot = LabelButton.instantiate()
 		EquipmentSlotContainer.add_child(newEquipSlot)
+		
+		newEquipSlot.add_data("slot", slot)
+		newEquipSlot.add_data("type", equipmentSlots[slot]["type"])
 		if equipmentSlots[slot]["equip"] == null:
-			newEquipSlot.set_slot(slot, equipmentSlots[slot]["type"])
+			newEquipSlot.set_label(slot.capitalize())
 		else:
-			newEquipSlot.set_slot(slot, equipmentSlots[slot]["type"])
-			newEquipSlot.set_equipment(equipmentSlots[slot]["equip"])
-		newEquipSlot.selectSlot.connect(display_inventory)
+			newEquipSlot.add_data("equip", equipmentSlots[slot]["equip"])
+			newEquipSlot.set_label(equipmentSlots[slot]["equip"].name)
+		
+		newEquipSlot.getData.connect(display_inventory)
 
 func update_stats():
 	Statblock.update_stats(currentPartyMember)
 
-func display_inventory(slot : String, type : String):
+func display_inventory(buttonData):
+	var slot = buttonData["slot"]
+	var type = buttonData["type"]
+	
 	for i in InventoryContainer.get_children():
 		i.queue_free()
 	
-	var btnUnequip = EquipmentSlot.instantiate()
+	var btnUnequip = LabelButton.instantiate()
 	InventoryContainer.add_child(btnUnequip)
-	btnUnequip.set_unequip()
-	btnUnequip.selectSlot.connect(unequip)
+	btnUnequip.set_label("Unequip")
+	btnUnequip.pressed.connect(unequip)
 	
 	currentSlot = slot
 	currentType = type
 	for item in Player.Inventory.get_children():
 		if item is EquipNode:
 			if item.slot == type:
-				var newEquip = EquipmentSlot.instantiate()
+				var newEquip = LabelButton.instantiate()
 				InventoryContainer.add_child(newEquip)
-				newEquip.set_equipment(item, true)
+				newEquip.add_data("item", item)
+				newEquip.set_icon(item.icon)
+				
+				#Show the equipped status of the item
+				if !item.Owner:
+					newEquip.set_label(item.name)
+				else:
+					newEquip.set_label(item.name + " (E)")
 				if !item.Owner == currentPartyMember:
-					newEquip.selectData.connect(equip)
+					newEquip.getData.connect(equip)
 				
 
 func equip(item : EquipNode):
@@ -122,6 +137,23 @@ func unequip():
 				i.selectData.connect(equip)
 
 	update_stats()
+
+func set_slot(button : Node, slot : String, type : String):
+	button.set_label(slot.capitalize())
+	button.add_data("slot", slot)
+	button.add_data("type", type)
+	pass
+	
+func set_equipment(button : Node, equipment : EquipNode, showOwner : bool = false):
+	button.set_icon(equipment.icon)
+	button.add_data("item", equipment)
+	button.add_data("equip", equipment.slot)
+	
+	if showOwner:
+		button.set_label(equipment.itemName + " (E)")
+	else:
+		button.set_label(equipment.itemName)
+	pass
 
 func _on_back_pressed() -> void:
 	back.emit()
