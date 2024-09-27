@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CasterPartResource" load_steps=3 format=3 uid="uid://8mtqv2352fv1"]
+
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_6relc"]
+[ext_resource type="Script" path="res://Resources/Templates/CasterPartResource.gd" id="1_8g86i"]
+
+[resource]
+script = ExtResource("1_8g86i")
+slot = "memory"
+bonusBattery = 0
+bonusMagic = 0.0
+bonusMemory = 10
+name = "Test Memory"
+id = ""
+description = ""
+icon = ExtResource("1_6relc")
+cost = 0
+stackable = false
+quantity = 1

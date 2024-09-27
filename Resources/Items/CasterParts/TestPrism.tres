@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CasterPartResource" load_steps=3 format=3 uid="uid://d35mxf4s45kl2"]
+
+[ext_resource type="Script" path="res://Resources/Templates/CasterPartResource.gd" id="1_i4n6v"]
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_oqmf2"]
+
+[resource]
+script = ExtResource("1_i4n6v")
+slot = "prism"
+bonusBattery = 0
+bonusMagic = 10.0
+bonusMemory = 0
+name = "Test Prism"
+id = ""
+description = ""
+icon = ExtResource("1_oqmf2")
+cost = 0
+stackable = false
+quantity = 1

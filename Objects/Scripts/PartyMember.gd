@@ -7,6 +7,7 @@ class_name PartyMember
 @onready var Abilities = $AbilityComponent
 @onready var Stats = $StatComponent
 @onready var Equipment = $EquipmentComponent
+@onready var Caster = $CasterComponent
 
 @export var baseXP : int = 10
 @export var exponent : float = 1.5

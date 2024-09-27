@@ -4,6 +4,8 @@ extends Node
 @export var equipmentScene : PackedScene
 @export var consumableScene : PackedScene
 @export var firearmScene : PackedScene
+@export var casterPartScene : PackedScene
+@export var spellCardScene : PackedScene
 
 @export var TotalCharge : int = 100
 @export var CurrentCharge : int = 100
@@ -49,6 +51,10 @@ func add_item(item : ItemResource):
 		newItem = equipmentScene.instantiate()
 	elif item is ConsumableResource:
 		newItem = consumableScene.instantiate()
+	elif item is CasterPartResource:
+		newItem = casterPartScene.instantiate()
+	elif item is SpellCardResource:
+		newItem = spellCardScene.instantiate()
 	else:
 		newItem = itemScene.instantiate()
 		

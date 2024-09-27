@@ -9,6 +9,7 @@ class_name CasterPartNode
 @export var bonusMemory : int
 
 func initialize():
+	super.initialize()
 	slot = data.slot
 	bonusBattery = data.bonusBattery
 	bonusMagic = data.bonusMagic

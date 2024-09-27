@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CasterPartResource" load_steps=3 format=3 uid="uid://3esvbt3tyg6o"]
+
+[ext_resource type="Script" path="res://Resources/Templates/CasterPartResource.gd" id="1_bppcr"]
+[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_oo5mc"]
+
+[resource]
+script = ExtResource("1_bppcr")
+slot = "battery"
+bonusBattery = 10
+bonusMagic = 0.0
+bonusMemory = 0
+name = "Test Battery"
+id = ""
+description = ""
+icon = ExtResource("1_oo5mc")
+cost = 0
+stackable = false
+quantity = 1
