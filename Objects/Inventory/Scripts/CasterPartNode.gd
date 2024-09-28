@@ -8,6 +8,8 @@ class_name CasterPartNode
 @export var bonusMagic : float
 @export var bonusMemory : int
 
+var Owner : PartyMember = null
+
 func initialize():
 	super.initialize()
 	slot = data.slot

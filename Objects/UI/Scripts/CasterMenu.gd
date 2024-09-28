@@ -12,7 +12,6 @@ var currentPartyMember : PartyMember
 var currentPartyIndex : int = 0
 
 var currentSlot : String
-var currentType : String
 
 signal close
 signal back
@@ -36,6 +35,7 @@ func initialize(setPlayer : Node):
 func top_menu():
 	#Create buttons to choose between parts and spells
 	clear_inventory()
+	clear_caster()
 		
 	var partButton = LabelButton.instantiate()
 	InventoryContainer.add_child(partButton)
@@ -53,6 +53,11 @@ func part_menu():
 	clear_inventory()
 	clear_caster()
 	
+	var back = LabelButton.instantiate()
+	InventoryContainer.add_child(back)
+	back.set_label("Back")
+	back.pressed.connect(top_menu)
+	
 	for i in currentPartyMember.Caster.parts:
 		var part = LabelButton.instantiate()
 		CasterContainer.add_child(part)
@@ -67,7 +72,18 @@ func part_menu():
 func display_parts(buttonData):
 	#Display all caster parts of a given slot type
 	var slot = buttonData["slot"]
+	currentSlot = slot
 	clear_inventory()
+	
+	var back = LabelButton.instantiate()
+	InventoryContainer.add_child(back)
+	back.set_label("Back")
+	back.pressed.connect(top_menu)
+	
+	var unequip = LabelButton.instantiate()
+	InventoryContainer.add_child(unequip)
+	unequip.set_label("Unequip")
+	unequip.pressed.connect(unequip_part)
 	
 	for i in Player.Inventory.get_children():
 		if i is CasterPartNode:
@@ -76,16 +92,60 @@ func display_parts(buttonData):
 				InventoryContainer.add_child(part)
 				part.set_label(i.itemName)
 				part.set_icon(i.icon)
-				part.add_data("item", i)
+				part.add_data("part", i)
 				if slot == "battery":
 					part.append_label(" (" + str(i.bonusBattery) + ") ")
 				if slot == "memory":
 					part.append_label(" (" + str(i.bonusMemory) + ") ")
 				if slot == "prism":
 					part.append_label(" (" + str(i.bonusMagic) + ") ")
+				if i.Owner == currentPartyMember:
+					part.append_label(" (E)")
 				part.getData.connect(equip_part)
 	
 func equip_part(buttonData):
+	var part = buttonData["part"]
+	
+	currentPartyMember.Caster.equip_part(part)
+	
+	for i in CasterContainer.get_children():
+		if i.data["slot"] == currentSlot:
+			i.set_label(part.itemName)
+			i.add_data("part", part)
+			if currentSlot == "battery":
+				i.append_label(" (" + str(part.bonusBattery) + ") ")
+			elif currentSlot == "memory":
+				i.append_label(" (" + str(part.bonusMemory) + ") ")
+			elif currentSlot == "prism":
+				i.append_label(" (" + str(part.bonusMagic) + ") ")
+			break
+	
+	for i in InventoryContainer.get_children():
+		if !i.data.find_key("part"): continue
+		i.set_label(i.data["part"].itemName)
+		var slot = i.data["part"].slot
+		if slot == "battery":
+			i.append_label(" (" + str(i.data["part"].bonusBattery) + ") ")
+		elif slot == "memory":
+			i.append_label(" (" + str(i.data["part"].bonusMemory) + ") ")
+		elif slot == "prism":
+			i.append_label(" (" + str(i.data["part"].bonusMagic) + ") ")
+		if i.data["part"].Owner == currentPartyMember:
+			i.append_label(" (E)")
+	pass
+
+func unequip_part():
+	var part : CasterPartNode = null
+	var slot = null
+	for i in CasterContainer.get_children():
+		if i.data["slot"] == currentSlot:
+			slot = i
+			part = i.data["part"]
+			break
+	
+	currentPartyMember.Caster.unequip_part(part)
+	slot.set_label(currentSlot.capitalize())
+	slot.data["part"] = null
 	pass
 
 func display_spells():
@@ -94,6 +154,9 @@ func display_spells():
 	pass
 
 func equip_spell():
+	pass
+
+func unequip_spell():
 	pass
 
 func clear_inventory():

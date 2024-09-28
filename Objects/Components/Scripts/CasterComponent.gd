@@ -45,13 +45,50 @@ var statusResist = {
 }
 
 func equip_spell(spell : SpellCardNode):
+	if spell.Owner != parent: return
+	
+	spell.Owner = null
+	spellCards.erase(spell)
+	
+	update_stats()
 	pass
 
 func unequip_spell(spell : SpellCardNode):
+	if spell.Owner != parent: return
+	
+	spell.Owner = parent
+	spellCards.append(spell)
+	
+	update_stats()
 	pass
 
-func equip_part(part : CasterPartNode):
+func update_stats():
+	for i in spellCards:
+		for j in i.bonuses:
+			stats[j] += i.bonuses[j]
+		for j in i.resistances:
+			resistances[j] += i.bonuses[j]
+		for j in i.statusResists:
+			statusResist[j] += i.statusResists[j]
+	pass
+
+func equip_part(part : CasterPartNode) -> bool:
+	#If the part is already equipped, can't equip it again
+	if part.Owner != null: return false
+	
+	#There is already a part equipped to the slot, unequip it
+	if parts[part.slot] != null:
+		unequip_part(parts[part.slot])
+	
+	parts[part.slot] = part
+	part.Owner = parent
+	
+	return true
 	pass
 	
 func unequip_part(part : CasterPartNode):
+	for i in parts:
+		if parts[i] == part:
+			parts[i].Owner = null
+			parts[i] = null
 	pass
