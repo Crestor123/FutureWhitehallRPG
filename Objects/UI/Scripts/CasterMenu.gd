@@ -121,7 +121,7 @@ func equip_part(buttonData):
 			break
 	
 	for i in InventoryContainer.get_children():
-		if !i.data.find_key("part"): continue
+		if !i.data.has("part"): continue
 		i.set_label(i.data["part"].itemName)
 		var slot = i.data["part"].slot
 		if slot == "battery":
@@ -151,12 +151,85 @@ func unequip_part():
 func display_spells():
 	#Display all equippable spells
 	clear_inventory()
+	clear_caster()
+	
+	var back = LabelButton.instantiate()
+	InventoryContainer.add_child(back)
+	back.set_label("Back")
+	back.pressed.connect(top_menu)
+	
+	for i in currentPartyMember.Caster.spellCards:
+		var spell = LabelButton.instantiate()
+		CasterContainer.add_child(spell)
+		spell.set_label(i.itemName + " " + str(i.memoryCost))
+		spell.set_icon(i.icon)
+		spell.add_data("spell", i)
+		spell.getData.connect(unequip_spell)
+	
+	for i in Player.Inventory.get_children():
+		if i is SpellCardNode:
+			var spell = LabelButton.instantiate()
+			InventoryContainer.add_child(spell)
+			spell.set_label(i.itemName + " " + str(i.memoryCost))
+			spell.set_icon(i.icon)
+			spell.add_data("spell", i)
+			if i.Owner == currentPartyMember:
+				spell.append_label(" (E)")
+				spell.getData.connect(unequip_spell)
+			else:
+				spell.getData.connect(equip_spell)
 	pass
 
-func equip_spell():
+func equip_spell(buttonData):
+	var spell = buttonData["spell"]
+	currentPartyMember.Caster.equip_spell(spell)
+	
+	#Add a new button to the caster for the equipped spell
+	var newLabel = LabelButton.instantiate()
+	CasterContainer.add_child(newLabel)
+	newLabel.set_label(spell.itemName + " " + str(spell.memoryCost))
+	newLabel.set_icon(spell.icon)
+	newLabel.add_data("spell", spell)
+	newLabel.getData.connect(unequip_spell)
+	
+	#Update the inventory list
+	for i in InventoryContainer.get_children():
+		if !i.data.has("spell"): continue
+		i.set_label(i.data["spell"].itemName + " " + str(i.data["spell"].memoryCost))
+		if i.getData.is_connected(equip_spell):
+			i.getData.disconnect(equip_spell)
+		if i.getData.is_connected(unequip_spell):
+			i.getData.disconnect(unequip_spell)
+		if i.data["spell"].Owner == currentPartyMember:
+			i.append_label(" (E)")
+			i.getData.connect(unequip_spell)
+		else:
+			i.getData.connect(equip_spell)
 	pass
 
-func unequip_spell():
+func unequip_spell(buttonData):
+	var spell = buttonData["spell"]
+	currentPartyMember.Caster.unequip_spell(spell)
+	
+	#Check the caster and delete the selected spell
+	for i in CasterContainer.get_children():
+		if i.data["spell"] == spell:
+			i.queue_free()
+			break
+			
+	#Update the inventory list
+	for i in InventoryContainer.get_children():
+		if !i.data.has("spell"): continue
+		i.set_label(i.data["spell"].itemName + " " + str(i.data["spell"].memoryCost))
+		if i.getData.is_connected(equip_spell):
+			i.getData.disconnect(equip_spell)
+		if i.getData.is_connected(unequip_spell):
+			i.getData.disconnect(unequip_spell)
+		if i.data["spell"].Owner == currentPartyMember:
+			i.append_label(" (E)")
+			i.getData.connect(unequip_spell)
+		else:
+			i.getData.connect(equip_spell)
 	pass
 
 func clear_inventory():

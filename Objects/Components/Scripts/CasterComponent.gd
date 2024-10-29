@@ -45,10 +45,10 @@ var statusResist = {
 }
 
 func equip_spell(spell : SpellCardNode):
-	if spell.Owner != parent: return
+	if spell.Owner != null: return
 	
-	spell.Owner = null
-	spellCards.erase(spell)
+	spell.Owner = parent
+	spellCards.append(spell)
 	
 	update_stats()
 	pass
@@ -56,8 +56,8 @@ func equip_spell(spell : SpellCardNode):
 func unequip_spell(spell : SpellCardNode):
 	if spell.Owner != parent: return
 	
-	spell.Owner = parent
-	spellCards.append(spell)
+	spell.Owner = null
+	spellCards.erase(spell)
 	
 	update_stats()
 	pass
@@ -67,7 +67,7 @@ func update_stats():
 		for j in i.bonuses:
 			stats[j] += i.bonuses[j]
 		for j in i.resistances:
-			resistances[j] += i.bonuses[j]
+			resistances[j] += i.resistances[j]
 		for j in i.statusResists:
 			statusResist[j] += i.statusResists[j]
 	pass

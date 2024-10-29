@@ -154,7 +154,10 @@ func set_equipment(button : Node, equipment : EquipNode, showOwner : bool = fals
 	button.add_data("slot", equipment.slot)
 	
 	if showOwner:
-		button.set_label(equipment.itemName + " (E)")
+		if equipment.Owner == currentPartyMember:
+			button.set_label(equipment.itemName + " (E)")
+		else:
+			button.set_label(equipment.itemName)
 	else:
 		button.set_label(equipment.itemName)
 	pass
