@@ -14,9 +14,11 @@ script = ExtResource("1_re7u5")
 texture_filter = 1
 texture = ExtResource("1_oridq")
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(8, 0, 16, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vcg18")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

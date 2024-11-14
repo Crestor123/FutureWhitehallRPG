@@ -73,6 +73,7 @@ flat = true
 [node name="Caster" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Caster"
+flat = true
 
 [node name="Close" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

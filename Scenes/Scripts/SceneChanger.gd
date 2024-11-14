@@ -4,7 +4,7 @@ extends Node
 @export var BattleScene : PackedScene
 @export var PauseMenu : PackedScene
 
-@export var tileSize = 32
+@export var tileSize = 16
 
 var CurrentScene : Node = null
 var CurrentPackedScene : PackedScene = null
@@ -31,13 +31,14 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 	add_child(CurrentScene)
 	
 	if CurrentScene is Map:
-		stepCount = 8
+		stepCount = 24
 		Character = CharacterObject.instantiate()
 		add_child(Character)
 		Character.initialize(tileSize)
 		Character.step.connect(character_step)
 		
-		Character.global_position = newPosition
+		Character.setPosition(newPosition)
+		Character.setCameraBounds(CurrentScene.CameraLowerBounds, CurrentScene.CameraUpperBounds)
 		
 		for item in CurrentScene.get_children():
 			if item is RoomTransition:
@@ -85,7 +86,7 @@ func return_from_subscene():
 	pass
 
 func reset_stepcount():
-	stepCount = 12
+	stepCount = 30
 
 func get_enemy_formations():
 	if !CurrentScene: return

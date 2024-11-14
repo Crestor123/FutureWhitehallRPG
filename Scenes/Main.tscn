@@ -15,7 +15,7 @@
 texture_filter = 1
 script = ExtResource("1_pskxb")
 StartingScene = ExtResource("2_60d34")
-StartingPosition = Vector2(48, 48)
+StartingPosition = Vector2(100, 100)
 
 [node name="Player" parent="." instance=ExtResource("4_dvuns")]
 
@@ -26,7 +26,6 @@ data = ExtResource("6_ivy2p")
 data = ExtResource("6_ivy2p")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="OverworldUI" parent="UILayer" instance=ExtResource("6_c3y5o")]
 

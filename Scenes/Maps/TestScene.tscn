@@ -23,6 +23,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAABAAAAAAABAAA
 tile_set = SubResource("TileSet_ymd64")
 script = ExtResource("2_6u0yg")
 EnemyFormations = Array[ExtResource("3_0d4co")]([ExtResource("3_mppdf")])
+CameraUpperBounds = Vector2(200, 120)
 
 [node name="RoomTransition" parent="." instance=ExtResource("5_kej52")]
 position = Vector2(176, 16)
