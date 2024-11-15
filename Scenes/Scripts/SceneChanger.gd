@@ -40,6 +40,8 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 		Character.setPosition(newPosition)
 		Character.setCameraBounds(CurrentScene.CameraLowerBounds, CurrentScene.CameraUpperBounds)
 		
+		print(CurrentScene.global_position)
+		
 		for item in CurrentScene.get_children():
 			if item is RoomTransition:
 				item.roomTransition.connect(load_scene)

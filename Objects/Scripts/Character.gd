@@ -33,12 +33,21 @@ func setPosition(newPosition : Vector2):
 	pass
 
 func setCameraBounds(lowerBounds : Vector2, upperBounds : Vector2):
-	var offsetLowerBounds = Vector2(lowerBounds.x - global_position.x, global_position.y - lowerBounds.y)
-	
-	Camera.limit_top = offsetLowerBounds.y
-	Camera.limit_left = offsetLowerBounds.x
+	print(self.global_position)
+	var offsetLowerBounds = Vector2(lowerBounds.x - global_position.x, lowerBounds.y - global_position.y)
+	var offsetUpperBounds = Vector2(upperBounds.x - global_position.x, upperBounds.y - global_position.y)
+	print(offsetLowerBounds)
+	print(offsetUpperBounds)
+		
+	Camera.limit_top = lowerBounds.y
+	Camera.limit_left = lowerBounds.x
 	Camera.limit_right = upperBounds.x
 	Camera.limit_bottom = upperBounds.y
+	
+	#Camera.limit_top = offsetLowerBounds.y
+	#Camera.limit_left = offsetLowerBounds.x
+	#Camera.limit_right = offsetUpperBounds.x
+	#Camera.limit_bottom = offsetUpperBounds.y
 	pass
 
 func _process(delta):
