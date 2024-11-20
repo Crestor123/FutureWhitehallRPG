@@ -5,6 +5,7 @@ class_name RoomTransition
 @onready var Collision = $CollisionShape2D
 
 @export var linkedScene : PackedScene
+#position should be tile coordinates
 @export var newPosition : Vector2
 
 signal roomTransition

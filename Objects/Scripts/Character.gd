@@ -22,32 +22,25 @@ signal step()
 
 func initialize(newTileSize : int):
 	tileSize = newTileSize
-	position = position.snapped(Vector2(tileSize / 2, tileSize))
+	global_position = global_position.snapped(Vector2(tileSize / 2, tileSize))
 	#position += Vector2.ONE * tileSize/2
 	pass
 
 func setPosition(newPosition : Vector2):
-	#x component must be a multiple of tilesize / 2
-	#y component must be a multiple of tilsize
-	position = newPosition.snapped(Vector2(tileSize / 2, tileSize))
+	#new position should be tile coordinates
+	if int(newPosition.x) % 2 == 0:
+		newPosition.x += 1
+	if int(newPosition.y) % 2 == 0:
+		newPosition.y += 1
+	
+	global_position = Vector2(newPosition.x * tileSize / 2, newPosition.y * tileSize)
 	pass
 
 func setCameraBounds(lowerBounds : Vector2, upperBounds : Vector2):
-	print(self.global_position)
-	var offsetLowerBounds = Vector2(lowerBounds.x - global_position.x, lowerBounds.y - global_position.y)
-	var offsetUpperBounds = Vector2(upperBounds.x - global_position.x, upperBounds.y - global_position.y)
-	print(offsetLowerBounds)
-	print(offsetUpperBounds)
-		
 	Camera.limit_top = lowerBounds.y
 	Camera.limit_left = lowerBounds.x
 	Camera.limit_right = upperBounds.x
 	Camera.limit_bottom = upperBounds.y
-	
-	#Camera.limit_top = offsetLowerBounds.y
-	#Camera.limit_left = offsetLowerBounds.x
-	#Camera.limit_right = offsetUpperBounds.x
-	#Camera.limit_bottom = offsetUpperBounds.y
 	pass
 
 func _process(delta):

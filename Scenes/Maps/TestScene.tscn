@@ -28,4 +28,4 @@ EnemyFormations = Array[ExtResource("3_0d4co")]([ExtResource("3_mppdf")])
 position = Vector2(176, 16)
 scale = Vector2(2, 2)
 collision_layer = 1
-newPosition = Vector2(112, 112)
+newPosition = Vector2(9, 9)
