@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl7pjotc7ibe3"]
+[gd_scene load_steps=7 format=3 uid="uid://bl7pjotc7ibe3"]
 
 [ext_resource type="Script" path="res://Objects/UI/Scripts/OverworldUI.gd" id="1_a6sns"]
 [ext_resource type="Texture2D" uid="uid://t8wr247qndot" path="res://Assets/Options.png" id="1_clnle"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="3_kkorv"]
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="4_yn734"]
 
 [sub_resource type="Theme" id="Theme_2qomv"]
 default_font = ExtResource("3_kkorv")
@@ -81,9 +82,30 @@ focus_mode = 1
 text = "Close"
 flat = true
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Interact" type="Button" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+icon = ExtResource("4_yn734")
+flat = true
+
 [connection signal="pressed" from="Menu" to="." method="_on_btn_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Status" to="." method="_on_btn_status_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Items" to="." method="_on_btn_items_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Equipment" to="." method="_on_btn_equipment_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Caster" to="." method="_on_btn_caster_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Close" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="MarginContainer/Interact" to="." method="_on_interact_pressed"]

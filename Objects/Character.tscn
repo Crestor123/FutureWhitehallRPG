@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bx4lrdjwyw5pm" path="res://Assets/mychars.png" id="1_oridq"]
 [ext_resource type="Script" path="res://Objects/Scripts/Character.gd" id="1_re7u5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vcg18"]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ampw3"]
+size = Vector2(16, 16)
 
 [node name="Character" type="CharacterBody2D"]
 motion_mode = 1
@@ -17,8 +17,10 @@ region_enabled = true
 region_rect = Rect2(8, 0, 16, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vcg18")
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_ampw3")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
 
 [node name="Camera2D" type="Camera2D" parent="."]

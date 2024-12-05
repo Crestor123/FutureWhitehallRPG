@@ -23,6 +23,7 @@ signal step()
 func initialize(newTileSize : int):
 	tileSize = newTileSize
 	position = position.snapped(Vector2(tileSize / 2, tileSize))
+	Raycast.target_position = Vector2.DOWN * tileSize
 	#position += Vector2.ONE * tileSize/2
 	pass
 

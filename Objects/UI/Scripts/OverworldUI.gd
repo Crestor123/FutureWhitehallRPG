@@ -1,6 +1,7 @@
 extends Control
 
 @onready var menuPanel = $PanelContainer
+@onready var interactButton = $MarginContainer/Interact
 
 signal buttonPressed(which)
 signal menuButtonPressed(which)
@@ -9,6 +10,14 @@ func _ready():
 	#Move the menu panel offscreen
 	menuPanel.visible = false
 	menuPanel.position.x = -(menuPanel.size.x)
+	pass
+
+func show_interact_button():
+	interactButton.show()
+	pass
+	
+func hide_interact_button():
+	interactButton.hide()
 	pass
 
 func _on_btn_menu_pressed():
@@ -38,3 +47,6 @@ func _on_btn_close_pressed():
 	T.tween_property(menuPanel, "position", Vector2(-menuPanel.size.x, 0), 0.5)
 	await T.finished
 	menuPanel.visible = false
+
+func _on_interact_pressed():
+	buttonPressed.emit("interact")

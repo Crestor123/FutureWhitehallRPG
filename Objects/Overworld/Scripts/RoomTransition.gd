@@ -4,10 +4,15 @@ class_name RoomTransition
 
 @onready var Collision = $CollisionShape2D
 
+@export var collisionShape : RectangleShape2D
 @export var linkedScene : PackedScene
 @export var newPosition : Vector2
 
 signal roomTransition
+
+func _ready():
+	if collisionShape:
+		Collision.shape = collisionShape
 
 func _on_body_entered(body):
 	roomTransition.emit(linkedScene, newPosition)

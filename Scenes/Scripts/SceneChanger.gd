@@ -15,7 +15,11 @@ var CharacterPosition : Vector2 = Vector2.ZERO
 
 var stepCount : int = 0
 
+var currentInteractable : Interactable = null
+
 signal encounter()
+signal setInteractable
+signal unsetInteractable
 
 func load_scene(scene : PackedScene, newPosition : Vector2):
 	if CurrentScene:
@@ -45,6 +49,10 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 		for item in CurrentScene.get_children():
 			if item is RoomTransition:
 				item.roomTransition.connect(load_scene)
+			if item is Interactable:
+				item.inRange.connect(set_interactable)
+				item.outOfRange.connect(unset_interactable)
+				item.initialize()
 	pass
 
 func load_subscene(scene : PackedScene):
@@ -115,4 +123,14 @@ func select_formation() -> EnemyFormation:
 	var formations = get_enemy_formations()
 	var rand = randi_range(0, formations.size() - 1)
 	return formations[rand]
+	pass
+
+func set_interactable(data):
+	currentInteractable = data
+	setInteractable.emit()
+	pass
+
+func unset_interactable():
+	currentInteractable = null
+	unsetInteractable.emit()
 	pass

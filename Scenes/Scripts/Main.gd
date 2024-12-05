@@ -8,14 +8,38 @@ extends Node2D
 @export var StartingScene : PackedScene
 @export var StartingPosition : Vector2
 
+
+
 func _ready():
 	UI.buttonPressed.connect(ui_button)
 	UI.menuButtonPressed.connect(open_menu)
+	
+	SceneChanger.setInteractable.connect(interactable_set)
+	SceneChanger.unsetInteractable.connect(interactable_unset)
 	SceneChanger.load_scene(StartingScene, StartingPosition)
 	SceneChanger.encounter.connect(enter_battle)
+	
 	Player.initialize()
 
 func ui_button(button : String):
+	if button == "interact":
+		interact()
+	pass
+
+func interact():
+	var interactable = SceneChanger.currentInteractable
+	interactable.interact()
+	for item in interactable.itemData:
+		print("Gained item: ", item.name)
+		Player.Inventory.add_item(item)
+	pass
+	
+func interactable_set():
+	UI.show_interact_button()
+	pass
+	
+func interactable_unset():
+	UI.hide_interact_button()
 	pass
 
 func enter_battle(enemyFormation):

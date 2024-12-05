@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Objects/Overworld/Scripts/RoomTransition.gd" id="1_44byv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ee0tv"]
+resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [node name="RoomTransition" type="Area2D"]
