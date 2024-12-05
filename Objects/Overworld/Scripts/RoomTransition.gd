@@ -6,6 +6,7 @@ class_name RoomTransition
 
 @export var collisionShape : RectangleShape2D
 @export var linkedScene : PackedScene
+#position should be tile coordinates
 @export var newPosition : Vector2
 
 signal roomTransition
