@@ -2,10 +2,13 @@ extends Area2D
 
 class_name Interactable
 
-@onready var Collision = $CollisionShape2D
+@onready var Area = $CollisionShape2D
 @onready var Sprite = $Sprite2D
+@onready var Body = $StaticBody2D
+@onready var BodyCollision = $StaticBody2D/CollisionShape2D
 
-@export var collisionShape : RectangleShape2D
+@export var collisionArea : RectangleShape2D
+@export var collisionBody : RectangleShape2D
 @export var itemData : Array[ItemResource]
 @export var spriteData : Texture2D
 @export var oneShot : bool
@@ -15,10 +18,13 @@ signal inRange
 signal outOfRange
 
 func initialize():
-	if collisionShape:
-		Collision.shape = collisionShape
+	if collisionArea:
+		Area.shape = collisionArea
+	if collisionBody:
+		BodyCollision.shape = collisionBody
 	if spriteData:
 		Sprite.texture = spriteData
+		
 
 func interact():
 	print("interacted")
