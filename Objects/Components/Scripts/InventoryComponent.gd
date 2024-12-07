@@ -10,6 +10,8 @@ extends Node
 @export var TotalCharge : int = 100
 @export var CurrentCharge : int = 100
 
+@export var Money : int = 0
+
 signal itemChanged(item)
 signal itemRemoved(item)
 
@@ -17,6 +19,14 @@ func initialize(itemList : Array[ItemResource]):
 	for item in itemList:
 		add_item(item)
 	pass
+	
+func add_money(amount):
+	Money += amount
+	
+func remove_money(amount):
+	Money -= amount
+	if Money < 0:
+		Money = 0
 	
 func use_item(item : ItemNode, targetList : Array[Node]):
 	for target in targetList:

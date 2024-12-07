@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dodhhvjml53rm"]
 
-[ext_resource type="Script" path="res://Objects/Overworld/Scripts/Interactable.gd" id="1_x5pq4"]
+[ext_resource type="Script" path="res://Objects/Overworld/Scripts/Interactable.gd" id="1_d17kx"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_r4icl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6p4cy"]
@@ -11,7 +11,8 @@ size = Vector2(16, 16)
 
 [node name="Interactable" type="Area2D"]
 texture_filter = 1
-script = ExtResource("1_x5pq4")
+collision_layer = 2
+script = ExtResource("1_d17kx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6p4cy")
@@ -20,6 +21,7 @@ shape = SubResource("RectangleShape2D_6p4cy")
 texture = ExtResource("2_r4icl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_674q4")

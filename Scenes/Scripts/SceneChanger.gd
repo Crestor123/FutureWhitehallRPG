@@ -95,6 +95,14 @@ func return_from_subscene():
 	Character.step.connect(character_step)
 	pass
 
+func disable_movement():
+	if Character:
+		Character.active = false
+
+func enable_movement():
+	if Character:
+		Character.active = true
+
 func reset_stepcount():
 	stepCount = 30
 

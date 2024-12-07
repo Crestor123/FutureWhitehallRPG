@@ -9,7 +9,6 @@ class_name Interactable
 
 @export var collisionArea : RectangleShape2D
 @export var collisionBody : RectangleShape2D
-@export var itemData : Array[ItemResource]
 @export var spriteData : Texture2D
 @export var oneShot : bool
 @export var active : bool = true

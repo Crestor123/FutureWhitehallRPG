@@ -1,7 +1,11 @@
 extends Control
 
+@onready var DialogContainer = $DialogContainer
+
 @onready var menuPanel = $PanelContainer
 @onready var interactButton = $MarginContainer/Interact
+
+@export var dialogBox : PackedScene
 
 signal buttonPressed(which)
 signal menuButtonPressed(which)
@@ -10,6 +14,15 @@ func _ready():
 	#Move the menu panel offscreen
 	menuPanel.visible = false
 	menuPanel.position.x = -(menuPanel.size.x)
+	
+	interactButton.visible = false
+	pass
+
+func create_dialog(icon : Texture2D, text : String, options : Array[String]):
+	var newDialog = dialogBox.instantiate()
+	DialogContainer.add_child(newDialog)
+	newDialog.set_data(icon, text)
+	newDialog.initialize()
 	pass
 
 func show_interact_button():

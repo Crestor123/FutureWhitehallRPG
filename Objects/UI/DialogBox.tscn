@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://2fq6scld01gq"]
+
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_8tltr"]
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_7376m"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/DialogBox.gd" id="2_csdjw"]
+
+[sub_resource type="Theme" id="Theme_1jtba"]
+default_font = ExtResource("1_8tltr")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ahno"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="DialogBox" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_1jtba")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ahno")
+script = ExtResource("2_csdjw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_7376m")
+stretch_mode = 2
+
+[node name="TextContent" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Dialog Box"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl7pjotc7ibe3"]
+[gd_scene load_steps=8 format=3 uid="uid://bl7pjotc7ibe3"]
 
 [ext_resource type="Script" path="res://Objects/UI/Scripts/OverworldUI.gd" id="1_a6sns"]
 [ext_resource type="Texture2D" uid="uid://t8wr247qndot" path="res://Assets/Options.png" id="1_clnle"]
+[ext_resource type="PackedScene" uid="uid://2fq6scld01gq" path="res://Objects/UI/DialogBox.tscn" id="2_caxfj"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="3_kkorv"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="4_yn734"]
 
@@ -27,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a6sns")
+dialogBox = ExtResource("2_caxfj")
 
 [node name="Menu" type="Button" parent="."]
 texture_filter = 1
@@ -38,6 +40,7 @@ icon = ExtResource("1_clnle")
 flat = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -101,6 +104,15 @@ visible = false
 layout_mode = 2
 icon = ExtResource("4_yn734")
 flat = true
+
+[node name="DialogContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="pressed" from="Menu" to="." method="_on_btn_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Status" to="." method="_on_btn_status_pressed"]

@@ -7,6 +7,7 @@
 size = Vector2(16, 16)
 
 [node name="Character" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_re7u5")
 
@@ -22,5 +23,6 @@ shape = SubResource("RectangleShape2D_ampw3")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
+collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
