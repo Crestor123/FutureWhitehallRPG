@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipResource" load_steps=3 format=3 uid="uid://d07ihjdk063dj"]
 
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_aghkl"]
-[ext_resource type="Script" path="res://Resources/Templates/EquipResource.gd" id="1_f64ta"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/EquipResource.gd" id="1_f64ta"]
 
 [resource]
 script = ExtResource("1_f64ta")

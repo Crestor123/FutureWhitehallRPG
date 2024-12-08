@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_pypxo"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_2w47i"]
-[ext_resource type="Script" path="res://Resources/Templates/ConsumableResource.gd" id="2_etoda"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/ConsumableResource.gd" id="2_etoda"]
 
 [resource]
 script = ExtResource("2_etoda")

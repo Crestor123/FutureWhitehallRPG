@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CasterPartResource" load_steps=3 format=3 uid="uid://3esvbt3tyg6o"]
 
-[ext_resource type="Script" path="res://Resources/Templates/CasterPartResource.gd" id="1_bppcr"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/CasterPartResource.gd" id="1_bppcr"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_oo5mc"]
 
 [resource]

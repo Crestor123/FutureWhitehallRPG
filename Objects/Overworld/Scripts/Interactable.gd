@@ -1,12 +1,11 @@
-extends Area2D
-
-class_name Interactable
+class_name Interactable extends Area2D
 
 @onready var Area = $CollisionShape2D
 @onready var Sprite = $Sprite2D
 @onready var Body = $StaticBody2D
 @onready var BodyCollision = $StaticBody2D/CollisionShape2D
 
+@export var events : Array[EventResource]
 @export var collisionArea : RectangleShape2D
 @export var collisionBody : RectangleShape2D
 @export var spriteData : Texture2D

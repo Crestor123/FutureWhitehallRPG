@@ -27,22 +27,27 @@ func ui_button(button : String):
 
 func interact():
 	var interactable = SceneChanger.currentInteractable
-	interactable.interact()
-	if interactable is ItemContainer:
-		if interactable.itemData.size() > 0:
-			for i in interactable.itemData.size():
-				var item = interactable.itemData[i]
-				var amount = interactable.itemAmounts[i]
-				print("Gained ", str(amount), " ", item.name)
-				var options : Array[String] = ["OK"]
-				UI.create_dialog(null, "You found " + str(amount) + " " + item.name + "!", options)
-				for j in amount:
-					Player.Inventory.add_item(item)
-		if interactable.money > 0:
-			print("Gained ", str(interactable.money), " coins")
-			var options : Array[String] = ["OK"]
-			UI.create_dialog(null, "You found " + str(interactable.money) + "!", options)
-			Player.Inventory.add_money(interactable.money)
+	for event in interactable.events:
+		event.UI = UI
+		event.Player = Player
+			
+		event.process_event()
+		
+	#if interactable is ItemContainer:
+		#if interactable.itemData.size() > 0:
+			#for i in interactable.itemData.size():
+				#var item = interactable.itemData[i]
+				#var amount = interactable.itemAmounts[i]
+				#print("Gained ", str(amount), " ", item.name)
+				#var options : Array[String] = ["OK"]
+				#UI.create_dialog(null, "You found " + str(amount) + " " + item.name + "!", options)
+				#for j in amount:
+					#Player.Inventory.add_item(item)
+		#if interactable.money > 0:
+			#print("Gained ", str(interactable.money), " coins")
+			#var options : Array[String] = ["OK"]
+			#UI.create_dialog(null, "You found " + str(interactable.money) + "!", options)
+			#Player.Inventory.add_money(interactable.money)
 	pass
 	
 func interactable_set():

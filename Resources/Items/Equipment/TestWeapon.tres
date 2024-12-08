@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EquipResource" load_steps=5 format=3 uid="uid://cv8lvtjtns48l"]
 
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_6jwcs"]
-[ext_resource type="Script" path="res://Resources/Templates/EquipResource.gd" id="1_d5jeu"]
-[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_due37"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/EquipResource.gd" id="1_d5jeu"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_due37"]
 [ext_resource type="Resource" uid="uid://0s1by8p6o4rp" path="res://Resources/Abilities/Stun.tres" id="2_1lrle"]
 
 [resource]

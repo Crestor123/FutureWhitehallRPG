@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FirearmResource" load_steps=4 format=3 uid="uid://cyuji8rf658t"]
 
-[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_m30d7"]
-[ext_resource type="Script" path="res://Resources/Templates/FirearmResource.gd" id="2_3dq65"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_m30d7"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/FirearmResource.gd" id="2_3dq65"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_42abc"]
 
 [resource]

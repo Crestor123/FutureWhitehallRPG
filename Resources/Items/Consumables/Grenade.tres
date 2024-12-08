@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ConsumableResource" load_steps=3 format=3 uid="uid://iglkwmm40j4k"]
 
 [ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_o4cjk"]
-[ext_resource type="Script" path="res://Resources/Templates/ConsumableResource.gd" id="2_44oob"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/ConsumableResource.gd" id="2_44oob"]
 
 [resource]
 script = ExtResource("2_44oob")

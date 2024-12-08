@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SpellCardResource" load_steps=4 format=3 uid="uid://b1gymmdjifmmt"]
 
-[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_hnsoa"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_hnsoa"]
 [ext_resource type="Resource" uid="uid://c57ps30oj3oup" path="res://Resources/Abilities/Burn.tres" id="2_4epbf"]
-[ext_resource type="Script" path="res://Resources/Templates/SpellCardResource.gd" id="2_pahqh"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/SpellCardResource.gd" id="2_pahqh"]
 
 [resource]
 script = ExtResource("2_pahqh")

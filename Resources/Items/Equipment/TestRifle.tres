@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FirearmResource" load_steps=3 format=3 uid="uid://r6v50rv3kn2p"]
 
-[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_lfrqn"]
-[ext_resource type="Script" path="res://Resources/Templates/FirearmResource.gd" id="2_fnly5"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_lfrqn"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/FirearmResource.gd" id="2_fnly5"]
 
 [resource]
 script = ExtResource("2_fnly5")

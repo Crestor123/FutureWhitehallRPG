@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://cokrbidcfhc1m"]
 
-[ext_resource type="Script" path="res://Resources/Templates/AbilityResource.gd" id="1_2rmxk"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_2rmxk"]
 [ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_x57rc"]
 
 [resource]
