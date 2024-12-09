@@ -1,30 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dodhhvjml53rm"]
+[gd_scene load_steps=4 format=3 uid="uid://dodhhvjml53rm"]
 
 [ext_resource type="Script" path="res://Objects/Overworld/Scripts/Interactable.gd" id="1_d17kx"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_r4icl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p4cy"]
-size = Vector2(32, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_674q4"]
+resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[node name="Interactable" type="Area2D"]
-texture_filter = 1
+[node name="Interactable" type="StaticBody2D"]
 collision_layer = 2
 script = ExtResource("1_d17kx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6p4cy")
+shape = SubResource("RectangleShape2D_674q4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_r4icl")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_674q4")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

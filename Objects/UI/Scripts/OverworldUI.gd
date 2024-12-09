@@ -1,13 +1,15 @@
 extends Control
 
 @onready var DialogContainer = $DialogContainer
-
+@onready var OptionContainer = $OptionContainer/VBoxContainer
 @onready var menuPanel = $PanelContainer
 @onready var interactButton = $MarginContainer/Interact
 
+@export var button : PackedScene
 @export var dialogBox : PackedScene
 
 signal buttonPressed(which)
+signal interact()
 signal menuButtonPressed(which)
 
 func _ready():
@@ -18,12 +20,33 @@ func _ready():
 	interactButton.visible = false
 	pass
 
-func create_dialog(icon : Texture2D, text : String, options : Array[String]):
+func create_dialog(icon : Texture2D, text : String, options : Dictionary):
+	#Options : Dictionary {label : String, function : Callable}
+	#The option button will be tied to the given callable
 	var newDialog = dialogBox.instantiate()
 	DialogContainer.add_child(newDialog)
 	newDialog.set_data(icon, text)
 	newDialog.initialize()
+	
+	for option in options.keys():
+		var newButton = button.instantiate()
+		OptionContainer.add_child(newButton)
+		newButton.set_label(option)
+		newButton.set_icon(null)
+		newButton.pressed.connect(options[option])
+		
+	DialogContainer.show()
+	OptionContainer.show()
 	pass
+
+func clear_dialog():
+	DialogContainer.hide()
+	for child in DialogContainer.get_children():
+		child.queue_free()
+	
+	OptionContainer.hide()
+	for child in OptionContainer.get_children():
+		child.queue_free()
 
 func show_interact_button():
 	interactButton.show()
@@ -62,4 +85,7 @@ func _on_btn_close_pressed():
 	menuPanel.visible = false
 
 func _on_interact_pressed():
-	buttonPressed.emit("interact")
+	interact.emit()
+	
+func _on_option_button_pressed(data : Dictionary):
+	buttonPressed.emit(data.option)

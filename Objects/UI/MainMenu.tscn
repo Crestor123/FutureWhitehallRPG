@@ -79,6 +79,9 @@ layout_mode = 2
 text = "Close"
 flat = true
 
+[node name="Money" type="Label" parent="PanelContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Buttons/Items" to="." method="_on_items_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Buttons/Equipment" to="." method="_on_equipment_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Buttons/Caster" to="." method="_on_caster_pressed"]

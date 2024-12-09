@@ -36,23 +36,12 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 	
 	if CurrentScene is Map:
 		stepCount = 24
-		Character = CharacterObject.instantiate()
-		add_child(Character)
-		Character.initialize(tileSize)
-		Character.step.connect(character_step)
-		
+		create_character()
 		Character.setPosition(newPosition)
-		Character.setCameraBounds(CurrentScene.CameraLowerBounds, CurrentScene.CameraUpperBounds)
 		
 		print(CurrentScene.global_position)
 		
-		for item in CurrentScene.get_children():
-			if item is RoomTransition:
-				item.roomTransition.connect(load_scene)
-			if item is Interactable:
-				item.inRange.connect(set_interactable)
-				item.outOfRange.connect(unset_interactable)
-				item.initialize()
+		link_objects()
 	pass
 
 func load_subscene(scene : PackedScene):
@@ -88,12 +77,26 @@ func return_from_subscene():
 	CurrentScene = CurrentPackedScene.instantiate()
 	add_child(CurrentScene)
 	
+	create_character()
+	link_objects()
+	Character.global_position = CharacterPosition
+	pass
+
+func create_character():
 	Character = CharacterObject.instantiate()
 	add_child(Character)
 	Character.initialize(tileSize)
-	Character.global_position = CharacterPosition
 	Character.step.connect(character_step)
-	pass
+	Character.setInteractable.connect(set_interactable)
+	Character.unsetInteractable.connect(unset_interactable)
+	Character.setCameraBounds(CurrentScene.CameraLowerBounds, CurrentScene.CameraUpperBounds)
+
+func link_objects():
+	for item in CurrentScene.get_children():
+		if item is RoomTransition:
+			item.roomTransition.connect(load_scene)
+		if item is Interactable:
+				item.initialize()
 
 func disable_movement():
 	if Character:

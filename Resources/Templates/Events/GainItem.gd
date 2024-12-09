@@ -9,4 +9,6 @@ func process_event():
 	pass
 
 func create_message():
+	var options : Dictionary = {"OK": Game.end_interact}
+	UI.create_dialog(null, "You found " + str(itemQuantity) + " " + itemData.name, options)
 	pass

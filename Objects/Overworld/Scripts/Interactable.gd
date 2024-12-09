@@ -1,13 +1,12 @@
-class_name Interactable extends Area2D
+class_name Interactable extends StaticBody2D
 
-@onready var Area = $CollisionShape2D
 @onready var Sprite = $Sprite2D
-@onready var Body = $StaticBody2D
-@onready var BodyCollision = $StaticBody2D/CollisionShape2D
+@onready var Collision = $CollisionShape2D
 
 @export var events : Array[EventResource]
-@export var collisionArea : RectangleShape2D
-@export var collisionBody : RectangleShape2D
+@export var tileWidth : int = 1
+@export var tileHeight : int = 1
+@export var tileSize : int = 16
 @export var spriteData : Texture2D
 @export var oneShot : bool
 @export var active : bool = true
@@ -16,10 +15,8 @@ signal inRange
 signal outOfRange
 
 func initialize():
-	if collisionArea:
-		Area.shape = collisionArea
-	if collisionBody:
-		BodyCollision.shape = collisionBody
+	Collision.shape.size.x = tileWidth * tileSize
+	Collision.shape.size.y = tileHeight * tileSize
 	if spriteData:
 		Sprite.texture = spriteData
 		

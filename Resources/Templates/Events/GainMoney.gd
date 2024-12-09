@@ -8,6 +8,6 @@ func process_event():
 	pass
 
 func create_message():
-	var options : Array[String] = ["OK"]
+	var options : Dictionary = {"OK": Game.end_interact}
 	UI.create_dialog(null, "You found " + str(amount) + " coins!", options)
 	pass

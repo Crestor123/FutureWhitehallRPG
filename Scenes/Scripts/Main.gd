@@ -10,6 +10,7 @@ extends Node2D
 @export var StartingPosition : Vector2
 
 func _ready():
+	UI.interact.connect(interact)
 	UI.buttonPressed.connect(ui_button)
 	UI.menuButtonPressed.connect(open_menu)
 	
@@ -21,33 +22,25 @@ func _ready():
 	Player.initialize()
 
 func ui_button(button : String):
-	if button == "interact":
-		interact()
+	if button == "end_interact":
+		end_interact()
 	pass
 
 func interact():
+	SceneChanger.disable_movement()
 	var interactable = SceneChanger.currentInteractable
+	interactable.interact()
 	for event in interactable.events:
+		event.Game = self
 		event.UI = UI
 		event.Player = Player
 			
 		event.process_event()
-		
-	#if interactable is ItemContainer:
-		#if interactable.itemData.size() > 0:
-			#for i in interactable.itemData.size():
-				#var item = interactable.itemData[i]
-				#var amount = interactable.itemAmounts[i]
-				#print("Gained ", str(amount), " ", item.name)
-				#var options : Array[String] = ["OK"]
-				#UI.create_dialog(null, "You found " + str(amount) + " " + item.name + "!", options)
-				#for j in amount:
-					#Player.Inventory.add_item(item)
-		#if interactable.money > 0:
-			#print("Gained ", str(interactable.money), " coins")
-			#var options : Array[String] = ["OK"]
-			#UI.create_dialog(null, "You found " + str(interactable.money) + "!", options)
-			#Player.Inventory.add_money(interactable.money)
+	pass
+	
+func end_interact():
+	SceneChanger.enable_movement()
+	UI.clear_dialog()
 	pass
 	
 func interactable_set():

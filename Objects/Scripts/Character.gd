@@ -8,10 +8,14 @@ extends CharacterBody2D
 @export var speed = 5
 @export var tileSize = 16
 
+signal setInteractable
+signal unsetInteractable
+
+var interactCollision = false
 var moving = false
 var active = true
 
-var inputs = {
+var inputs = {	
 	"ui_right": Vector2.RIGHT,
 	"ui_left": Vector2.LEFT,
 	"ui_up": Vector2.UP,
@@ -45,6 +49,20 @@ func setCameraBounds(lowerBounds : Vector2, upperBounds : Vector2):
 
 func _process(delta):
 	if moving: return
+	if !active: return
+	if Raycast.is_colliding():
+		var collider = Raycast.get_collider()
+		if collider is Interactable:
+			if collider.active:
+				interactCollision = true
+				setInteractable.emit(collider)
+			else:
+				interactCollision = false
+				unsetInteractable.emit()
+	else:
+		if interactCollision:
+			interactCollision = false
+			unsetInteractable.emit()
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			move(dir)

@@ -7,6 +7,7 @@ extends Control
 @onready var btnEquipment = $PanelContainer/HBoxContainer/Buttons/Equipment
 @onready var btnCaster = $PanelContainer/HBoxContainer/Buttons/Caster
 @onready var btnClose = $PanelContainer/HBoxContainer/Buttons/Close
+@onready var lblMoney = $PanelContainer/HBoxContainer/Buttons/Money
 
 signal close
 signal changeMenu
@@ -19,6 +20,8 @@ func initialize(player : Node):
 		var newStatblock = partyStatblock.instantiate()
 		Stats.add_child(newStatblock)
 		newStatblock.initialize(item)
+		
+	lblMoney.text = str(player.Inventory.Money)
 
 func _on_close_pressed():
 	close.emit()

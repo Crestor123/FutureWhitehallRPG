@@ -40,3 +40,4 @@ newPosition = Vector2(9, 9)
 [node name="Interactable" parent="." instance=ExtResource("6_0720x")]
 position = Vector2(152, 120)
 events = Array[ExtResource("7_odymb")]([SubResource("Resource_u2qa6")])
+oneShot = true
