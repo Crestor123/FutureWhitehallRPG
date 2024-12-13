@@ -1,6 +1,6 @@
 extends Node
 
-@export var parent : Node
+@export var Target : Node
 
 var parts = {
 	"battery": null,	#Adds to MP total
@@ -47,17 +47,25 @@ var statusResist = {
 func equip_spell(spell : SpellCardNode):
 	if spell.Owner != null: return
 	
-	spell.Owner = parent
+	spell.Owner = Target
 	spellCards.append(spell)
+	
+	if spell.abilities.size() > 0:
+		for i in spell.abilities:
+			Target.Abilities.add_ability(i, spell)
 	
 	update_stats()
 	pass
 
 func unequip_spell(spell : SpellCardNode):
-	if spell.Owner != parent: return
+	if spell.Owner != Target: return
 	
 	spell.Owner = null
 	spellCards.erase(spell)
+	
+	if spell.abilities.size() > 0:
+		for i in spell.abilities:
+			Target.Abilities.remove_ability(i, spell)
 	
 	update_stats()
 	pass
@@ -81,7 +89,7 @@ func equip_part(part : CasterPartNode) -> bool:
 		unequip_part(parts[part.slot])
 	
 	parts[part.slot] = part
-	part.Owner = parent
+	part.Owner = Target
 	
 	return true
 	pass

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="SpellCardResource" load_steps=4 format=3 uid="uid://0fekvmkxxmud"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_pnnnp"]
+[ext_resource type="Resource" uid="uid://d34h2boewad8h" path="res://Resources/Abilities/Firebolt.tres" id="2_mfh4l"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/SpellCardResource.gd" id="2_xwkkt"]
+
+[resource]
+script = ExtResource("2_xwkkt")
+bonuses = {
+"dexterity": 0,
+"health": 0,
+"intelligence": 2,
+"mana": 0,
+"resistance": 2,
+"speed": 0,
+"strength": 0,
+"vitality": 0
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 5,
+"void": 0,
+"water": 0
+}
+statusResists = {
+"blind": 0,
+"burn": 30,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_pnnnp")]([ExtResource("2_mfh4l")])
+element = "fire"
+memoryCost = 1
+name = "Firebolt"
+id = ""
+description = ""
+cost = 0
+stackable = false
+quantity = 1

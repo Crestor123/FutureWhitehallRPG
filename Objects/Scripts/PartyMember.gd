@@ -32,6 +32,7 @@ func initialize(inventory : Node):
 	partyName = data.name
 	sprite = data.sprite
 	level = data.level
+	xpToLevel = xp_to_next_level(level)
 	
 	for item in data.stats:
 		Stats.stats[item] = data.stats[item]

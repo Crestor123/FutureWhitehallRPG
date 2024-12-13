@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=4 uid="uid://cm8ywqe4yys1x"]
+[gd_scene load_steps=10 format=4 uid="uid://cm8ywqe4yys1x"]
 
 [ext_resource type="TileSet" uid="uid://dvrevnye0antm" path="res://Assets/Tiles/Tilesets/AlphaTileset.tres" id="1_iqe11"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Map.gd" id="2_wsffe"]
 [ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyFormation.gd" id="3_kc55x"]
 [ext_resource type="Resource" uid="uid://cvpml1wnlje54" path="res://Resources/EnemyFormations/TentacleMonsters.tres" id="4_b3a8c"]
+[ext_resource type="PackedScene" uid="uid://dodhhvjml53rm" path="res://Objects/Overworld/Interactable.tscn" id="5_7lduf"]
+[ext_resource type="Script" path="res://Resources/Templates/Events/EventResource.gd" id="6_dks6g"]
+[ext_resource type="Resource" uid="uid://0fekvmkxxmud" path="res://Resources/Items/SpellCards/Firebolt.tres" id="7_cdrd1"]
+[ext_resource type="Script" path="res://Resources/Templates/Events/GainItem.gd" id="8_y8u4d"]
+
+[sub_resource type="Resource" id="Resource_liaqp"]
+script = ExtResource("8_y8u4d")
+itemData = ExtResource("7_cdrd1")
+itemQuantity = 1
 
 [node name="TestArea1" type="TileMapLayer"]
 texture_filter = 1
@@ -11,3 +20,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAA
 tile_set = ExtResource("1_iqe11")
 script = ExtResource("2_wsffe")
 EnemyFormations = Array[ExtResource("3_kc55x")]([ExtResource("4_b3a8c")])
+
+[node name="Interactable" parent="." instance=ExtResource("5_7lduf")]
+position = Vector2(184, 120)
+events = Array[ExtResource("6_dks6g")]([SubResource("Resource_liaqp")])

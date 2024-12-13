@@ -31,7 +31,7 @@ func delete_buttons():
 		item.queue_free()
 
 #Creates ability buttons for the current battler
-func create_buttons(partyMember : Node, abilityList : Array[Node]):
+func create_buttons(partyMember : Node, inventory : Node, abilityList : Array[Node]):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	rightBar.visible = false
@@ -48,6 +48,12 @@ func create_buttons(partyMember : Node, abilityList : Array[Node]):
 		AbilityContainer.add_child(newButton)
 		newButton.initialize(item)
 		newButton.pressed.connect(button_pressed)
+		#Check if the party member has sufficient mana or charge
+		if partyMember.Stats.get_mana() < item.manaCost:
+			newButton.button.disabled = true
+		if inventory.CurrentCharge < item.ammoCost:
+			newButton.button.disabled = true
+		
 	#AbilityContainer.visible = true
 	rightBar.visible = true
 	Cursor.visible = true

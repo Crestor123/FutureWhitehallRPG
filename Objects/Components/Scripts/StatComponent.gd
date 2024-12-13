@@ -102,7 +102,7 @@ func take_damage(value : int, type : String, element : String):
 	
 	#Apply resistances
 	if element in resistances:
-		damage -= damage * get_resistance(element)
+		damage -= damage * float(get_resistance(element)) / 100
 		damage -= get_stat("resistance") / 2
 	elif type != "none":	#The damage has no element
 		damage -= get_stat("vitality")

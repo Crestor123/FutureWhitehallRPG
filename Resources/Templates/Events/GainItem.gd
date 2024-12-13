@@ -6,6 +6,7 @@ class_name GainItem extends EventResource
 func process_event():
 	for i in itemQuantity:
 		Player.Inventory.add_item(itemData)
+	create_message()
 	pass
 
 func create_message():
