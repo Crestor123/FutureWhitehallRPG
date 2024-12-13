@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://dodhhvjml53rm"]
 
 [ext_resource type="Script" path="res://Objects/Overworld/Scripts/Interactable.gd" id="1_d17kx"]
-[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_r4icl"]
+[ext_resource type="Texture2D" uid="uid://cheim4epxepp1" path="res://Assets/Tiles/Other.png" id="2_tftp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_674q4"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [node name="Interactable" type="StaticBody2D"]
+texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_d17kx")
 
@@ -15,4 +16,6 @@ script = ExtResource("1_d17kx")
 shape = SubResource("RectangleShape2D_674q4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_r4icl")
+texture = ExtResource("2_tftp7")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)

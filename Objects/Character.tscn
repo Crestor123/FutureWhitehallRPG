@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://vwc8vtsckf4f"]
 
-[ext_resource type="Texture2D" uid="uid://bx4lrdjwyw5pm" path="res://Assets/mychars.png" id="1_oridq"]
 [ext_resource type="Script" path="res://Objects/Scripts/Character.gd" id="1_re7u5"]
+[ext_resource type="Texture2D" uid="uid://dt3wejkg3d3w2" path="res://Assets/Sprites/Sieg.png" id="2_d3bua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ampw3"]
 size = Vector2(16, 16)
@@ -13,9 +13,10 @@ script = ExtResource("1_re7u5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_oridq")
+position = Vector2(0, 4)
+texture = ExtResource("2_d3bua")
 region_enabled = true
-region_rect = Rect2(8, 0, 16, 32)
+region_rect = Rect2(0, 0, 16, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://l7puvk8yjo0y"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_t2miy"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyResource.gd" id="2_c5rx3"]
+[ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="2_rxe7h"]
+[ext_resource type="Texture2D" uid="uid://b8km2ox14kpid" path="res://Assets/Sprites/Enemies/Icon20.png" id="4_mikum"]
+
+[resource]
+script = ExtResource("2_c5rx3")
+name = "Tentacle Monster"
+level = 1
+experience = 5
+sprite = ExtResource("4_mikum")
+element = "earth"
+stats = {
+"dexterity": 3,
+"health": 18,
+"intelligence": 3,
+"mana": 0,
+"resistance": 3,
+"speed": 3,
+"strength": 3,
+"vitality": 3
+}
+resistances = {
+"acid": 20,
+"air": 20,
+"earth": 80,
+"electricity": 40,
+"fire": -50,
+"void": 0,
+"water": 40
+}
+statusResist = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_t2miy")]([ExtResource("2_rxe7h")])
+itemDrops = {}

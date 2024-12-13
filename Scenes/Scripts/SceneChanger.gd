@@ -13,6 +13,7 @@ var PrevScene : PackedScene = null
 var Character : Node = null
 var CharacterPosition : Vector2 = Vector2.ZERO
 
+var randomEncounters : bool = false
 var stepCount : int = 0
 
 var currentInteractable : Interactable = null
@@ -38,6 +39,12 @@ func load_scene(scene : PackedScene, newPosition : Vector2):
 		stepCount = 24
 		create_character()
 		Character.setPosition(newPosition)
+		
+		var formations = get_enemy_formations()
+		if formations.size() == 0:
+			randomEncounters = false
+		else:
+			randomEncounters = true
 		
 		print(CurrentScene.global_position)
 		
@@ -116,6 +123,8 @@ func get_enemy_formations():
 	return CurrentScene.EnemyFormations
 
 func character_step():
+	if !randomEncounters:
+		return
 	stepCount -= 1
 	#print(stepCount)
 	if stepCount <= 0:

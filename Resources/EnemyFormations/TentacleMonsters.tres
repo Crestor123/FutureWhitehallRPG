@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyFormation" load_steps=4 format=3 uid="uid://cvpml1wnlje54"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyResource.gd" id="1_l4vol"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyFormation.gd" id="2_k2d84"]
+[ext_resource type="Resource" uid="uid://l7puvk8yjo0y" path="res://Resources/Enemies/TentacleMonster.tres" id="2_ugsfv"]
+
+[resource]
+script = ExtResource("2_k2d84")
+enemyList = Array[ExtResource("1_l4vol")]([ExtResource("2_ugsfv"), ExtResource("2_ugsfv")])
