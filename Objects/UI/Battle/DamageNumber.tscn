@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cixh3fc4xa53q"]
+
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_hw6yc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkm1b"]
+font = ExtResource("1_hw6yc")
+font_size = 8
+
+[node name="DamageNumber" type="Label"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.5
+offset_top = -9.5
+offset_right = 6.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "10"
+label_settings = SubResource("LabelSettings_dkm1b")

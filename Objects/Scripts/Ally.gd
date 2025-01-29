@@ -3,6 +3,7 @@ extends Node2D
 @onready var Sprite = $Sprite2D
 @onready var Select = $Sprite2D/Button
 @onready var HealthBar = $HealthBar
+@onready var DamageNumber = $DamageNumber
 
 @export var partyMember : PartyMember
 var allyName : String = ""
@@ -24,6 +25,7 @@ func initialize():
 	icon = partyMember.sprite
 	
 	Stats.reviveSignal.connect(revive)
+	Stats.takeDamage.connect(take_damage)
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.healthZero.connect(die)
 
@@ -41,8 +43,13 @@ func end_turn(abilityName = ""):
 	endTurn.emit()
 	pass
 
-func update_healthbar():
-	HealthBar.update_bar(Stats.get_health(true))
+func take_damage(amount : int):
+	DamageNumber.text = str(amount) 
+	DamageNumber.visible = true
+	pass
+
+func update_healthbar(new_amount):
+	HealthBar.update_bar(new_amount)
 	pass
 
 func _on_button_pressed():

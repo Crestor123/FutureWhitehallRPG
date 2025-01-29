@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgrqg1py0agou"]
+[gd_scene load_steps=5 format=3 uid="uid://cgrqg1py0agou"]
 
 [ext_resource type="Script" path="res://Objects/Scripts/Ally.gd" id="1_0mpn8"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_8ycl5"]
 [ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="3_wfxef"]
+[ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="4_fv4ux"]
 
 [node name="Ally" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_0mpn8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -30,5 +32,16 @@ offset_left = -64.0
 offset_top = 20.0
 offset_right = 64.0
 offset_bottom = 28.0
+
+[node name="DamageNumber" parent="." instance=ExtResource("4_fv4ux")]
+visible = false
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -19.0
+offset_right = 7.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]

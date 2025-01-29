@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c56ghvj57d1ws"]
+[gd_scene load_steps=14 format=3 uid="uid://c56ghvj57d1ws"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
 [ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3h4fytt0403" path="res://Objects/UI/Battle/EnemyStatBlock.tscn" id="4_ikcrs"]
 [ext_resource type="PackedScene" uid="uid://xyxigkol2w46" path="res://Objects/UI/Battle/BattlerTurnIcon.tscn" id="5_ascfi"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
+[ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_7wr75"]
 
 [sub_resource type="Theme" id="Theme_kcj8j"]
 default_font = ExtResource("5_myop7")
@@ -55,6 +56,7 @@ abilityButton = ExtResource("2_f4qr7")
 allyStatBlock = ExtResource("3_nnqog")
 enemyStatBlock = ExtResource("4_ikcrs")
 battlerTurnIcon = ExtResource("5_ascfi")
+damageNumber = ExtResource("6_7wr75")
 
 [node name="RightBar" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(96, 176)

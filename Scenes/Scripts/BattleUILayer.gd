@@ -7,6 +7,8 @@ extends Control
 
 @export var battlerTurnIcon : PackedScene
 
+@export var damageNumber : PackedScene
+
 @onready var rightBar = $RightBar
 @onready var bottomBar = $BottomBar
 @onready var leftBar = $LeftBar

@@ -8,6 +8,7 @@ extends Node
 @export var battler : Node
 
 signal reviveSignal
+signal takeDamage(amount)
 signal healthChanged(amount)
 signal healthZero
 
@@ -120,6 +121,7 @@ func take_damage(value : int, type : String, element : String):
 	if tempStats.health > get_stat("health"):
 		tempStats.health = get_stat("health")
 	
+	takeDamage.emit(damage)
 	healthChanged.emit(tempStats.health)
 	if tempStats.health < 1:
 		healthZero.emit()
