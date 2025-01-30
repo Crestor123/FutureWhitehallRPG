@@ -5,6 +5,8 @@ extends Node2D
 @onready var Stats = $StatComponent
 @onready var Select = $Sprite2D/Button
 @onready var HealthBar = $HealthBar
+@onready var DamageNumber = $DamageNumber
+@onready var Anim = $AnimationPlayer
 
 @export var data : EnemyResource
 
@@ -48,6 +50,7 @@ func initialize():
 	
 	Stats.reviveSignal.connect(revive)
 	Stats.healthChanged.connect(update_healthbar)
+	Stats.takeDamage.connect(take_damage)
 	Stats.healthZero.connect(die)
 
 func start_turn(turnCount):
@@ -81,6 +84,15 @@ func select_target(ability):
 	var targetIndex = randi_range(0, aliveTargets.size() - 1)
 	var targetArray : Array[Node] = [aliveTargets[targetIndex]]
 	return targetArray
+	pass
+
+func take_damage(amount):
+	DamageNumber.text = str(amount) 
+	DamageNumber.visible = true
+	playingAnimation = true
+	Anim.play("damageNumber")
+	playingAnimation = false
+	animationFinished.emit()
 	pass
 
 func update_healthbar():

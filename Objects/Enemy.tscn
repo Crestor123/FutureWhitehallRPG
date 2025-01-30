@@ -1,10 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://jci0jbslk6hj"]
+[gd_scene load_steps=10 format=3 uid="uid://jci0jbslk6hj"]
 
 [ext_resource type="Script" path="res://Objects/Scripts/Enemy.gd" id="1_irflq"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_jcpcc"]
 [ext_resource type="PackedScene" uid="uid://bya0ps2ufov22" path="res://Objects/Components/AbilityComponent.tscn" id="2_ti8ex"]
 [ext_resource type="PackedScene" uid="uid://2sabk1qf7cl4" path="res://Objects/Components/StatComponent.tscn" id="3_u7d70"]
 [ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="5_tqx74"]
+[ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_ajph0"]
+
+[sub_resource type="Animation" id="Animation_xfart"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageNumber:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageNumber:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_jdu7t"]
+resource_name = "damageNumber"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageNumber:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, -19), Vector2(-7, -38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageNumber:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4fl3"]
+_data = {
+"RESET": SubResource("Animation_xfart"),
+"damageNumber": SubResource("Animation_jdu7t")
+}
 
 [node name="Enemy" type="Node2D"]
 texture_filter = 1
@@ -39,5 +101,21 @@ offset_left = -64.0
 offset_top = 20.0
 offset_right = 64.0
 offset_bottom = 28.0
+
+[node name="DamageNumber" parent="." instance=ExtResource("6_ajph0")]
+visible = false
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -19.0
+offset_right = 7.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m4fl3")
+}
 
 [connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]
