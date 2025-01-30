@@ -83,7 +83,6 @@ func use_ability(ability : Node, targetList : Array[Node]):
 		parent.Equipment.spend_charge(ability.realAmmoCost)
 	if ability.manaCost > 0:
 		parent.Stats.spend_mana(ability.manaCost)
-		
 	
 	used_ability.emit(ability.abilityName)
 	pass

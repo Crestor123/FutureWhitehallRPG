@@ -12,6 +12,7 @@ var enemyName : String = ""
 var level : int
 var experience : int
 var icon : Texture2D = null
+var playingAnimation = false
 
 var itemDrops : Dictionary
 
@@ -19,8 +20,10 @@ var targets : Array[Node]
 var allies : Array[Node]
 
 signal on_select
+signal animationFinished
 signal dead
 signal revived
+signal endTurn
 
 func initialize():
 	if !data: return
@@ -37,6 +40,7 @@ func initialize():
 		Stats.resistances[item] = data.resistances[item]
 		
 	Abilities.initialize(data.abilities)
+	Abilities.used_ability.connect(end_turn)
 	itemDrops = data.itemDrops
 	Sprite.texture = data.sprite
 	icon = data.sprite
@@ -56,7 +60,10 @@ func start_turn(turnCount):
 	var ability = select_ability(turnCount)
 	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)
-
+	
+func end_turn(abilityName = ""):
+	endTurn.emit()
+	
 #Uses turn count to choose an ability (implement some AI later)
 func select_ability(turnCount) -> Node:
 	return Abilities.get_child(turnCount % Abilities.get_child_count())
@@ -78,6 +85,7 @@ func select_target(ability):
 
 func update_healthbar():
 	HealthBar.update_bar(Stats.get_health(true))
+	animationFinished.emit()
 	pass
 
 #Enemy selector button signal

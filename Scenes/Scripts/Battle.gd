@@ -11,6 +11,7 @@ var allies : Array[Node]
 var enemies : Array[Node]
 var inventory : Node
 
+var finishedAnimations = false
 var victory = false
 var defeat = false
 
@@ -20,6 +21,7 @@ var enemyColumn = 112
 var currentBattler : Node = null
 var currentTarget : Node = null
 
+signal endTurn()
 signal battleWon()
 signal battleLoss()
 
@@ -79,6 +81,8 @@ func ability_button(ability : Node):
 	else:
 		var targetArray : Array[Node] = [currentTarget]
 		currentBattler.Abilities.use_ability(ability, targetArray)
+		
+	await currentTarget.animationFinished
 
 func use_item(item : ConsumableNode):
 	if item.targetAll:
@@ -99,51 +103,71 @@ func move_cursor(target : Node):
 func start_battle():
 	while !victory and !defeat:
 		#Start of round:
-		TurnOrder.sort_turn_order()	#Sort turn order
+		TurnOrder.sort_turn_order()
 		UI.set_turnorder(TurnOrder.Round)
 		print("Start of Round")
 		while !TurnOrder.Round.is_empty():
-			print("Start of Turn")
-			if victory or defeat:
-				break
-				
-			currentBattler = TurnOrder.get_next_battler()
+			start_turn()
+			await endTurn
 			
-			if currentBattler in allies:
-				#The current battler is an ally; show the ability selection UI
-				ui_show_abilities()
-				for i in enemies:
-					if !i.Stats.dead:
-						UI.move_cursor(i)
-						currentTarget = i
-						break
-				UI.on_button_pressed.connect(ability_button)
-				UI.inventory.connect(ui_show_inventory)
-				currentBattler.start_turn()
-				
-				await currentBattler.endTurn
-				UI.delete_buttons()
-				UI.on_button_pressed.disconnect(ability_button)
-				T.wait_time = 1
-				T.start()
-				await T.timeout
-			
-			else:
-				#The current battler is an enemy
-				currentBattler.start_turn(TurnOrder.RoundCount)
-				T.wait_time = 1
-				T.start()
-				await T.timeout
-			
-			print("End Turn")
-		print("End Round")
 	if victory:	 #return to previous map
 		tally_rewards()
 		
 	if defeat:
 		#Game over
 		battleLoss.emit()
+
+func start_turn():
+	print("Start of Turn")
+	if victory or defeat:
+		return
+			
+	currentBattler = TurnOrder.get_next_battler()
+	
+	if currentBattler in allies:
+		#The current battler is an ally; show the ability selection UI
+		ui_show_abilities()
+		for i in enemies:
+			if !i.Stats.dead:
+				UI.move_cursor(i)
+				currentTarget = i
+				break
+		UI.on_button_pressed.connect(ability_button)
+		UI.inventory.connect(ui_show_inventory)
+		currentBattler.endTurn.connect(end_turn)
+		currentBattler.start_turn()
+	else:
+		currentBattler.endTurn.connect(end_turn)
+		currentBattler.start_turn(TurnOrder.RoundCount)
+	pass
+
+func end_turn():
+	finishedAnimations = false
+	while finishedAnimations == false:
+		finishedAnimations = true
+		for ally in allies:
+			if ally.playingAnimation:
+				finishedAnimations = false
+		for enemy in enemies:
+			if enemy.playingAnimation:
+				finishedAnimations = false
+	
+	if currentBattler in allies:
+		UI.delete_buttons()
+		UI.on_button_pressed.disconnect(ability_button)
+	
+	currentBattler.endTurn.disconnect(end_turn)
+	
 		
+	T.wait_time = 1
+	T.start()
+	await T.timeout
+
+	endTurn.emit()
+	print("End Turn")
+	
+	pass
+
 func ui_show_abilities():
 	UI.create_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
