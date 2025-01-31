@@ -20,6 +20,10 @@ var enemyColumn = 112
 
 var currentBattler : Node = null
 var currentTarget : Node = null
+var currentAbility : Node = null
+var currentItem : Node = null
+var currentMenu : String = ""
+var targetingAllies : bool = false
 
 signal startTurn()	#
 signal endTurn()	#Emitted after processing the current battler's turn
@@ -78,16 +82,35 @@ func position_battlers():
 	pass
 
 func ability_button(ability : Node):
-	if ability.target == "multi":
-		if currentTarget in allies:
-			currentBattler.Abilities.use_ability(ability, allies) 
+	currentAbility = ability
+	var multi = ability.target == "multi"
+	targetingAllies = false
+	ui_show_targets(targetingAllies, multi)
+
+func item_button(item : Node):
+	currentItem = item
+	var multi = item.targetAll
+	targetingAllies = true
+	ui_show_targets(targetingAllies, multi)
+
+func target_button(target : Node = null):
+	var ability = currentAbility
+	var item = currentItem
+	
+	if target == null:
+		#The ability targets all allies / enemies
+		if targetingAllies:
+			currentBattler.Abilities.use_ability(ability, allies)
 		else:
-			currentBattler.Abilities.use_ability(ability, enemies) 
+			currentBattler.Abilities.use_ability(ability, enemies)
 	else:
+		currentTarget = target
 		var targetArray : Array[Node] = [currentTarget]
-		currentBattler.Abilities.use_ability(ability, targetArray)
-		
-	await currentTarget.animationFinished
+		if ability:
+			currentBattler.Abilities.use_ability(ability, targetArray)
+		elif item:
+			use_item(item)
+	pass
 
 func use_item(item : ConsumableNode):
 	if item.targetAll:
@@ -129,7 +152,7 @@ func start_turn():
 				UI.move_cursor(i)
 				currentTarget = i
 				break
-		UI.on_button_pressed.connect(ability_button)
+
 		UI.inventory.connect(ui_show_inventory)
 		currentBattler.endTurn.connect(end_turn)
 		currentBattler.start_turn()
@@ -162,6 +185,9 @@ func end_turn():
 	T.start()
 	await T.timeout
 
+	currentAbility = null
+	currentItem = null
+
 	#Check for victory or defeat
 	if victory:	 #return to previous map
 		tally_rewards()
@@ -179,13 +205,46 @@ func end_turn():
 		startTurn.emit()
 	
 func ui_show_abilities():
-	UI.create_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
+	currentAbility = null
+	UI.on_button_pressed.disconnect(target_button)
+	UI.on_button_pressed.connect(ability_button)
+	currentMenu = "ability"
+	UI.create_ability_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
 		
+func ui_show_targets(targetingAllies : bool = false, multi : bool = false):
+	#After selecting an ability, show a list of possible targets
+	#By default, shows a list of enemies, with no "all enemies" button
+	UI.on_button_pressed.disconnect(ability_button)
+	UI.on_button_pressed.connect(target_button)
+	if currentMenu == "ability":
+		UI.back.connect(ui_show_abilities)
+	if currentMenu == "inv":
+		UI.back.connect(ui_show_inventory)
+	UI.switchTargets.connect(ui_switch_targets)
+	var targetList = enemies
+	if targetingAllies:
+		targetList = allies
+	UI.create_target_buttons(targetList, targetingAllies, multi)
+
+	pass
+
+func ui_switch_targets():
+	var multi = false
+	if currentAbility:
+		multi = currentAbility.target == "multi"
+	elif currentItem:
+		multi = currentItem.targetAll
+	targetingAllies = !targetingAllies
+	ui_show_targets(targetingAllies, multi)
+	pass
+
 func ui_show_inventory():
+	currentItem = null
+	currentMenu = "inv"
 	UI.show_inventory(inventory)
 	UI.back.connect(ui_show_abilities)
-	UI.useItem.connect(use_item)
+	UI.item.connect(item_button)
 	pass
 
 func tally_rewards():

@@ -6,7 +6,7 @@ extends Node
 @export var description : String
 @export var icon : Texture2D
 
-@export_enum ("single", "multi", "passive") var target : String
+@export_enum ("single", "multi", "passive", "self") var target : String
 
 @export_enum ("health", "mana", "strength", "intelligence", 
 "dexterity", "speed", "vitality", "resistance") var mainStat : String

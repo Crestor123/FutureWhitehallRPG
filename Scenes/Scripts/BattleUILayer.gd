@@ -20,9 +20,10 @@ extends Control
 @onready var Cursor = $Cursor
 
 signal on_button_pressed()
-signal useItem()
+signal item()
 signal inventory()
 signal back()
+signal switchTargets()
 
 #Deletes any ability buttons and hides the ability menu
 func delete_buttons():
@@ -33,7 +34,7 @@ func delete_buttons():
 		item.queue_free()
 
 #Creates ability buttons for the current battler
-func create_buttons(partyMember : Node, inventory : Node, abilityList : Array[Node]):
+func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : Array[Node]):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	rightBar.visible = false
@@ -58,7 +59,47 @@ func create_buttons(partyMember : Node, inventory : Node, abilityList : Array[No
 		
 	#AbilityContainer.visible = true
 	rightBar.visible = true
-	Cursor.visible = true
+	#Cursor.visible = true
+
+func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false):
+	for i in AbilityContainer.get_children():
+		i.queue_free()
+	
+	var backButton = abilityButton.instantiate()
+	AbilityContainer.add_child(backButton)
+	backButton.set_label("Back")
+	backButton.data = "back"
+	backButton.pressed.connect(button_pressed)
+	
+	var switchButton = abilityButton.instantiate()
+	AbilityContainer.add_child(switchButton)
+	switchButton.data = "switch"
+	switchButton.pressed.connect(button_pressed)
+	if allies:
+		switchButton.set_label("Enemies")
+	else:
+		switchButton.set_label("Allies")
+	
+	if multi:
+		var allButton = abilityButton.instantiate()
+		AbilityContainer.add_child(allButton)
+		allButton.set_label("All")
+		allButton.data = "all"
+		allButton.pressed.connect(button_pressed)
+		return
+		
+	for target in targetList:
+		if target.Stats.dead:
+			continue
+		var newButton = abilityButton.instantiate()
+		AbilityContainer.add_child(newButton)
+		if allies:
+			newButton.set_label(target.allyName)
+		else:
+			newButton.set_label(target.enemyName)
+		newButton.data = target
+		newButton.pressed.connect(button_pressed)
+	pass
 
 func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 	for item in allyList:
@@ -109,8 +150,8 @@ func show_inventory(inventory : Node):
 		itemButton.pressed.connect(use_item)
 	pass
 
-func use_item(item : ItemNode):
-	useItem.emit(item)
+func use_item(itemNode : ItemNode):
+	item.emit(itemNode)
 	pass
 
 #Called when an ability button is pressed
@@ -122,4 +163,6 @@ func button_pressed(ability):
 		inventory.emit()
 	elif ability == "back":
 		back.emit()
+	elif ability == "switch":
+		switchTargets.emit()
 	pass
