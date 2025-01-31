@@ -15,19 +15,24 @@ var finishedAnimations = false
 var victory = false
 var defeat = false
 
-var allyColumn = 272
+var allyColumn = 272	#Coordinates for placing allies
 var enemyColumn = 112
 
 var currentBattler : Node = null
 var currentTarget : Node = null
 
-signal endTurn()
+signal startTurn()	#
+signal endTurn()	#Emitted after processing the current battler's turn
+signal endRound()
 signal battleWon()
 signal battleLoss()
 
 func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormation, setInventory):
 	#Takes a list of party members and enemies
 	#Creates a battler node for each of them
+	startTurn.connect(start_turn)
+	endRound.connect(start_round)
+	
 	inventory = setInventory
 	
 	for item in partyMembers:
@@ -101,21 +106,13 @@ func move_cursor(target : Node):
 	pass
 
 func start_battle():
-	while !victory and !defeat:
-		#Start of round:
-		TurnOrder.sort_turn_order()
-		UI.set_turnorder(TurnOrder.Round)
-		print("Start of Round")
-		while !TurnOrder.Round.is_empty():
-			start_turn()
-			await endTurn
-			
-	if victory:	 #return to previous map
-		tally_rewards()
-		
-	if defeat:
-		#Game over
-		battleLoss.emit()
+	start_round()
+	
+func start_round():
+	TurnOrder.sort_turn_order()			#Sort the turn order
+	UI.set_turnorder(TurnOrder.Round)	#Display the turn order in the UI
+	startTurn.emit()					#Start the turn
+	pass
 
 func start_turn():
 	print("Start of Turn")
@@ -142,6 +139,7 @@ func start_turn():
 	pass
 
 func end_turn():
+	#Wait for any animations to finish
 	finishedAnimations = false
 	while finishedAnimations == false:
 		finishedAnimations = true
@@ -152,22 +150,34 @@ func end_turn():
 			if enemy.playingAnimation:
 				finishedAnimations = false
 	
+	#Disconnect any UI buttons for the current ally
 	if currentBattler in allies:
 		UI.delete_buttons()
 		UI.on_button_pressed.disconnect(ability_button)
 	
+	#Disconnect the current battler from the turn flow
 	currentBattler.endTurn.disconnect(end_turn)
 	
-		
-	T.wait_time = 1
+	T.wait_time = 1		#Short delay
 	T.start()
 	await T.timeout
 
-	endTurn.emit()
-	print("End Turn")
+	#Check for victory or defeat
+	if victory:	 #return to previous map
+		tally_rewards()
+		
+	if defeat:
+		#Game over
+		battleLoss.emit()
+		
+	if TurnOrder.Round.is_empty():
+		print("End Round")
+		endRound.emit()
+	else:
+		print("End Turn")
+		endTurn.emit()
+		startTurn.emit()
 	
-	pass
-
 func ui_show_abilities():
 	UI.create_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
