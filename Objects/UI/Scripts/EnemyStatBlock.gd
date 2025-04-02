@@ -3,4 +3,4 @@ extends HBoxContainer
 @onready var lblName = $Name
 
 func initialize(enemy):
-	lblName.text = enemy.enemyName
+	lblName.text = enemy.Name

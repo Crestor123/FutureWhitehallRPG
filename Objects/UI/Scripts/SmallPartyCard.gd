@@ -9,7 +9,7 @@ var data
 func initialize(partyMember : Node):
 	data = partyMember
 	Icon.texture = partyMember.sprite
-	Name.text = partyMember.partyName
+	Name.text = partyMember.Name
 	pass
 
 func _on_button_pressed():

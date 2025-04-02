@@ -88,7 +88,7 @@ func spend_mana(value : int):
 	tempStats.mana -= value
 
 func heal(value : int):
-	print(parent.partyName, " heals ", value)
+	print(parent.Name, " heals ", value)
 	tempStats.health += value
 	if tempStats.health > get_stat("health"):
 		tempStats.health = get_stat("health")

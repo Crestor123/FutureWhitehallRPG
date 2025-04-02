@@ -10,7 +10,7 @@ extends Node2D
 
 @export var data : EnemyResource
 
-var enemyName : String = ""
+var Name : String = ""
 var level : int
 var experience : int
 var icon : Texture2D = null
@@ -30,7 +30,7 @@ signal endTurn
 func initialize():
 	if !data: return
 	
-	enemyName = data.name
+	Name = data.name
 	level = data.level
 	experience = data.experience
 	

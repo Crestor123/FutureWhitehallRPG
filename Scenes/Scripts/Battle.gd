@@ -84,8 +84,9 @@ func position_battlers():
 func ability_button(ability : Node):
 	currentAbility = ability
 	var multi = ability.target == "multi"
+	var targetingSelf = ability.target == "self"
 	targetingAllies = false
-	ui_show_targets(targetingAllies, multi)
+	ui_show_targets(targetingAllies, multi, targetingSelf)
 
 func item_button(item : Node):
 	currentItem = item
@@ -212,7 +213,7 @@ func ui_show_abilities():
 	UI.create_ability_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
 		
-func ui_show_targets(targetingAllies : bool = false, multi : bool = false):
+func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targetSelf : bool = false):
 	#After selecting an ability, show a list of possible targets
 	#By default, shows a list of enemies, with no "all enemies" button
 	UI.on_button_pressed.disconnect(ability_button)
@@ -222,10 +223,12 @@ func ui_show_targets(targetingAllies : bool = false, multi : bool = false):
 	if currentMenu == "inv":
 		UI.back.connect(ui_show_inventory)
 	UI.switchTargets.connect(ui_switch_targets)
-	var targetList = enemies
+	var targetList : Array[Node] = enemies
 	if targetingAllies:
 		targetList = allies
-	UI.create_target_buttons(targetList, targetingAllies, multi)
+	if targetSelf:
+		targetList = [currentBattler]
+	UI.create_target_buttons(targetList, targetingAllies, multi, targetSelf)
 
 	pass
 

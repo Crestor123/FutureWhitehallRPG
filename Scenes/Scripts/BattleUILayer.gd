@@ -61,7 +61,7 @@ func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : 
 	rightBar.visible = true
 	#Cursor.visible = true
 
-func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false):
+func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false, targetSelf : bool = false):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	
@@ -71,14 +71,15 @@ func create_target_buttons(targetList : Array[Node], allies : bool = false, mult
 	backButton.data = "back"
 	backButton.pressed.connect(button_pressed)
 	
-	var switchButton = abilityButton.instantiate()
-	AbilityContainer.add_child(switchButton)
-	switchButton.data = "switch"
-	switchButton.pressed.connect(button_pressed)
-	if allies:
-		switchButton.set_label("Enemies")
-	else:
-		switchButton.set_label("Allies")
+	if !targetSelf:
+		var switchButton = abilityButton.instantiate()
+		AbilityContainer.add_child(switchButton)
+		switchButton.data = "switch"
+		switchButton.pressed.connect(button_pressed)
+		if allies:
+			switchButton.set_label("Enemies")
+		else:
+			switchButton.set_label("Allies")
 	
 	if multi:
 		var allButton = abilityButton.instantiate()
@@ -93,10 +94,7 @@ func create_target_buttons(targetList : Array[Node], allies : bool = false, mult
 			continue
 		var newButton = abilityButton.instantiate()
 		AbilityContainer.add_child(newButton)
-		if allies:
-			newButton.set_label(target.allyName)
-		else:
-			newButton.set_label(target.enemyName)
+		newButton.set_label(target.Name)
 		newButton.data = target
 		newButton.pressed.connect(button_pressed)
 	pass

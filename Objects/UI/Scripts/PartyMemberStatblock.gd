@@ -7,7 +7,7 @@ extends MarginContainer
 @onready var lblMana = $HBoxContainer/HBoxContainer/Values/Mana
 
 func initialize(partyMember : Node):
-	lblName.text = partyMember.partyName
+	lblName.text = partyMember.Name
 	#lblClass.text = partyMember.
 	lblLevel.text = str(partyMember.level)
 	lblHealth.text = str(partyMember.Stats.get_health()) + " / " + str(partyMember.Stats.get_stat("health"))

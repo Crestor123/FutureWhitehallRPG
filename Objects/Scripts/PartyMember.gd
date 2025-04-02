@@ -18,7 +18,7 @@ var level : int = 0
 var experience : int = 0
 var xpToLevel : int = 0
 
-var partyName : String
+var Name : String
 var sprite : Texture2D
 var isActive : bool = false
 var alive : bool = true
@@ -29,7 +29,7 @@ signal dead(data)
 func initialize(inventory : Node):
 	if !data: return
 	Inventory = inventory
-	partyName = data.name
+	Name = data.name
 	sprite = data.sprite
 	level = data.level
 	xpToLevel = xp_to_next_level(level)

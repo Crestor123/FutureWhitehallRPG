@@ -20,7 +20,7 @@ extends VBoxContainer
 
 func initialize(partyMember : PartyMember):
 	Icon.texture = partyMember.sprite
-	lblName.text = partyMember.partyName
+	lblName.text = partyMember.Name
 	lblLevel.text = str(partyMember.level)
 	pass
 

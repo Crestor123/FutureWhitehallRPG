@@ -7,7 +7,7 @@ extends Node2D
 @onready var Anim = $AnimationPlayer
 
 @export var partyMember : PartyMember
-var allyName : String = ""
+var Name : String = ""
 var Stats : Node = null
 var Abilities : Node = null
 var icon : Texture2D = null
@@ -21,7 +21,7 @@ signal revived
 
 func initialize():
 	if !partyMember: return
-	allyName = partyMember.partyName
+	Name = partyMember.Name
 	Stats = partyMember.Stats
 	Abilities = partyMember.Abilities
 	Sprite.texture = partyMember.sprite
