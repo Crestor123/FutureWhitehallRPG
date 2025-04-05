@@ -12,6 +12,7 @@ class_name ConsumableNode
 @export var bonus : int
 @export var turns : int
 @export var battleOnly : bool = false
+@export var targetAllies : bool = true
 @export var targetAll : bool = false
 
 @export var additionalEffects : Array[EffectResource]
@@ -23,5 +24,6 @@ func initialize():
 	bonus = data.bonus
 	turns = data.turns
 	battleOnly = data.battleOnly
+	targetAllies = data.targetAllies
 	targetAll = data.targetAll
 	additionalEffects = data.additionalEffects

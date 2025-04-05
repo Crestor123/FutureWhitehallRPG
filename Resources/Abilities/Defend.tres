@@ -9,6 +9,7 @@ script = ExtResource("1_funhy")
 name = "Defend"
 description = ""
 target = "self"
+targetAllies = true
 mainStat = "vitality"
 targetStat = "vitality"
 manaCost = 0

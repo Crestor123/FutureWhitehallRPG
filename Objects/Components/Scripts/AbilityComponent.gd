@@ -69,9 +69,10 @@ func use_ability(ability : Node, targetList : Array[Node]):
 				for effect in ability.statusEffects:
 					target.Stats.add_buff(self, ability, effect)
 					
-	if ability.baseDamage < 0:
+	if ability.baseDamage <= 0:
 		for target in targetList:
-			target.Stats.heal(damage)
+			if ability.baseDamage != 0:
+				target.Stats.heal(damage)
 			for effect in ability.statusEffects:
 				if effect.status == "reload":
 					if ability.source:

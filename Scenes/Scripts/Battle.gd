@@ -102,12 +102,16 @@ func ability_button(ability : Node):
 	var multi = ability.target == "multi"
 	var targetingSelf = ability.target == "self"
 	targetingAllies = false
+	if ability.targetAllies:
+		targetingAllies = true
 	ui_show_targets(targetingAllies, multi, targetingSelf)
 
 func item_button(item : Node):
 	currentItem = item
 	var multi = item.targetAll
-	targetingAllies = true
+	targetingAllies = false
+	if item.targetAllies:
+		targetingAllies = true
 	ui_show_targets(targetingAllies, multi)
 
 func target_button(target : Node = null):

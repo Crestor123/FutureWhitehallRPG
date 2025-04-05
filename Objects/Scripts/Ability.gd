@@ -8,6 +8,8 @@ extends Node
 
 @export_enum ("single", "multi", "passive", "self") var target : String
 
+@export var targetAllies : bool
+
 @export_enum ("health", "mana", "strength", "intelligence", 
 "dexterity", "speed", "vitality", "resistance") var mainStat : String
 #@export_enum ("health", "mana", "strength", "intelligence", 
@@ -38,6 +40,7 @@ func initialize(setSource : Node = null):
 	description = data.description
 	icon = data.icon
 	target = data.target
+	targetAllies = data.targetAllies
 	mainStat = data.mainStat
 	targetStat = data.targetStat
 	
