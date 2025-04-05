@@ -11,6 +11,7 @@ extends Node2D
 @export var data : EnemyResource
 
 var Name : String = ""
+var suffix : String = ""
 var level : int
 var experience : int
 var icon : Texture2D = null

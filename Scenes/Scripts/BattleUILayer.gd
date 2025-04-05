@@ -94,7 +94,10 @@ func create_target_buttons(targetList : Array[Node], allies : bool = false, mult
 			continue
 		var newButton = abilityButton.instantiate()
 		AbilityContainer.add_child(newButton)
-		newButton.set_label(target.Name)
+		if allies:
+			newButton.set_label(target.Name)
+		else:
+			newButton.set_label(target.Name + " " + target.suffix)
 		newButton.data = target
 		newButton.pressed.connect(button_pressed)
 	pass

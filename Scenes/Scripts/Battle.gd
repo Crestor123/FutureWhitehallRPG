@@ -58,9 +58,25 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.dead.connect(battler_defeated)
 	
 	#Give the enemies references to the lists of battlers
+	#For duplicate enemies, set the suffix
 	for item in enemies:
 		item.allies = enemies
 		item.targets = allies
+		
+		var dupe = false
+		for other in enemies:
+			if other != self && other.Name == item.Name:
+				dupe = true
+				break
+		
+		#Start at A and loop through alphabet
+		#Hopefully never have more than 26 of the same enemy in a combat
+		var suffix = "A"
+		if dupe:
+			for other in enemies:
+				if other.Name == item.Name:
+					other.suffix = suffix
+					suffix[0] = String.chr(suffix.unicode_at(0) + 1)
 		
 	#Initialize the UI
 	UI.initialize_statblocks(allies, enemies)
