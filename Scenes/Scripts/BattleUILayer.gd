@@ -17,6 +17,9 @@ extends Control
 @onready var EnemyStats = $BottomBar/HBoxContainer/MarginContainer/EnemyStats
 @onready var AllyStats = $BottomBar/HBoxContainer/MarginContainer2/AllyStats
 @onready var TurnOrder = $LeftBar/TurnOrder
+@onready var topBar = $TopBar
+@onready var lblMoveName = $TopBar/CenterContainer/lblMoveName
+@onready var MoveNameTimer = $TopBar/CenterContainer/lblMoveName/Timer
 @onready var Cursor = $Cursor
 
 signal on_button_pressed()
@@ -167,3 +170,15 @@ func button_pressed(ability):
 	elif ability == "switch":
 		switchTargets.emit()
 	pass
+
+#Set the top bar to show the move or item name
+#Start the timer and remove the box after it ends
+func set_topBar(moveName : String):
+	MoveNameTimer.connect("timeout", hide_topBar)
+	lblMoveName.text = moveName
+	topBar.visible = true
+	MoveNameTimer.start()
+	pass
+
+func hide_topBar():
+	topBar.visible = false

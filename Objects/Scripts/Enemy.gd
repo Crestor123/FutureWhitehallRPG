@@ -24,6 +24,7 @@ var allies : Array[Node]
 
 signal on_select
 signal animationFinished
+signal selectedAbility
 signal dead
 signal revived
 signal endTurn
@@ -62,6 +63,7 @@ func start_turn(turnCount):
 			return
 	
 	var ability = select_ability(turnCount)
+	selectedAbility.emit(ability.abilityName)
 	var targetArray = select_target(ability)
 	Abilities.use_ability(ability, targetArray)
 	

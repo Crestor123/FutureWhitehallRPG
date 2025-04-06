@@ -53,7 +53,7 @@ func xp_to_next_level(level : int):
 	
 func add_xp(amount : int):
 	experience += amount
-	if experience > xpToLevel:
+	if experience >= xpToLevel:
 		level_up()
 	pass
 

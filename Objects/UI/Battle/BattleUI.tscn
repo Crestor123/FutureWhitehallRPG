@@ -142,6 +142,27 @@ theme_override_constants/separation = 1
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_vkn38")
 
+[node name="TopBar" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.72
+offset_bottom = 9.0
+grow_horizontal = 2
+theme = SubResource("Theme_47dam")
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="CenterContainer" type="CenterContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="lblMoveName" type="Label" parent="TopBar/CenterContainer"]
+layout_mode = 2
+text = "Move Name"
+
+[node name="Timer" type="Timer" parent="TopBar/CenterContainer/lblMoveName"]
+
 [node name="Cursor" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1

@@ -128,12 +128,14 @@ func target_button(target : Node = null):
 		currentTarget = target
 		var targetArray : Array[Node] = [currentTarget]
 		if ability:
+			UI.set_topBar(ability.abilityName)
 			currentBattler.Abilities.use_ability(ability, targetArray)
 		elif item:
 			use_item(item)
 	pass
 
 func use_item(item : ConsumableNode):
+	UI.set_topBar(item.itemName)
 	if item.targetAll:
 		if currentTarget in allies:
 			inventory.use_item(item, allies)
@@ -178,6 +180,7 @@ func start_turn():
 		currentBattler.endTurn.connect(end_turn)
 		currentBattler.start_turn()
 	else:
+		currentBattler.selectedAbility.connect(UI.set_topBar)
 		currentBattler.endTurn.connect(end_turn)
 		currentBattler.start_turn(TurnOrder.RoundCount)
 	pass
@@ -202,7 +205,7 @@ func end_turn():
 	#Disconnect the current battler from the turn flow
 	currentBattler.endTurn.disconnect(end_turn)
 	
-	T.wait_time = 1		#Short delay
+	T.wait_time = 1.2		#Short delay
 	T.start()
 	await T.timeout
 

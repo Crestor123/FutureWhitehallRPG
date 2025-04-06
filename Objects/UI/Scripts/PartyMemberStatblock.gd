@@ -9,6 +9,7 @@ extends MarginContainer
 func initialize(partyMember : Node):
 	lblName.text = partyMember.Name
 	#lblClass.text = partyMember.
-	lblLevel.text = str(partyMember.level)
+	lblLevel.text = (" (" + str(partyMember.experience) + " / " + str(partyMember.xpToLevel) 
+	+ ") " + str(partyMember.level))
 	lblHealth.text = str(partyMember.Stats.get_health()) + " / " + str(partyMember.Stats.get_stat("health"))
 	lblMana.text = str(partyMember.Stats.get_mana()) + " / " + str(partyMember.Stats.get_stat("mana"))
