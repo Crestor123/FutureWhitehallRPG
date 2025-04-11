@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c56ghvj57d1ws"]
+[gd_scene load_steps=17 format=3 uid="uid://c56ghvj57d1ws"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
 [ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://xyxigkol2w46" path="res://Objects/UI/Battle/BattlerTurnIcon.tscn" id="5_ascfi"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
 [ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_7wr75"]
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="9_htfbq"]
+[ext_resource type="Texture2D" uid="uid://odg2jtsgatan" path="res://Assets/SmallElementIcons/SmallEarthIcon.png" id="10_5yo3g"]
+[ext_resource type="Texture2D" uid="uid://d3tase345qgjc" path="res://Assets/SmallElementIcons/SmallFiretIcon.png" id="10_y12yf"]
 
 [sub_resource type="Theme" id="Theme_kcj8j"]
 default_font = ExtResource("5_myop7")
@@ -167,3 +170,219 @@ text = "Move Name"
 visible = false
 texture_filter = 1
 texture = ExtResource("3_ax01a")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.037
+anchor_right = 0.72
+anchor_bottom = 0.696
+offset_top = 0.12
+offset_bottom = -0.0400085
+theme = SubResource("Theme_47dam")
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_htfbq")
+stretch_mode = 2
+
+[node name="lblName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="lblLevel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Level: "
+
+[node name="lblLevelValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Value"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 1.5
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="lblHealth" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Health:"
+
+[node name="lblHealthValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100 / 100"
+horizontal_alignment = 2
+
+[node name="lblStrength" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Strength:"
+
+[node name="lblStengthValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="lblIntelligence" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Intelligence:"
+
+[node name="lblIntelligenceValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="lblDexterity" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Dexterity:"
+
+[node name="lblDexterityValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="lblSpeed" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="lblSpeedValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="lblVitality" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Vitality:"
+
+[node name="lblVitalityValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="lblResistance" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+text = "Resistance:"
+
+[node name="lblResistanceValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Value"
+horizontal_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_b5ufn")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="FireIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_y12yf")
+stretch_mode = 2
+
+[node name="lblFire" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="EarthIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblEarth" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="WaterIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblWater" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="AirIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblAir" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="ElectricityIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblElectricity" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="AcidIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblAcid" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+
+[node name="VoidIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("10_5yo3g")
+stretch_mode = 2
+
+[node name="lblVoid" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
