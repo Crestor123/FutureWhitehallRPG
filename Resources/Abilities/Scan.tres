@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=4 format=3 uid="uid://hinfpgk5ra0y"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_r7jim"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_527hr"]
+[ext_resource type="Resource" uid="uid://dnhtlfsi2i1xh" path="res://Resources/Effects/Analyze.tres" id="3_0e435"]
+
+[resource]
+script = ExtResource("1_r7jim")
+name = "Scan"
+description = ""
+target = "single"
+targetAllies = false
+swapTargets = false
+mainStat = ""
+targetStat = ""
+manaCost = 0
+ammoCost = 0
+allGuns = false
+baseDamage = 0
+multiplier = 0.0
+accuracy = 100.0
+turns = 0
+type = "magical"
+element = "none"
+statusEffects = Array[ExtResource("2_527hr")]([ExtResource("3_0e435")])

@@ -9,6 +9,7 @@ extends Node2D
 
 var allies : Array[Node]
 var enemies : Array[Node]
+var analyzedBattlers: Array[Node]
 var inventory : Node
 
 var finishedAnimations = false
@@ -28,6 +29,7 @@ var targetingAllies : bool = false
 signal startTurn()	#
 signal endTurn()	#Emitted after processing the current battler's turn
 signal endRound()
+signal resetTurn()
 signal battleWon()
 signal battleLoss()
 
@@ -36,6 +38,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 	#Creates a battler node for each of them
 	startTurn.connect(start_turn)
 	endRound.connect(start_round)
+	resetTurn.connect(reset_turn)
 	
 	inventory = setInventory
 	
@@ -100,11 +103,11 @@ func position_battlers():
 func ability_button(ability : Node):
 	currentAbility = ability
 	var multi = ability.target == "multi"
-	var targetingSelf = ability.target == "self"
+	var targetSelf = ability.target == "self"
 	targetingAllies = false
 	if ability.targetAllies:
 		targetingAllies = true
-	ui_show_targets(targetingAllies, multi, targetingSelf)
+	ui_show_targets(targetingAllies, multi, targetSelf, ability.swapTargets)
 
 func item_button(item : Node):
 	currentItem = item
@@ -178,6 +181,7 @@ func start_turn():
 
 		UI.inventory.connect(ui_show_inventory)
 		currentBattler.endTurn.connect(end_turn)
+		currentBattler.Abilities.analyze.connect(analyze_battler)
 		currentBattler.start_turn()
 	else:
 		currentBattler.selectedAbility.connect(UI.set_topBar)
@@ -204,14 +208,23 @@ func end_turn():
 	
 	#Disconnect the current battler from the turn flow
 	currentBattler.endTurn.disconnect(end_turn)
+
+	currentAbility = null
+	currentItem = null
+	
+	#If there are battlers to be analyzed, do so
+	while !analyzedBattlers.is_empty():
+		ui_show_statblock(analyzedBattlers[0])
+		await UI.closeStatblock
+		analyzedBattlers.pop_front()
 	
 	T.wait_time = 1.2		#Short delay
 	T.start()
 	await T.timeout
 
-	currentAbility = null
-	currentItem = null
+	resetTurn.emit()
 
+func reset_turn():
 	#Check for victory or defeat
 	if victory:	 #return to previous map
 		tally_rewards()
@@ -236,14 +249,16 @@ func ui_show_abilities():
 	UI.create_ability_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
 		
-func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targetSelf : bool = false):
+func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targetSelf : bool = false, swapTargets : bool = true):
 	#After selecting an ability, show a list of possible targets
 	#By default, shows a list of enemies, with no "all enemies" button
 	UI.on_button_pressed.disconnect(ability_button)
 	UI.on_button_pressed.connect(target_button)
 	if currentMenu == "ability":
+		UI.back.disconnect(ui_show_inventory)
 		UI.back.connect(ui_show_abilities)
 	if currentMenu == "inv":
+		UI.back.disconnect(ui_show_abilities)
 		UI.back.connect(ui_show_inventory)
 	UI.switchTargets.connect(ui_switch_targets)
 	var targetList : Array[Node] = enemies
@@ -251,7 +266,7 @@ func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targe
 		targetList = allies
 	if targetSelf:
 		targetList = [currentBattler]
-	UI.create_target_buttons(targetList, targetingAllies, multi, targetSelf)
+	UI.create_target_buttons(targetList, targetingAllies, multi, swapTargets)
 
 	pass
 
@@ -272,6 +287,12 @@ func ui_show_inventory():
 	UI.back.connect(ui_show_abilities)
 	UI.item.connect(item_button)
 	pass
+
+func analyze_battler(battler: Node):
+	analyzedBattlers.append(battler)
+
+func ui_show_statblock(battler: Node):
+	UI.show_statblock(battler)
 
 func tally_rewards():
 	#Tally up experience points

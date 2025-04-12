@@ -9,6 +9,7 @@ class_name AbilityResource
 @export_enum ("single", "multi", "passive", "self") var target : String
 
 @export var targetAllies : bool
+@export var swapTargets : bool
 
 @export_enum ("health", "mana", "strength", "intelligence", 
 "dexterity", "speed", "vitality", "resistance") var mainStat : String

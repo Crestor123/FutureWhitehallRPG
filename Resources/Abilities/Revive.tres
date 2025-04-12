@@ -10,6 +10,7 @@ name = "Revive"
 description = ""
 target = "single"
 targetAllies = true
+swapTargets = true
 mainStat = "intelligence"
 targetStat = "health"
 manaCost = 0

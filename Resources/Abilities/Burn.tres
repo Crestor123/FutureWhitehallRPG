@@ -10,6 +10,7 @@ name = "Burn"
 description = ""
 target = "single"
 targetAllies = false
+swapTargets = true
 mainStat = "intelligence"
 targetStat = "health"
 manaCost = 0

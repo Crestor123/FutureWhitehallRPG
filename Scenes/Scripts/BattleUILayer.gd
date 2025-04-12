@@ -21,11 +21,13 @@ extends Control
 @onready var lblMoveName = $TopBar/CenterContainer/lblMoveName
 @onready var MoveNameTimer = $TopBar/CenterContainer/lblMoveName/Timer
 @onready var Cursor = $Cursor
+@onready var DetailStatblock = $DetailStatBlock
 
 signal on_button_pressed()
 signal item()
 signal inventory()
 signal back()
+signal closeStatblock()
 signal switchTargets()
 
 #Deletes any ability buttons and hides the ability menu
@@ -64,7 +66,7 @@ func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : 
 	rightBar.visible = true
 	#Cursor.visible = true
 
-func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false, targetSelf : bool = false):
+func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false, swapTargets : bool = true):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	
@@ -74,7 +76,7 @@ func create_target_buttons(targetList : Array[Node], allies : bool = false, mult
 	backButton.data = "back"
 	backButton.pressed.connect(button_pressed)
 	
-	if !targetSelf:
+	if swapTargets:
 		var switchButton = abilityButton.instantiate()
 		AbilityContainer.add_child(switchButton)
 		switchButton.data = "switch"
@@ -182,3 +184,13 @@ func set_topBar(moveName : String):
 
 func hide_topBar():
 	topBar.visible = false
+	
+func show_statblock(battler: Node):
+	DetailStatblock.close.connect(hide_statblock)
+	DetailStatblock.initialize(battler.icon, battler.Name, battler.Stats)
+	DetailStatblock.visible = true
+	pass
+
+func hide_statblock():
+	DetailStatblock.visible = false
+	closeStatblock.emit()

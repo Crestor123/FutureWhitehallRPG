@@ -1,17 +1,24 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://ckbmhfayj2xwh"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://ckbmhfayj2xwh"]
 
 [ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_gpwrd"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_eanob"]
 
 [resource]
 script = ExtResource("1_gpwrd")
 name = "Poison"
 description = ""
 target = "single"
+targetAllies = false
+swapTargets = true
 mainStat = "intelligence"
 targetStat = "health"
-cost = 0
+manaCost = 0
+ammoCost = 0
+allGuns = false
 baseDamage = 0
 multiplier = 0.0
+accuracy = 0.0
 turns = 0
 type = "magical"
 element = "acid"
+statusEffects = Array[ExtResource("2_eanob")]([])

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=15 format=3 uid="uid://n6mrngv536uj"]
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=16 format=3 uid="uid://n6mrngv536uj"]
 
 [ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_wnyj5"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="1_xjbqw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://csxy2k4ktuogf" path="res://Resources/Abilities/Defend.tres" id="3_8toce"]
 [ext_resource type="Resource" uid="uid://cokrbidcfhc1m" path="res://Resources/Abilities/Heal.tres" id="4_bmu80"]
 [ext_resource type="Script" path="res://Resources/Templates/Items/ItemResource.gd" id="5_2jb22"]
+[ext_resource type="Resource" uid="uid://hinfpgk5ra0y" path="res://Resources/Abilities/Scan.tres" id="5_ljtj6"]
 [ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="6_xgtq2"]
 [ext_resource type="Resource" uid="uid://cyuji8rf658t" path="res://Resources/Items/Equipment/TestGun.tres" id="9_4r6no"]
 [ext_resource type="Resource" uid="uid://3esvbt3tyg6o" path="res://Resources/Items/CasterParts/TestBattery.tres" id="9_n3xrd"]
@@ -57,5 +58,5 @@ statusResist = {
 "slow": 0,
 "stun": 0
 }
-abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_bmu80")])
+abilities = Array[ExtResource("1_wnyj5")]([ExtResource("1_xjbqw"), ExtResource("3_8toce"), ExtResource("4_bmu80"), ExtResource("5_ljtj6")])
 inventory = Array[ExtResource("5_2jb22")]([ExtResource("6_xgtq2"), ExtResource("9_4r6no"), ExtResource("10_e177f"), ExtResource("9_n3xrd"), ExtResource("10_mjnyx"), ExtResource("11_em21r"), ExtResource("12_4xysv")])

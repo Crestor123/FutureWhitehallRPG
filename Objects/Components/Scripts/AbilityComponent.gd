@@ -7,6 +7,7 @@ extends Node
 @export var equipment : Node
 
 signal used_ability
+signal analyze
 
 func initialize(abilityList : Array[AbilityResource]):
 	if !parent: parent = get_parent()
@@ -66,19 +67,22 @@ func use_ability(ability : Node, targetList : Array[Node]):
 					target.Stats.take_damage(damage, ability.type, ability.element)
 				elif ability.targetStat == "mana":
 					target.tempStats["mana"] -= damage
-				for effect in ability.statusEffects:
-					target.Stats.add_buff(self, ability, effect)
 					
 	if ability.baseDamage <= 0:
 		for target in targetList:
 			if ability.baseDamage != 0:
 				target.Stats.heal(damage)
-			for effect in ability.statusEffects:
-				if effect.status == "reload":
-					if ability.source:
-						equipment.reload(ability.source)
-				else:
-					target.Stats.add_buff(self, ability, effect)
+	
+	for effect in ability.statusEffects:
+		if effect.status == "analyze":
+			for target in targetList:
+				analyze.emit(target)
+		if effect.status == "reload":
+			if ability.source:
+				equipment.reload(ability.source)
+		else:
+			for target in targetList:
+				target.Stats.add_buff(self, ability, effect)
 	
 	if ability.realAmmoCost > 0:
 		parent.Equipment.spend_charge(ability.realAmmoCost)

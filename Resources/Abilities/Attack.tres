@@ -1,17 +1,24 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=2 format=3 uid="uid://i8eqr8470aeg"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://i8eqr8470aeg"]
 
 [ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_q4kwc"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_roas3"]
 
 [resource]
 script = ExtResource("1_q4kwc")
 name = "Attack"
 description = ""
 target = "single"
+targetAllies = false
+swapTargets = true
 mainStat = "strength"
 targetStat = "health"
-cost = 0
+manaCost = 0
+ammoCost = 0
+allGuns = false
 baseDamage = 5
 multiplier = 1.2
+accuracy = 0.0
 turns = 0
 type = "melee"
 element = "none"
+statusEffects = Array[ExtResource("2_roas3")]([])
