@@ -88,6 +88,9 @@ grow_vertical = 2
 focus_mode = 0
 flat = true
 
+[node name="Timer" type="Timer" parent="Sprite2D/Button"]
+one_shot = true
+
 [node name="AbilityComponent" parent="." node_paths=PackedStringArray("stats", "parent") instance=ExtResource("2_ti8ex")]
 stats = NodePath("../StatComponent")
 parent = NodePath("..")
@@ -118,4 +121,4 @@ libraries = {
 "": SubResource("AnimationLibrary_m4fl3")
 }
 
-[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="Sprite2D/Button" to="." method="_on_button_down"]

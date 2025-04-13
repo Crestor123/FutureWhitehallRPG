@@ -49,6 +49,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newAlly.partyMember = item
 		newAlly.initialize()
 		newAlly.on_select.connect(move_cursor)
+		newAlly.analyzeSignal.connect(immediate_analyze_battler)
 		newAlly.dead.connect(battler_defeated)
 		
 	for item in enemyFormation.enemyList:
@@ -58,6 +59,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.data = item
 		newEnemy.initialize()
 		newEnemy.on_select.connect(move_cursor)
+		newEnemy.Abilities.analyze.connect(immediate_analyze_battler)
 		newEnemy.dead.connect(battler_defeated)
 	
 	#Give the enemies references to the lists of battlers
@@ -290,6 +292,12 @@ func ui_show_inventory():
 
 func analyze_battler(battler: Node):
 	analyzedBattlers.append(battler)
+	
+func immediate_analyze_battler(battler: Node):
+	UI.disable_buttons()
+	ui_show_statblock(battler)
+	await UI.closeStatblock
+	UI.enable_buttons()
 
 func ui_show_statblock(battler: Node):
 	UI.show_statblock(battler)

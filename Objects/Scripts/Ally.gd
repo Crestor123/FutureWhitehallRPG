@@ -5,6 +5,7 @@ extends Node2D
 @onready var HealthBar = $HealthBar
 @onready var DamageNumber = $DamageNumber
 @onready var Anim = $AnimationPlayer
+@onready var ButtonTimer = $Sprite2D/Button/Timer
 
 @export var partyMember : PartyMember
 var Name : String = ""
@@ -15,6 +16,7 @@ var playingAnimation = false
 
 signal on_select
 signal endTurn
+signal analyzeSignal
 signal animationFinished
 signal dead
 signal revived
@@ -66,8 +68,15 @@ func update_healthbar(new_amount):
 	HealthBar.update_bar(new_amount)
 	pass
 
-func _on_button_pressed():
-	on_select.emit(self)
+func _on_button_down():
+	ButtonTimer.timeout.connect(analyze)
+	ButtonTimer.start(0)
+	
+func _on_button_up():
+	ButtonTimer.stop()
+
+func analyze():
+	analyzeSignal.emit(self)
 
 func revive():
 	print(partyMember.partyName, " revived!")

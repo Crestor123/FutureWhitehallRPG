@@ -38,6 +38,14 @@ func delete_buttons():
 	for item in AbilityContainer.get_children():
 		item.queue_free()
 
+func disable_buttons():
+	for item in AbilityContainer.get_children():
+		item.disable_button()
+		
+func enable_buttons():
+	for item in AbilityContainer.get_children():
+		item.enable_button()
+
 #Creates ability buttons for the current battler
 func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : Array[Node]):
 	for i in AbilityContainer.get_children():

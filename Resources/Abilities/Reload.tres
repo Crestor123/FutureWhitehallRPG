@@ -10,6 +10,7 @@ name = "Reload"
 description = ""
 target = "self"
 targetAllies = true
+swapTargets = false
 mainStat = ""
 targetStat = ""
 manaCost = 0

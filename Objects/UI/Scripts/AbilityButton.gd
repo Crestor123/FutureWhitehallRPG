@@ -31,5 +31,11 @@ func set_ammo(amount):
 	lblCost.text = "(" + str(amount) + ")"
 	lblCost.visible = true
 
+func disable_button():
+	button.mouse_filter = MOUSE_FILTER_IGNORE
+	
+func enable_button():
+	button.mouse_filter = MOUSE_FILTER_STOP
+
 func _on_button_pressed():
 	pressed.emit(data)
