@@ -121,6 +121,7 @@ func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 		AllyStats.add_child(newStatBlock)
 		newStatBlock.initialize(item)
 		item.Stats.healthChanged.connect(newStatBlock.update_health)
+		item.Stats.manaChanged.connect(newStatBlock.update_mana)
 		
 	for item in enemyList:
 		var newStatBlock = enemyStatBlock.instantiate()

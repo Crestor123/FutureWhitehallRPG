@@ -7,6 +7,7 @@ extends Node2D
 @onready var HealthBar = $HealthBar
 @onready var DamageNumber = $DamageNumber
 @onready var Anim = $AnimationPlayer
+@onready var SpriteAnim = $Sprite2D/AnimationPlayer
 @onready var ButtonTimer = $Sprite2D/Button/Timer
 
 @export var data : EnemyResource
@@ -24,6 +25,7 @@ var targets : Array[Node]
 var allies : Array[Node]
 
 signal on_select
+signal battlerReady
 signal animationFinished
 signal selectedAbility
 signal dead
@@ -94,10 +96,13 @@ func take_damage(amount):
 	DamageNumber.text = str(amount) 
 	DamageNumber.visible = true
 	playingAnimation = true
+	Anim.animation_finished.connect(_on_animation_player_animation_finished)
 	Anim.play("damageNumber")
-	playingAnimation = false
-	animationFinished.emit()
-	pass
+	SpriteAnim.play("Hit Flash")
+
+func ready_check():
+	if playingAnimation == false:
+		battlerReady.emit(self)
 
 func update_healthbar():
 	HealthBar.update_bar(Stats.get_health(true))
@@ -127,3 +132,9 @@ func die():
 	Sprite.visible = false
 	dead.emit(self)
 	pass
+
+func _on_animation_player_animation_finished(anim_name):
+	print("Enemy finished animation")
+	playingAnimation = false
+	animationFinished.emit()
+	battlerReady.emit(self)

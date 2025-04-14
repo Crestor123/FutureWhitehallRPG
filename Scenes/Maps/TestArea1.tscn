@@ -24,3 +24,4 @@ EnemyFormations = Array[ExtResource("3_kc55x")]([ExtResource("4_b3a8c")])
 [node name="Interactable" parent="." instance=ExtResource("5_7lduf")]
 position = Vector2(184, 120)
 events = Array[ExtResource("6_dks6g")]([SubResource("Resource_liaqp")])
+oneShot = true

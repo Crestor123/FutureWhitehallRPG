@@ -10,8 +10,10 @@ extends Node2D
 var allies : Array[Node]
 var enemies : Array[Node]
 var analyzedBattlers: Array[Node]
+var readyBattlers: Array[Node]
 var inventory : Node
 
+var turnReady = false
 var finishedAnimations = false
 var victory = false
 var defeat = false
@@ -51,6 +53,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newAlly.on_select.connect(move_cursor)
 		newAlly.analyzeSignal.connect(immediate_analyze_battler)
 		newAlly.dead.connect(battler_defeated)
+		newAlly.battlerReady.connect(ready_check)
 		
 	for item in enemyFormation.enemyList:
 		var newEnemy = enemyScene.instantiate()
@@ -61,6 +64,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.on_select.connect(move_cursor)
 		newEnemy.Abilities.analyze.connect(immediate_analyze_battler)
 		newEnemy.dead.connect(battler_defeated)
+		newEnemy.battlerReady.connect(ready_check)
 	
 	#Give the enemies references to the lists of battlers
 	#For duplicate enemies, set the suffix
@@ -192,16 +196,15 @@ func start_turn():
 	pass
 
 func end_turn():
-	#Wait for any animations to finish
-	finishedAnimations = false
-	while finishedAnimations == false:
-		finishedAnimations = true
-		for ally in allies:
-			if ally.playingAnimation:
-				finishedAnimations = false
-		for enemy in enemies:
-			if enemy.playingAnimation:
-				finishedAnimations = false
+	turnReady = false
+	for item in allies:
+		item.ready_check()
+	for item in enemies:
+		item.ready_check()
+	
+	T.wait_time = 1.2		#Short delay
+	T.start()
+	await T.timeout
 	
 	#Disconnect any UI buttons for the current ally
 	if currentBattler in allies:
@@ -220,13 +223,29 @@ func end_turn():
 		await UI.closeStatblock
 		analyzedBattlers.pop_front()
 	
-	T.wait_time = 1.2		#Short delay
-	T.start()
-	await T.timeout
+	turnReady = true
+	ready_check()
 
-	resetTurn.emit()
+func ready_check(battler: Node = null):
+	if battler:
+		readyBattlers.append(battler)
+	
+	for item in allies:
+		if !readyBattlers.has(item):
+			return
+	for item in enemies:
+		if !readyBattlers.has(item):
+			return
+
+	if turnReady:
+		turnReady = false
+		readyBattlers = []
+		resetTurn.emit()
+	pass
 
 func reset_turn():
+	readyBattlers = []
+	
 	#Check for victory or defeat
 	if victory:	 #return to previous map
 		tally_rewards()

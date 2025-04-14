@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgrqg1py0agou"]
+[gd_scene load_steps=10 format=3 uid="uid://cgrqg1py0agou"]
 
 [ext_resource type="Script" path="res://Objects/Scripts/Ally.gd" id="1_0mpn8"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_8ycl5"]
@@ -31,6 +31,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-7, -19)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jdu7t"]
 resource_name = "damageNumber"
@@ -60,9 +72,43 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_bwdx4"]
+resource_name = "Ready"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1efgi"]
+resource_name = "End"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m4fl3"]
 _data = {
+"End": SubResource("Animation_1efgi"),
 "RESET": SubResource("Animation_xfart"),
+"Ready": SubResource("Animation_bwdx4"),
 "damageNumber": SubResource("Animation_jdu7t")
 }
 

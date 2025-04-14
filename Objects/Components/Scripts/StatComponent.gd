@@ -10,6 +10,7 @@ extends Node
 signal reviveSignal
 signal takeDamage(amount)
 signal healthChanged(amount)
+signal manaChanged(amount)
 signal healthZero
 
 var level = 1
@@ -86,6 +87,7 @@ func revive():
 
 func spend_mana(value : int):
 	tempStats.mana -= value
+	manaChanged.emit(tempStats.mana)
 
 func heal(value : int):
 	print(parent.Name, " heals ", value)

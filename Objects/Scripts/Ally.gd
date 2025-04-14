@@ -16,6 +16,7 @@ var playingAnimation = false
 
 signal on_select
 signal endTurn
+signal battlerReady
 signal analyzeSignal
 signal animationFinished
 signal dead
@@ -40,13 +41,20 @@ func start_turn():
 		if item.disabling == true:
 			#The battler is prevented from acting
 			return
+			
+	Anim.play("Ready")
+	
 	Abilities.used_ability.connect(end_turn)
 	pass
 
 func end_turn(abilityName = ""):
 	Abilities.used_ability.disconnect(end_turn)
 	
+	Anim.play("End")
+	await Anim.animation_finished
+	
 	endTurn.emit()
+	battlerReady.emit(self)
 	pass
 
 func take_damage(amount : int):
@@ -55,10 +63,16 @@ func take_damage(amount : int):
 	DamageNumber.visible = true
 	playingAnimation = true
 	Anim.play("damageNumber")
+	await Anim.animation_finished
 	print("animation finished")
 	playingAnimation = false
 	animationFinished.emit()
+	battlerReady.emit(self)
 	pass
+
+func ready_check():
+	if playingAnimation == false:
+		battlerReady.emit(self)
 
 func animation_finished(animation : StringName):
 	pass
@@ -79,12 +93,12 @@ func analyze():
 	analyzeSignal.emit(self)
 
 func revive():
-	print(partyMember.partyName, " revived!")
+	print(partyMember.Name, " revived!")
 	Stats.dead = false
 	revived.emit(self)
 
 func die():
-	print(partyMember.partyName, " defeated!")
+	print(partyMember.Name, " defeated!")
 	Stats.dead = true
 	dead.emit(self)
 	pass
