@@ -90,5 +90,4 @@ data = null
 material = SubResource("ShaderMaterial_etssq")
 
 [node name="DamageNumber" parent="." index="3"]
-offset_top = 19.0
-offset_bottom = 38.0
+visible = false

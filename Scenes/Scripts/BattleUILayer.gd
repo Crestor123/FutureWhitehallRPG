@@ -47,7 +47,7 @@ func enable_buttons():
 		item.enable_button()
 
 #Creates ability buttons for the current battler
-func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : Array[Node]):
+func create_ability_buttons(partyMember : Battler, inventory : Node, abilityList : Array[Node]):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	rightBar.visible = false
@@ -74,7 +74,7 @@ func create_ability_buttons(partyMember : Node, inventory : Node, abilityList : 
 	rightBar.visible = true
 	#Cursor.visible = true
 
-func create_target_buttons(targetList : Array[Node], allies : bool = false, multi : bool = false, swapTargets : bool = true):
+func create_target_buttons(targetList : Array[Battler], allies : bool = false, multi : bool = false, swapTargets : bool = true):
 	for i in AbilityContainer.get_children():
 		i.queue_free()
 	
@@ -115,7 +115,7 @@ func create_target_buttons(targetList : Array[Node], allies : bool = false, mult
 		newButton.pressed.connect(button_pressed)
 	pass
 
-func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
+func initialize_statblocks(allyList : Array[Battler], enemyList : Array[Battler]):
 	for item in allyList:
 		var newStatBlock = allyStatBlock.instantiate()
 		AllyStats.add_child(newStatBlock)
@@ -129,7 +129,7 @@ func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 		newStatBlock.initialize(item)
 	pass
 
-func set_turnorder(battlerList : Array[Node]):
+func set_turnorder(battlerList : Array[Battler]):
 	var separator = TurnOrder.get_node("HSeparator")
 	for item in TurnOrder.get_children():
 		if item != separator:
@@ -144,7 +144,7 @@ func set_turnorder(battlerList : Array[Node]):
 func remove_statblock(battler : Node):
 	pass
 
-func move_cursor(target : Node):
+func move_cursor(target : Battler):
 	var targetPos = target.global_position
 	Cursor.global_position = Vector2(targetPos.x, targetPos.y - 32)
 	pass
@@ -196,7 +196,8 @@ func set_topBar(moveName : String):
 func hide_topBar():
 	topBar.visible = false
 	
-func show_statblock(battler: Node):
+#Displays the detailed statblock for the given battler
+func show_statblock(battler: Battler):
 	DetailStatblock.close.connect(hide_statblock)
 	DetailStatblock.initialize(battler.icon, battler.Name, battler.Stats)
 	DetailStatblock.visible = true
