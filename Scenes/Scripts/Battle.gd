@@ -7,10 +7,13 @@ extends Node2D
 @export var allyScene : PackedScene
 @export var enemyScene : PackedScene
 
-var allies : Array[Node]
-var enemies : Array[Node]
-var analyzedBattlers: Array[Node]
-var readyBattlers: Array[Node]
+enum UI_STATE {ABILITY, ITEM, TARGET}
+
+var allies : Array[Battler]
+var enemies : Array[Battler]
+var analyzedBattlers: Array[Battler]
+var readyBattlers: Array[Battler]
+var uiState: Array[UI_STATE]
 var inventory : Node
 
 var turnReady = false
@@ -41,6 +44,12 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 	startTurn.connect(start_turn)
 	endRound.connect(start_round)
 	resetTurn.connect(reset_turn)
+	
+	UI.switchTargets.connect(ui_switch_targets)
+	UI.item.connect(ui_change_state)
+	UI.inventory.connect(ui_change_state)
+	UI.on_button_pressed.connect(ui_change_state)
+	UI.back.connect(ui_pop_state)
 	
 	inventory = setInventory
 	
@@ -178,14 +187,9 @@ func start_turn():
 	
 	if currentBattler in allies:
 		#The current battler is an ally; show the ability selection UI
+		uiState.append(UI_STATE.ABILITY)
 		ui_show_abilities()
-		for i in enemies:
-			if !i.Stats.dead:
-				UI.move_cursor(i)
-				currentTarget = i
-				break
 
-		UI.inventory.connect(ui_show_inventory)
 		currentBattler.endTurn.connect(end_turn)
 		currentBattler.Abilities.analyze.connect(analyze_battler)
 		currentBattler.start_turn(TurnOrder.RoundCount)
@@ -205,7 +209,7 @@ func end_turn():
 	#Disconnect any UI buttons for the current ally
 	if currentBattler in allies:
 		UI.delete_buttons()
-		UI.on_button_pressed.disconnect(ability_button)
+		#UI.on_button_pressed.disconnect(ability_button)
 	
 	#Disconnect the current battler from the turn flow
 	currentBattler.endTurn.disconnect(end_turn)
@@ -226,7 +230,7 @@ func end_turn():
 	turnReady = true
 	ready_check()
 
-func ready_check(battler: Node = null):
+func ready_check(battler: Battler = null):
 	if battler:
 		readyBattlers.append(battler)
 	
@@ -261,12 +265,41 @@ func reset_turn():
 		print("End Turn")
 		endTurn.emit()
 		startTurn.emit()
+
+func ui_change_state(data: Node = null):
+	if uiState.is_empty():
+		uiState.append(UI_STATE.ABILITY)
 	
+	match uiState[-1]:
+		UI_STATE.ABILITY:
+			if data == null:
+				uiState.append(UI_STATE.ITEM)
+				ui_show_inventory()
+			else:
+				uiState.append(UI_STATE.TARGET)
+				ability_button(data)
+		UI_STATE.ITEM:
+			uiState.append(UI_STATE.TARGET)
+			item_button(data)
+		UI_STATE.TARGET:
+			uiState.clear()
+			target_button(data)
+	pass
+	
+func ui_pop_state():
+	if uiState.size() <= 1:
+		return
+	uiState.pop_back()
+	
+	match uiState[-1]:
+		UI_STATE.ABILITY:
+			ui_show_abilities()
+		UI_STATE.ITEM:
+			ui_show_inventory()
+	pass
+
 func ui_show_abilities():
 	currentAbility = null
-	if UI.on_button_pressed.is_connected(target_button):
-		UI.on_button_pressed.disconnect(target_button)
-	UI.on_button_pressed.connect(ability_button)
 	currentMenu = "ability"
 	UI.create_ability_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())
 	pass
@@ -274,16 +307,16 @@ func ui_show_abilities():
 func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targetSelf : bool = false, swapTargets : bool = true):
 	#After selecting an ability, show a list of possible targets
 	#By default, shows a list of enemies, with no "all enemies" button
-	UI.on_button_pressed.disconnect(ability_button)
-	UI.on_button_pressed.connect(target_button)
-	if currentMenu == "ability":
-		UI.back.disconnect(ui_show_inventory)
-		UI.back.connect(ui_show_abilities)
-	if currentMenu == "inv":
-		UI.back.disconnect(ui_show_abilities)
-		UI.back.connect(ui_show_inventory)
-	UI.switchTargets.connect(ui_switch_targets)
-	var targetList : Array[Node] = enemies
+	#UI.on_button_pressed.disconnect(ability_button)
+	#UI.on_button_pressed.connect(target_button)
+	#if currentMenu == "ability":
+		#UI.back.disconnect(ui_show_inventory)
+		#UI.back.connect(ui_show_abilities)
+	#if currentMenu == "inv":
+		#UI.back.disconnect(ui_show_abilities)
+		#UI.back.connect(ui_show_inventory)
+	#UI.switchTargets.connect(ui_switch_targets)
+	var targetList : Array[Battler] = enemies
 	if targetingAllies:
 		targetList = allies
 	if targetSelf:
@@ -305,21 +338,20 @@ func ui_switch_targets():
 func ui_show_inventory():
 	currentItem = null
 	currentMenu = "inv"
+	#uiState.append(UI_STATE.ITEM)
 	UI.show_inventory(inventory)
-	UI.back.connect(ui_show_abilities)
-	UI.item.connect(item_button)
 	pass
 
-func analyze_battler(battler: Node):
+func analyze_battler(battler: Battler):
 	analyzedBattlers.append(battler)
 	
-func immediate_analyze_battler(battler: Node):
+func immediate_analyze_battler(battler: Battler):
 	UI.disable_buttons()
 	ui_show_statblock(battler)
 	await UI.closeStatblock
 	UI.enable_buttons()
 
-func ui_show_statblock(battler: Node):
+func ui_show_statblock(battler: Battler):
 	UI.show_statblock(battler)
 
 func tally_rewards():
@@ -337,7 +369,7 @@ func tally_rewards():
 	battleWon.emit(experience, itemDrops)
 	pass
 
-func battler_defeated(battler):
+func battler_defeated(battler: Battler):
 	#Remove battler from turn order
 	TurnOrder.remove_battler(battler)
 	

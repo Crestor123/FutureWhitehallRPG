@@ -60,7 +60,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -195,10 +195,11 @@ flat = true
 visible = false
 
 [node name="DamageNumber" parent="." instance=ExtResource("3_hxs5r")]
+visible = false
 offset_left = -7.0
-offset_top = -19.0
+offset_top = 19.0
 offset_right = 7.0
-offset_bottom = 0.0
+offset_bottom = 38.0
 
 [node name="StatComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_rgbhv")]
 parent = NodePath(".")

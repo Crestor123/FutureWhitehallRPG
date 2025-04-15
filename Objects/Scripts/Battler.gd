@@ -46,7 +46,7 @@ func take_damage(amount: int):
 	DamageNumber.text = str(amount) 
 	DamageNumber.visible = true
 	playingAnimation = true
-	Anim.animation_finished.connect(_on_animation_player_animation_finished)
+	
 	Anim.play("damageNumber")
 	SpriteAnim.play("HitFlash")
 	pass

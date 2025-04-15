@@ -8,8 +8,8 @@ var experience : int
 
 var itemDrops : Dictionary
 
-var targets : Array[Node]
-var allies : Array[Node]
+var targets : Array[Battler]
+var allies : Array[Battler]
 
 func initialize():
 	super.initialize()
@@ -49,7 +49,7 @@ func select_ability(turnCount: int) -> Node:
 	
 #Chooses a target for the current ability
 func select_target(ability: Node):
-	var aliveTargets : Array[Node]
+	var aliveTargets : Array[Battler]
 	for item in targets:
 		if !item.Stats.dead: aliveTargets.append(item)
 	
