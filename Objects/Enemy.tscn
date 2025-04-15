@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://438w87gfr02m" path="res://Shaders/HitFlash.tres" id="2_mfx4j"]
 [ext_resource type="PackedScene" uid="uid://bya0ps2ufov22" path="res://Objects/Components/AbilityComponent.tscn" id="2_ti8ex"]
 [ext_resource type="PackedScene" uid="uid://2sabk1qf7cl4" path="res://Objects/Components/StatComponent.tscn" id="3_u7d70"]
+[ext_resource type="Animation" uid="uid://nhjupars1uit" path="res://Animations/HitFlash.res" id="4_n22yf"]
 [ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="5_tqx74"]
 [ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_ajph0"]
 
@@ -13,22 +14,6 @@ resource_local_to_scene = true
 shader = ExtResource("2_mfx4j")
 shader_parameter/enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_jct37"]
-resource_name = "Hit Flash"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false]
-}
 
 [sub_resource type="Animation" id="Animation_dnsdm"]
 length = 0.001
@@ -47,7 +32,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6pf"]
 _data = {
-"Hit Flash": SubResource("Animation_jct37"),
+"Hit Flash": ExtResource("4_n22yf"),
 "RESET": SubResource("Animation_dnsdm")
 }
 

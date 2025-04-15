@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_8ycl5"]
 [ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="3_wfxef"]
 [ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="4_fv4ux"]
+[ext_resource type="Animation" uid="uid://bpwbfg4peim80" path="res://Animations/End.res" id="5_4vc34"]
+[ext_resource type="Animation" uid="uid://bejt7s76pou6r" path="res://Animations/Ready.res" id="6_b56a8"]
+[ext_resource type="Animation" uid="uid://xykovxsul2hi" path="res://Animations/damageNumber.res" id="7_rwj1b"]
 
 [sub_resource type="Animation" id="Animation_xfart"]
 length = 0.1
@@ -44,72 +47,12 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_jdu7t"]
-resource_name = "damageNumber"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DamageNumber:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-7, -19), Vector2(-7, -38)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DamageNumber:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_bwdx4"]
-resource_name = "Ready"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-8, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1efgi"]
-resource_name = "End"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-8, 0), Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m4fl3"]
 _data = {
-"End": SubResource("Animation_1efgi"),
+"End": ExtResource("5_4vc34"),
 "RESET": SubResource("Animation_xfart"),
-"Ready": SubResource("Animation_bwdx4"),
-"damageNumber": SubResource("Animation_jdu7t")
+"Ready": ExtResource("6_b56a8"),
+"damageNumber": ExtResource("7_rwj1b")
 }
 
 [node name="Ally" type="Node2D"]

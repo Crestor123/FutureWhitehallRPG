@@ -4,7 +4,6 @@ extends Node2D
 @onready var UI = $UILayer/OverworldUI
 @onready var SceneChanger = $SceneChanger
 @onready var Player = $Player
-@onready var Interact = $InteractComponent
 
 @export var StartingScene : PackedScene
 @export var StartingPosition : Vector2

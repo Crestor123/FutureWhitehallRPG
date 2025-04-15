@@ -52,7 +52,6 @@ func initialize():
 	Sprite.texture = data.sprite
 	icon = data.sprite
 	
-	
 	Stats.reviveSignal.connect(revive)
 	Stats.healthChanged.connect(update_healthbar)
 	Stats.takeDamage.connect(take_damage)
@@ -104,7 +103,7 @@ func ready_check():
 	if playingAnimation == false:
 		battlerReady.emit(self)
 
-func update_healthbar():
+func update_healthbar(amount):
 	HealthBar.update_bar(Stats.get_health(true))
 	animationFinished.emit()
 	pass

@@ -1,16 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://bo4wynw2jixx4"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Battle.gd" id="1_56hep"]
-[ext_resource type="PackedScene" uid="uid://cgrqg1py0agou" path="res://Objects/Ally.tscn" id="2_8tbmj"]
-[ext_resource type="PackedScene" uid="uid://jci0jbslk6hj" path="res://Objects/Enemy.tscn" id="3_ilbj2"]
+[ext_resource type="PackedScene" uid="uid://1j1otd0q4lac" path="res://Objects/AllyBattler.tscn" id="2_od66s"]
+[ext_resource type="PackedScene" uid="uid://dme4yxhn3me52" path="res://Objects/EnemyBattler.tscn" id="3_8evxl"]
 [ext_resource type="Script" path="res://Scenes/Scripts/TurnOrder.gd" id="4_81y1j"]
 [ext_resource type="PackedScene" uid="uid://c56ghvj57d1ws" path="res://Objects/UI/Battle/BattleUI.tscn" id="5_1gjpb"]
 
 [node name="Battle" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_56hep")
-allyScene = ExtResource("2_8tbmj")
-enemyScene = ExtResource("3_ilbj2")
+allyScene = ExtResource("2_od66s")
+enemyScene = ExtResource("3_8evxl")
 
 [node name="TurnOrder" type="Node" parent="."]
 script = ExtResource("4_81y1j")

@@ -130,14 +130,16 @@ func initialize_statblocks(allyList : Array[Node], enemyList : Array[Node]):
 	pass
 
 func set_turnorder(battlerList : Array[Node]):
+	var separator = TurnOrder.get_node("HSeparator")
 	for item in TurnOrder.get_children():
-		item.queue_free()
+		if item != separator:
+			item.queue_free()
 	
 	for item in battlerList:
 		var newIcon = battlerTurnIcon.instantiate()
 		TurnOrder.add_child(newIcon)
 		newIcon.texture = item.icon
-	TurnOrder.move_child(TurnOrder.get_node("HSeparator"), TurnOrder.get_child_count())
+	TurnOrder.move_child(separator, -1)
 
 func remove_statblock(battler : Node):
 	pass

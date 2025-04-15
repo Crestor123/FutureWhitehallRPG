@@ -51,7 +51,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newAlly.partyMember = item
 		newAlly.initialize()
 		newAlly.on_select.connect(move_cursor)
-		newAlly.analyzeSignal.connect(immediate_analyze_battler)
+		newAlly.analyzed.connect(immediate_analyze_battler)
 		newAlly.dead.connect(battler_defeated)
 		newAlly.battlerReady.connect(ready_check)
 		
@@ -62,7 +62,7 @@ func initialize(partyMembers : Array[PartyMember], enemyFormation : EnemyFormati
 		newEnemy.data = item
 		newEnemy.initialize()
 		newEnemy.on_select.connect(move_cursor)
-		newEnemy.Abilities.analyze.connect(immediate_analyze_battler)
+		newEnemy.analyzed.connect(immediate_analyze_battler)
 		newEnemy.dead.connect(battler_defeated)
 		newEnemy.battlerReady.connect(ready_check)
 	
@@ -188,7 +188,7 @@ func start_turn():
 		UI.inventory.connect(ui_show_inventory)
 		currentBattler.endTurn.connect(end_turn)
 		currentBattler.Abilities.analyze.connect(analyze_battler)
-		currentBattler.start_turn()
+		currentBattler.start_turn(TurnOrder.RoundCount)
 	else:
 		currentBattler.selectedAbility.connect(UI.set_topBar)
 		currentBattler.endTurn.connect(end_turn)
@@ -202,10 +202,6 @@ func end_turn():
 	for item in enemies:
 		item.ready_check()
 	
-	T.wait_time = 1.2		#Short delay
-	T.start()
-	await T.timeout
-	
 	#Disconnect any UI buttons for the current ally
 	if currentBattler in allies:
 		UI.delete_buttons()
@@ -216,6 +212,10 @@ func end_turn():
 
 	currentAbility = null
 	currentItem = null
+	
+	T.wait_time = 1.2		#Short delay
+	T.start()
+	await T.timeout
 	
 	#If there are battlers to be analyzed, do so
 	while !analyzedBattlers.is_empty():
@@ -264,7 +264,8 @@ func reset_turn():
 	
 func ui_show_abilities():
 	currentAbility = null
-	UI.on_button_pressed.disconnect(target_button)
+	if UI.on_button_pressed.is_connected(target_button):
+		UI.on_button_pressed.disconnect(target_button)
 	UI.on_button_pressed.connect(ability_button)
 	currentMenu = "ability"
 	UI.create_ability_buttons(currentBattler, inventory, currentBattler.Abilities.get_children())

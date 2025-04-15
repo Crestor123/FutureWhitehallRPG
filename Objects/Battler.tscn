@@ -1,0 +1,212 @@
+[gd_scene load_steps=17 format=3 uid="uid://dvhd8iefir0kr"]
+
+[ext_resource type="Script" path="res://Objects/Scripts/Battler.gd" id="1_hchcg"]
+[ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="2_3ukdb"]
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_06twt"]
+[ext_resource type="Shader" uid="uid://438w87gfr02m" path="res://Shaders/HitFlash.tres" id="2_mresj"]
+[ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="3_hxs5r"]
+[ext_resource type="PackedScene" uid="uid://2sabk1qf7cl4" path="res://Objects/Components/StatComponent.tscn" id="4_rgbhv"]
+[ext_resource type="PackedScene" uid="uid://bya0ps2ufov22" path="res://Objects/Components/AbilityComponent.tscn" id="5_fglif"]
+
+[sub_resource type="Animation" id="Animation_skha2"]
+resource_name = "damageNumber"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, -19), Vector2(-7, -38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_lxfgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f35lh"]
+resource_name = "Ready"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5uro3"]
+resource_name = "End"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxdx3"]
+_data = {
+"End": SubResource("Animation_5uro3"),
+"RESET": SubResource("Animation_lxfgs"),
+"Ready": SubResource("Animation_f35lh"),
+"damageNumber": SubResource("Animation_skha2")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45mdg"]
+resource_local_to_scene = true
+shader = ExtResource("2_mresj")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ragis"]
+resource_name = "HitFlash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_njdl6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktxst"]
+_data = {
+"HitFlash": SubResource("Animation_ragis"),
+"RESET": SubResource("Animation_njdl6")
+}
+
+[node name="Battler" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_hchcg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DamageNumber")
+libraries = {
+"": SubResource("AnimationLibrary_vxdx3")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_45mdg")
+texture = ExtResource("2_06twt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ktxst")
+}
+
+[node name="Button" type="Button" parent="Sprite2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Timer" type="Timer" parent="Sprite2D/Button"]
+
+[node name="HealthBar" parent="." instance=ExtResource("2_3ukdb")]
+visible = false
+
+[node name="DamageNumber" parent="." instance=ExtResource("3_hxs5r")]
+offset_left = -7.0
+offset_top = -19.0
+offset_right = 7.0
+offset_bottom = 0.0
+
+[node name="StatComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_rgbhv")]
+parent = NodePath(".")
+
+[node name="AbilityComponent" parent="." node_paths=PackedStringArray("stats", "parent") instance=ExtResource("5_fglif")]
+stats = NodePath("../StatComponent")
+parent = NodePath("..")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="button_down" from="Sprite2D/Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Sprite2D/Button" to="." method="_on_button_up"]
