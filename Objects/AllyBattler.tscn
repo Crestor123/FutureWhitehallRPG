@@ -87,6 +87,3 @@ script = ExtResource("2_0p26n")
 
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_8275n")
-
-[node name="DamageNumber" parent="." index="3"]
-visible = false

@@ -88,6 +88,3 @@ data = null
 
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_etssq")
-
-[node name="DamageNumber" parent="." index="3"]
-visible = false

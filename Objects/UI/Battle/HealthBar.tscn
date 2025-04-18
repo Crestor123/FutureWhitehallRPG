@@ -7,9 +7,15 @@
 
 [node name="HealthBar" type="TextureProgressBar"]
 texture_filter = 1
-offset_right = 128.0
-offset_bottom = 8.0
-size_flags_stretch_ratio = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -272.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 value = 100.0
 texture_under = ExtResource("1_4121m")
 texture_over = ExtResource("2_feb78")

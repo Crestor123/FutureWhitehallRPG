@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8j3n03ppymdr"]
+
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_14ajc"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/LevelUpCard.gd" id="2_escnp"]
+[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="3_j0254"]
+[ext_resource type="PackedScene" uid="uid://3nxlg12pggwh" path="res://Objects/UI/Battle/XPBar.tscn" id="4_jdwoq"]
+
+[sub_resource type="Theme" id="Theme_k87p6"]
+default_font = ExtResource("1_14ajc")
+default_font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj4vs"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="LevelUpCard" type="PanelContainer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_k87p6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_dj4vs")
+script = ExtResource("2_escnp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_j0254")
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="lblName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="lblLevel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="lblExperience" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "EXP: "
+
+[node name="lblNext" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Next:"
+
+[node name="XPBar" parent="MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("4_jdwoq")]
+layout_mode = 2

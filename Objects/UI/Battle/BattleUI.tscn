@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c56ghvj57d1ws"]
+[gd_scene load_steps=16 format=3 uid="uid://c56ghvj57d1ws"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
 [ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xyxigkol2w46" path="res://Objects/UI/Battle/BattlerTurnIcon.tscn" id="5_ascfi"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
 [ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_7wr75"]
+[ext_resource type="PackedScene" uid="uid://c8j3n03ppymdr" path="res://Objects/UI/LevelUpCard.tscn" id="7_c0dyx"]
 [ext_resource type="PackedScene" uid="uid://b7038mhew1d2l" path="res://Objects/UI/Battle/DetailStatBlock.tscn" id="9_diotm"]
 
 [sub_resource type="Theme" id="Theme_kcj8j"]
@@ -56,8 +57,26 @@ script = ExtResource("1_8sqfg")
 abilityButton = ExtResource("2_f4qr7")
 allyStatBlock = ExtResource("3_nnqog")
 enemyStatBlock = ExtResource("4_ikcrs")
+levelupCard = ExtResource("7_c0dyx")
 battlerTurnIcon = ExtResource("5_ascfi")
 damageNumber = ExtResource("6_7wr75")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="LevelUpCardContainer" type="GridContainer" parent="MarginContainer2"]
+layout_mode = 2
+columns = 2
 
 [node name="RightBar" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(96, 176)

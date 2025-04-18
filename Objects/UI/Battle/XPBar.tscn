@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://3nxlg12pggwh"]
+
+[ext_resource type="Texture2D" uid="uid://dk61apmxf8p8a" path="res://Assets/XPBarBack.png" id="1_ekqgp"]
+[ext_resource type="Texture2D" uid="uid://dy0ks0k71rhb" path="res://Assets/XPBarOutline.png" id="2_3s865"]
+[ext_resource type="Texture2D" uid="uid://c6b2p0su8ba5y" path="res://Assets/XPBarFill.png" id="3_oo2ue"]
+[ext_resource type="Script" path="res://Objects/UI/Scripts/HealthBar.gd" id="4_bddl6"]
+
+[node name="XPBar" type="TextureProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_under = ExtResource("1_ekqgp")
+texture_over = ExtResource("2_3s865")
+texture_progress = ExtResource("3_oo2ue")
+script = ExtResource("4_bddl6")

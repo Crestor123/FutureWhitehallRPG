@@ -4,6 +4,7 @@ extends Control
 
 @export var allyStatBlock : PackedScene
 @export var enemyStatBlock : PackedScene
+@export var levelupCard : PackedScene
 
 @export var battlerTurnIcon : PackedScene
 
@@ -14,6 +15,7 @@ extends Control
 @onready var leftBar = $LeftBar
 
 @onready var AbilityContainer = $RightBar/ScrollContainer/AbilityContainer
+@onready var LevelUpCardContainer = $MarginContainer2/LevelUpCardContainer
 @onready var EnemyStats = $BottomBar/HBoxContainer/MarginContainer/EnemyStats
 @onready var AllyStats = $BottomBar/HBoxContainer/MarginContainer2/AllyStats
 @onready var TurnOrder = $LeftBar/TurnOrder
@@ -206,3 +208,10 @@ func show_statblock(battler: Battler):
 func hide_statblock():
 	DetailStatblock.visible = false
 	closeStatblock.emit()
+
+func show_levelup_cards(partyMembers: Array[PartyMember]):
+	for p in partyMembers:
+		var newCard = levelupCard.instantiate()
+		LevelUpCardContainer.add_child(newCard)
+		newCard.initialize(p)
+	pass

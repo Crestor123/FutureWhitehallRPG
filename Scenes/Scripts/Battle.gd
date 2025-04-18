@@ -273,6 +273,7 @@ func ui_change_state(data: Node = null):
 	match uiState[-1]:
 		UI_STATE.ABILITY:
 			if data == null:
+				#Triggers when the item button is pressed
 				uiState.append(UI_STATE.ITEM)
 				ui_show_inventory()
 			else:
@@ -307,23 +308,12 @@ func ui_show_abilities():
 func ui_show_targets(targetingAllies : bool = false, multi : bool = false, targetSelf : bool = false, swapTargets : bool = true):
 	#After selecting an ability, show a list of possible targets
 	#By default, shows a list of enemies, with no "all enemies" button
-	#UI.on_button_pressed.disconnect(ability_button)
-	#UI.on_button_pressed.connect(target_button)
-	#if currentMenu == "ability":
-		#UI.back.disconnect(ui_show_inventory)
-		#UI.back.connect(ui_show_abilities)
-	#if currentMenu == "inv":
-		#UI.back.disconnect(ui_show_abilities)
-		#UI.back.connect(ui_show_inventory)
-	#UI.switchTargets.connect(ui_switch_targets)
 	var targetList : Array[Battler] = enemies
 	if targetingAllies:
 		targetList = allies
 	if targetSelf:
 		targetList = [currentBattler]
 	UI.create_target_buttons(targetList, targetingAllies, multi, swapTargets)
-
-	pass
 
 func ui_switch_targets():
 	var multi = false
@@ -338,7 +328,6 @@ func ui_switch_targets():
 func ui_show_inventory():
 	currentItem = null
 	currentMenu = "inv"
-	#uiState.append(UI_STATE.ITEM)
 	UI.show_inventory(inventory)
 	pass
 
@@ -366,7 +355,9 @@ func tally_rewards():
 				var rand = randi_range(1, 100)
 				if rand < enemy.itemDrops[item]:
 					itemDrops.append(item)
-	battleWon.emit(experience, itemDrops)
+	
+	UI.show_levelup_cards(allies)
+	#battleWon.emit(experience, itemDrops)
 	pass
 
 func battler_defeated(battler: Battler):
