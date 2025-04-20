@@ -187,9 +187,11 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Timer" type="Timer" parent="Sprite2D/Button"]
+one_shot = true
 
 [node name="HealthBar" parent="." instance=ExtResource("2_3ukdb")]
 visible = false

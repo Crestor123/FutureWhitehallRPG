@@ -16,6 +16,11 @@ var readyBattlers: Array[Battler]
 var uiState: Array[UI_STATE]
 var inventory : Node
 
+#Used for end of battle reward tallying
+var experience : Array
+var expTotal : int
+var itemDrops : Array[ItemResource]
+
 var turnReady = false
 var finishedAnimations = false
 var victory = false
@@ -191,7 +196,7 @@ func start_turn():
 		ui_show_abilities()
 
 		currentBattler.endTurn.connect(end_turn)
-		currentBattler.Abilities.analyze.connect(analyze_battler)
+		#currentBattler.Abilities.analyze.connect(analyze_battler)
 		currentBattler.start_turn(TurnOrder.RoundCount)
 	else:
 		currentBattler.selectedAbility.connect(UI.set_topBar)
@@ -256,7 +261,7 @@ func reset_turn():
 		
 	if defeat:
 		#Game over
-		battleLoss.emit()
+		end_battle()
 		
 	if TurnOrder.Round.is_empty():
 		print("End Round")
@@ -346,19 +351,28 @@ func ui_show_statblock(battler: Battler):
 func tally_rewards():
 	#Tally up experience points
 	#Roll to see if any items are dropped
-	var experience : Array
-	var itemDrops : Array[ItemResource]
 	for enemy in enemies:
 		if enemy.Stats.dead:
+			expTotal += enemy.experience
 			experience.append([enemy.level, enemy.experience])
 			for item in enemy.itemDrops:
 				var rand = randi_range(1, 100)
 				if rand < enemy.itemDrops[item]:
 					itemDrops.append(item)
 	
-	UI.show_levelup_cards(allies)
-	#battleWon.emit(experience, itemDrops)
+	UI.show_levelup_cards(allies, expTotal)
+	UI.xpCardsDone.connect(xp_cards_done)
 	pass
+
+func xp_cards_done():
+	UI.btnContinue.pressed.connect(end_battle)
+	pass
+
+func end_battle():
+	if defeat:
+		battleLoss.emit()
+	elif victory:
+		battleWon.emit(experience, itemDrops)
 
 func battler_defeated(battler: Battler):
 	#Remove battler from turn order

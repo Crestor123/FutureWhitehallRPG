@@ -16,6 +16,7 @@ var Inventory : Node = null
 
 var level : int = 0
 var experience : int = 0
+var xpPrevLevel : int = 0
 var xpToLevel : int = 0
 
 var Name : String
@@ -67,6 +68,8 @@ func add_battle_xp(expArray : Array):
 
 func level_up():
 	level += 1
+	Stats.level = level
+	xpPrevLevel = xpToLevel
 	xpToLevel = xp_to_next_level(level)
 	
 	for i in data.statGrowths:

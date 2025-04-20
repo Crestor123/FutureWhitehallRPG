@@ -24,13 +24,17 @@ extends Control
 @onready var MoveNameTimer = $TopBar/CenterContainer/lblMoveName/Timer
 @onready var Cursor = $Cursor
 @onready var DetailStatblock = $DetailStatBlock
+@onready var btnContinue = $btnContinue
 
 signal on_button_pressed()
 signal item()
 signal inventory()
 signal back()
+signal xpCardsDone()
 signal closeStatblock()
 signal switchTargets()
+
+var finishedCards : Array[Node]
 
 #Deletes any ability buttons and hides the ability menu
 func delete_buttons():
@@ -189,7 +193,6 @@ func button_pressed(ability):
 #Set the top bar to show the move or item name
 #Start the timer and remove the box after it ends
 func set_topBar(moveName : String):
-	MoveNameTimer.connect("timeout", hide_topBar)
 	lblMoveName.text = moveName
 	topBar.visible = true
 	MoveNameTimer.start()
@@ -209,9 +212,22 @@ func hide_statblock():
 	DetailStatblock.visible = false
 	closeStatblock.emit()
 
-func show_levelup_cards(partyMembers: Array[PartyMember]):
+func show_levelup_cards(partyMembers: Array[Battler], expTotal: int):
 	for p in partyMembers:
 		var newCard = levelupCard.instantiate()
 		LevelUpCardContainer.add_child(newCard)
-		newCard.initialize(p)
+		newCard.initialize(p, expTotal)
+		btnContinue.pressed.connect(newCard.skip)
+		newCard.finished.connect(levelup_card_done)
+		newCard.xp_progress()
+	btnContinue.visible = true
+
+func levelup_card_done(levelupCard: Node):
+	finishedCards.append(levelupCard)
+	btnContinue.pressed.disconnect(levelupCard.skip)
+	for item in LevelUpCardContainer.get_children():
+		if !finishedCards.has(item):
+			return
+			
+	xpCardsDone.emit()
 	pass
