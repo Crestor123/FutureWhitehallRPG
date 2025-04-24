@@ -358,6 +358,7 @@ func tally_rewards():
 			for item in enemy.itemDrops:
 				var rand = randi_range(1, 100)
 				if rand < enemy.itemDrops[item]:
+					print("Gained item ", item)
 					itemDrops.append(item)
 	
 	UI.show_levelup_cards(allies, expTotal)

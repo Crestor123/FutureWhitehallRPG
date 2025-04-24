@@ -36,7 +36,7 @@ func initialize(ally: AllyBattler, xp: int):
 	if partyMember.experience == 0:
 		XpBar.set_bar(0)
 	else:
-		XpBar.set_bar(float(xpCurrent) / (float(xpToLevel)) * 100)
+		XpBar.set_bar(float(xpCurrent - xpPrevLevel) / (float(xpToLevel)) * 100)
 		
 func xp_progress():
 	if experience == 0 and xpCurrent == 0:

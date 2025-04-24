@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://l7puvk8yjo0y"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://l7puvk8yjo0y"]
 
 [ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_t2miy"]
 [ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyResource.gd" id="2_c5rx3"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="2_rxe7h"]
+[ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="3_05858"]
 [ext_resource type="Texture2D" uid="uid://b8km2ox14kpid" path="res://Assets/Sprites/Enemies/Icon20.png" id="4_mikum"]
 
 [resource]
@@ -40,4 +41,6 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_t2miy")]([ExtResource("2_rxe7h")])
-itemDrops = {}
+itemDrops = {
+ExtResource("3_05858"): 50
+}
