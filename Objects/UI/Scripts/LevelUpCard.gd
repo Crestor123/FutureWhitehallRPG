@@ -28,8 +28,8 @@ func initialize(ally: AllyBattler, xp: int):
 	Sprite = partyMember.sprite
 	lblName.text = partyMember.Name
 	lblLevel.text = str("Lv: ", level)
-	lblExperience.text = str("XP: ", experience)
-	lblNext.text = str("Next: ", xpToLevel)
+	lblExperience.text = str("XP: ", xpCurrent, " + ", experience)
+	lblNext.text = str("Next: ", xpToLevel - (xpCurrent + experience))
 	
 	XpBar.animationFinished.connect(check_xpBar)
 	
@@ -44,7 +44,7 @@ func xp_progress():
 		finished.emit(self)
 	else:
 		var numerator : float = (xpCurrent + experience) - xpPrevLevel
-		XpBar.update_bar((numerator / float(xpToLevel)) * 100)
+		XpBar.update_bar((numerator / float(xpToLevel - xpPrevLevel)) * 100)
 
 func check_xpBar():
 	if (xpCurrent + experience) >= xpToLevel:
@@ -56,26 +56,26 @@ func check_xpBar():
 		xpToLevel = partyMember.xp_to_next_level(level)
 		
 		lblLevel.text = str("Lv: ", level)
-		lblNext.text = str("Next: ", xpToLevel)
+		lblNext.text = str("Next: ", xpToLevel - (xpCurrent + experience))
 		
-		XpBar.set_bar(0)
+		#XpBar.set_bar(0)
 		xp_progress()
 	else:
 		finished.emit(self)
 	pass
 
 func skip():
-	xpCurrent += experience
-	while xpCurrent >= xpToLevel:
+	var xpTotal : int = xpCurrent + experience
+	while xpTotal >= xpToLevel:
 		level += 1
 		xpPrevLevel = xpToLevel
 		xpToLevel = partyMember.xp_to_next_level(level)
 	lblLevel.text = str("Lv: ", level)
-	lblNext.text = str("Next: ", xpToLevel)
-	if ((xpCurrent + experience) - xpPrevLevel) == 0:
+	lblNext.text = str("Next: ", xpToLevel - xpTotal)
+	if ((xpTotal) - xpPrevLevel) == 0:
 		XpBar.set_bar(0)
 	else:
-		var numerator : float = (xpCurrent + experience) - xpPrevLevel
-		XpBar.update_bar((numerator / float(xpToLevel)) * 100)
+		var numerator : float = (xpTotal) - xpPrevLevel
+		XpBar.update_bar((numerator / float(xpToLevel - xpPrevLevel)) * 100)
 	finished.emit(self)
 	pass
