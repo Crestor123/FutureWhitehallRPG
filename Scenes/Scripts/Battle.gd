@@ -361,12 +361,8 @@ func tally_rewards():
 					print("Gained item ", item)
 					itemDrops.append(item)
 	
-	UI.show_levelup_cards(allies, expTotal)
-	UI.xpCardsDone.connect(xp_cards_done)
-	pass
-
-func xp_cards_done():
-	UI.btnContinue.pressed.connect(end_battle)
+	UI.battle_win(allies, expTotal, itemDrops)
+	UI.battle_win_finished.connect(end_battle)
 	pass
 
 func end_battle():

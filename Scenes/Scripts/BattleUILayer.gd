@@ -4,7 +4,7 @@ extends Control
 
 @export var allyStatBlock : PackedScene
 @export var enemyStatBlock : PackedScene
-@export var levelupCard : PackedScene
+
 
 @export var battlerTurnIcon : PackedScene
 
@@ -16,6 +16,7 @@ extends Control
 
 @onready var AbilityContainer = $RightBar/ScrollContainer/AbilityContainer
 @onready var LevelUpCardContainer = $MarginContainer2/LevelUpCardContainer
+@onready var ItemRewardCard = $MarginContainer3/ItemRewardCard
 @onready var EnemyStats = $BottomBar/HBoxContainer/MarginContainer/EnemyStats
 @onready var AllyStats = $BottomBar/HBoxContainer/MarginContainer2/AllyStats
 @onready var TurnOrder = $LeftBar/TurnOrder
@@ -30,11 +31,9 @@ signal on_button_pressed()
 signal item()
 signal inventory()
 signal back()
-signal xpCardsDone()
+signal battle_win_finished()
 signal closeStatblock()
 signal switchTargets()
-
-var finishedCards : Array[Node]
 
 #Deletes any ability buttons and hides the ability menu
 func delete_buttons():
@@ -212,22 +211,25 @@ func hide_statblock():
 	DetailStatblock.visible = false
 	closeStatblock.emit()
 
-func show_levelup_cards(partyMembers: Array[Battler], expTotal: int):
-	for p in partyMembers:
-		var newCard = levelupCard.instantiate()
-		LevelUpCardContainer.add_child(newCard)
-		newCard.initialize(p, expTotal)
-		btnContinue.pressed.connect(newCard.skip)
-		newCard.finished.connect(levelup_card_done)
-		newCard.xp_progress()
-	btnContinue.visible = true
-
-func levelup_card_done(levelupCard: Node):
-	finishedCards.append(levelupCard)
-	btnContinue.pressed.disconnect(levelupCard.skip)
-	for item in LevelUpCardContainer.get_children():
-		if !finishedCards.has(item):
-			return
-			
-	xpCardsDone.emit()
+func battle_win(partyMembers: Array[Battler], expTotal: int, itemDrops: Array[ItemResource]):
+	LevelUpCardContainer.initialize(partyMembers, expTotal)
+	ItemRewardCard.initialize(itemDrops)
+	LevelUpCardContainer.finished.connect(level_up_cards_finished)
+	btnContinue.pressed.connect(LevelUpCardContainer.skip)
+	
+	LevelUpCardContainer.show()
+	btnContinue.show()
 	pass
+
+func level_up_cards_finished():
+	btnContinue.pressed.disconnect(LevelUpCardContainer.skip)
+	btnContinue.pressed.connect(show_item_rewards)
+	
+func show_item_rewards():
+	LevelUpCardContainer.hide()
+	ItemRewardCard.show()
+	btnContinue.pressed.disconnect(show_item_rewards)
+	btnContinue.pressed.connect(item_rewards_finished)
+	
+func item_rewards_finished():
+	battle_win_finished.emit()
