@@ -41,6 +41,7 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_t2miy")]([ExtResource("2_rxe7h")])
+moneyDrop = 5
 itemDrops = {
 ExtResource("3_05858"): 50
 }

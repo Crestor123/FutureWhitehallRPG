@@ -19,6 +19,7 @@ var experience : int
 var icon : Texture2D = null
 var playingAnimation = false
 
+var moneyDrop : int
 var itemDrops : Dictionary
 
 var targets : Array[Node]
@@ -48,6 +49,7 @@ func initialize():
 		
 	Abilities.initialize(data.abilities)
 	Abilities.used_ability.connect(end_turn)
+	moneyDrop = data.moneyDrop
 	itemDrops = data.itemDrops
 	Sprite.texture = data.sprite
 	icon = data.sprite

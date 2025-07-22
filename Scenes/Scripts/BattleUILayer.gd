@@ -211,9 +211,9 @@ func hide_statblock():
 	DetailStatblock.visible = false
 	closeStatblock.emit()
 
-func battle_win(partyMembers: Array[Battler], expTotal: int, itemDrops: Array[ItemResource]):
+func battle_win(partyMembers: Array[Battler], expTotal: int, itemDrops: Array[ItemResource], moneyDrop: int):
 	LevelUpCardContainer.initialize(partyMembers, expTotal)
-	ItemRewardCard.initialize(itemDrops)
+	ItemRewardCard.initialize(itemDrops, moneyDrop)
 	LevelUpCardContainer.finished.connect(level_up_cards_finished)
 	btnContinue.pressed.connect(LevelUpCardContainer.skip)
 	

@@ -6,6 +6,7 @@ var suffix : String = ""
 var level : int
 var experience : int
 
+var moneyDrop : int
 var itemDrops : Dictionary
 
 var targets : Array[Battler]
@@ -29,6 +30,7 @@ func initialize():
 		
 	Abilities.initialize(data.abilities)
 	Abilities.used_ability.connect(end_turn)
+	moneyDrop = data.moneyDrop
 	itemDrops = data.itemDrops
 	Sprite.texture = data.sprite
 	icon = data.sprite

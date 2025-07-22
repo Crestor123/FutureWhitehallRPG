@@ -18,8 +18,9 @@ var inventory : Node
 
 #Used for end of battle reward tallying
 var experience : Array
-var expTotal : int
+var expTotal : int = 0
 var itemDrops : Array[ItemResource]
+var moneyDrop : int = 0
 
 var turnReady = false
 var finishedAnimations = false
@@ -355,13 +356,14 @@ func tally_rewards():
 		if enemy.Stats.dead:
 			expTotal += enemy.experience
 			experience.append([enemy.level, enemy.experience])
+			moneyDrop += enemy.moneyDrop
 			for item in enemy.itemDrops:
 				var rand = randi_range(1, 100)
 				if rand < enemy.itemDrops[item]:
 					print("Gained item ", item)
 					itemDrops.append(item)
 	
-	UI.battle_win(allies, expTotal, itemDrops)
+	UI.battle_win(allies, expTotal, itemDrops, moneyDrop)
 	UI.battle_win_finished.connect(end_battle)
 	pass
 
@@ -369,7 +371,8 @@ func end_battle():
 	if defeat:
 		battleLoss.emit()
 	elif victory:
-		battleWon.emit(experience, itemDrops)
+		#battleWon.emit(experience, itemDrops, moneyDrop)
+		battleWon.emit(expTotal, itemDrops, moneyDrop)
 
 func battler_defeated(battler: Battler):
 	#Remove battler from turn order

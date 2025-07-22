@@ -42,5 +42,7 @@ class_name EnemyResource
 
 @export var abilities : Array[AbilityResource]
 
+@export var moneyDrop : int
+
 #Dictionary[item : ItemResource, dropChance : int]
 @export var itemDrops : Dictionary

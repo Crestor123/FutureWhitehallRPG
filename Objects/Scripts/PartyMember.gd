@@ -58,13 +58,16 @@ func add_xp(amount : int):
 		level_up()
 	pass
 
-func add_battle_xp(expArray : Array):
-	#Takes an array of arrays: [level, exp]
-	#Scale xp based on difference between player level and enemy level
-	for i in expArray:
-		var gainedXP = i[1]
-		add_xp(gainedXP)
-	pass
+#func add_battle_xp(expArray : Array):
+	##Takes an array of arrays: [level, exp]
+	##Scale xp based on difference between player level and enemy level
+	#for i in expArray:
+		#var gainedXP = i[1]
+		#add_xp(gainedXP)
+	#pass
+	
+func add_battle_xp(experience: int):
+	add_xp(experience)
 
 func level_up():
 	level += 1

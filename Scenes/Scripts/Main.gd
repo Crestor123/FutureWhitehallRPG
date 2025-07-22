@@ -70,10 +70,13 @@ func close_menu():
 	UILayer.visible = true
 	pass
 
-func battle_victory(experience, itemDrops):
+func battle_victory(experience, itemDrops, moneyDrop):
 	print("Battle won!")
 	print(experience)
+	print(moneyDrop)
 	print(itemDrops)
+	
+	Player.Inventory.add_money(moneyDrop)
 	for item in itemDrops:
 		Player.Inventory.add_item(item)
 	for partyMember in Player.PartyMembers:
