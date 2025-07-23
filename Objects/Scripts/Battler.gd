@@ -22,6 +22,7 @@ signal endTurn
 var Name: String = ""
 var icon : Texture2D = null
 var playingAnimation = false
+var playingSpriteAnimation = false
 
 func initialize():
 	Stats.reviveSignal.connect(revive)
@@ -46,6 +47,7 @@ func take_damage(amount: int):
 	DamageNumber.text = str(amount) 
 	DamageNumber.visible = true
 	playingAnimation = true
+	playingSpriteAnimation = true
 	
 	Anim.play("damageNumber")
 	SpriteAnim.play("HitFlash")
@@ -83,8 +85,18 @@ func die():
 	dead.emit(self)
 	pass
 
-func _on_animation_player_animation_finished(anim_name):
-	print(Name, " finished animation")
+func _on_sprite_animation_finished(anim_name):
+	playingSpriteAnimation = false
+	animation_finished()
+
+func _on_battler_animation_finished(anim_name):
 	playingAnimation = false
+	animation_finished()
+
+func animation_finished():
+	if playingAnimation or playingSpriteAnimation:
+		return
+	print(Name, " finished animation")
 	animationFinished.emit()
 	battlerReady.emit(self)
+	pass
