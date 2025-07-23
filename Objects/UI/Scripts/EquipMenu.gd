@@ -73,7 +73,7 @@ func display_inventory(buttonData):
 	#Show all items in the inventory of the proper slot
 	for item in Player.Inventory.get_children():
 		if item is EquipNode:
-			if item.slot == type:
+			if item.slot == type and item.Owner == null:
 				var newEquip = LabelButton.instantiate()
 				InventoryContainer.add_child(newEquip)
 				set_equipment(newEquip, item, true)

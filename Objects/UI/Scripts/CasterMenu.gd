@@ -87,7 +87,7 @@ func display_parts(buttonData):
 	
 	for i in Player.Inventory.get_children():
 		if i is CasterPartNode:
-			if i.slot == slot:
+			if i.slot == slot and i.Owner == null:
 				var part = LabelButton.instantiate()
 				InventoryContainer.add_child(part)
 				part.set_label(i.itemName)
@@ -110,6 +110,7 @@ func equip_part(buttonData):
 	
 	for i in CasterContainer.get_children():
 		if i.data["slot"] == currentSlot:
+			i.set_icon(part.icon)
 			i.set_label(part.itemName)
 			i.add_data("part", part)
 			if currentSlot == "battery":
@@ -167,7 +168,7 @@ func display_spells():
 		spell.getData.connect(unequip_spell)
 	
 	for i in Player.Inventory.get_children():
-		if i is SpellCardNode:
+		if i is SpellCardNode and i.Owner == null:
 			var spell = LabelButton.instantiate()
 			InventoryContainer.add_child(spell)
 			spell.set_label(i.itemName + " " + str(i.memoryCost))
