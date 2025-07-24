@@ -4,6 +4,7 @@ extends Control
 @onready var OptionContainer = $OptionContainer/VBoxContainer
 @onready var menuPanel = $PanelContainer
 @onready var interactButton = $MarginContainer/Interact
+@onready var DialogueState = $DialogueState
 
 @export var button : PackedScene
 @export var dialogBox : PackedScene
@@ -17,36 +18,45 @@ func _ready():
 	menuPanel.visible = false
 	menuPanel.position.x = -(menuPanel.size.x)
 	
+	DialogueManager.dialogue_ended.connect(clear_dialog)
+	
 	interactButton.visible = false
 	pass
 
-func create_dialog(icon : Texture2D, text : String, options : Dictionary):
+#func create_dialog(icon : Texture2D, text : String, options : Dictionary):
 	#Options : Dictionary {label : String, function : Callable}
 	#The option button will be tied to the given callable
-	var newDialog = dialogBox.instantiate()
-	DialogContainer.add_child(newDialog)
-	newDialog.set_data(icon, text)
-	newDialog.initialize()
+	#var newDialog = dialogBox.instantiate()
+	#DialogContainer.add_child(newDialog)
+	#newDialog.set_data(icon, text)
+	#newDialog.initialize()
+	#
+	#for option in options.keys():
+		#var newButton = button.instantiate()
+		#OptionContainer.add_child(newButton)
+		#newButton.set_label(option)
+		#newButton.set_icon(null)
+		#newButton.pressed.connect(options[option])
+		#
+	#DialogContainer.show()
+	#OptionContainer.show()
+	#pass
 	
-	for option in options.keys():
-		var newButton = button.instantiate()
-		OptionContainer.add_child(newButton)
-		newButton.set_label(option)
-		newButton.set_icon(null)
-		newButton.pressed.connect(options[option])
-		
-	DialogContainer.show()
-	OptionContainer.show()
+func create_dialogue(dialogue_resource : Resource):
+	hide_interact_button()
+	DialogueManager.show_dialogue_balloon(dialogue_resource, "", [DialogueState])
 	pass
 
 func clear_dialog():
-	DialogContainer.hide()
-	for child in DialogContainer.get_children():
-		child.queue_free()
-	
-	OptionContainer.hide()
-	for child in OptionContainer.get_children():
-		child.queue_free()
+	#DialogContainer.hide()
+	#for child in DialogContainer.get_children():
+		#child.queue_free()
+	#
+	#OptionContainer.hide()
+	#for child in OptionContainer.get_children():
+		#child.queue_free()
+		
+	DialogueState.reset_data()
 
 func show_interact_button():
 	interactButton.show()

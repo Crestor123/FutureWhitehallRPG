@@ -1,0 +1,4 @@
+~ obtain_item
+You found {{DialogueState.data["quantity"]}} {{DialogueState.data["name"]}}!
+- Test => END
+- OK => END

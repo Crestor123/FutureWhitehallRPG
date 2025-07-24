@@ -13,6 +13,7 @@ func initialize():
 		Icon.visible = false
 	if text:
 		TextContent.text = text
+		TextContent.type_out()
 
 func set_data(setIcon : Texture2D, setText : String):
 	icon = setIcon

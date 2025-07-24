@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://2fq6scld01gq"]
+[gd_scene load_steps=7 format=3 uid="uid://2fq6scld01gq"]
 
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_8tltr"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_7376m"]
 [ext_resource type="Script" path="res://Objects/UI/Scripts/DialogBox.gd" id="2_csdjw"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_25sc3"]
 
 [sub_resource type="Theme" id="Theme_1jtba"]
 default_font = ExtResource("1_8tltr")
@@ -18,6 +19,7 @@ border_color = Color(1, 1, 1, 1)
 corner_detail = 1
 
 [node name="DialogBox" type="PanelContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 64)
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,8 +47,9 @@ layout_mode = 2
 texture = ExtResource("2_7376m")
 stretch_mode = 2
 
-[node name="TextContent" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="TextContent" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
 text = "Dialog Box"
+script = ExtResource("4_25sc3")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
