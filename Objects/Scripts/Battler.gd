@@ -85,6 +85,12 @@ func die():
 	dead.emit(self)
 	pass
 
+func _on_sprite_animation_started(anim_name):
+	playingSpriteAnimation = true
+	
+func _on_battler_animation_started(anim_name):
+	playingAnimation = true
+
 func _on_sprite_animation_finished(anim_name):
 	playingSpriteAnimation = false
 	animation_finished()

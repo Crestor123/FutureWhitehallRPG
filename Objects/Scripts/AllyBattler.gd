@@ -22,7 +22,6 @@ func start_turn(turnCount: int):
 func end_turn(abilityName: String = ""):
 	Abilities.used_ability.disconnect(end_turn)
 	
-	await Anim.animation_finished
 	Anim.play("End")
 	await animationFinished
 	
