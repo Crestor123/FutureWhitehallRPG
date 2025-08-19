@@ -18,6 +18,7 @@ func initialize():
 	Collision.shape.size.x = tileWidth * tileSize
 	Collision.shape.size.y = tileHeight * tileSize
 	if spriteData:
+		Sprite.region_enabled = false
 		Sprite.texture = spriteData
 		
 

@@ -197,7 +197,7 @@ func start_turn():
 		ui_show_abilities()
 
 		currentBattler.endTurn.connect(end_turn)
-		#currentBattler.Abilities.analyze.connect(analyze_battler)
+		currentBattler.Abilities.analyze.connect(analyze_battler)
 		currentBattler.start_turn(TurnOrder.RoundCount)
 	else:
 		currentBattler.selectedAbility.connect(UI.set_topBar)
