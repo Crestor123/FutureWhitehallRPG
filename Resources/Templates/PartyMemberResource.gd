@@ -3,6 +3,7 @@ extends Resource
 class_name PartyMemberResource
 
 @export var name : String
+@export var title : String
 
 @export var sprite : Texture2D
 
@@ -20,8 +21,8 @@ class_name PartyMemberResource
 }
 
 @export var statGrowths = {
-	"health": 5,
-	"mana": 2,
+	"health": 5.0,
+	"mana": 2.0,
 	"strength": 1.2,
 	"intelligence": 2.2,
 	"dexterity": 1.8,

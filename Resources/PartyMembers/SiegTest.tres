@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=7 format=3 uid="uid://cnq1i3hxjj4vt"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_s8jy6"]
+[ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="2_8nqao"]
+[ext_resource type="Script" path="res://Resources/Templates/Items/ItemResource.gd" id="2_gfnqx"]
+[ext_resource type="Script" path="res://Resources/Templates/PartyMemberResource.gd" id="3_alc1s"]
+[ext_resource type="Resource" uid="uid://csxy2k4ktuogf" path="res://Resources/Abilities/Defend.tres" id="3_v87vp"]
+[ext_resource type="Texture2D" uid="uid://ctahb0x6g451v" path="res://Assets/SiegIcon.png" id="4_hcljs"]
+
+[resource]
+script = ExtResource("3_alc1s")
+name = "Siegfried"
+title = "Novice"
+sprite = ExtResource("4_hcljs")
+level = 1
+stats = {
+"dexterity": 6,
+"health": 15,
+"intelligence": 4,
+"mana": 3,
+"resistance": 3,
+"speed": 5,
+"strength": 2,
+"vitality": 3
+}
+statGrowths = {
+"dexterity": 2.2,
+"health": 3.4,
+"intelligence": 1.5,
+"mana": 2.2,
+"resistance": 1.8,
+"speed": 1.6,
+"strength": 1.2,
+"vitality": 1.5
+}
+resistances = {
+"acid": 0,
+"air": 0,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+statusResist = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_s8jy6")]([ExtResource("2_8nqao"), ExtResource("3_v87vp")])
+inventory = Array[ExtResource("2_gfnqx")]([])

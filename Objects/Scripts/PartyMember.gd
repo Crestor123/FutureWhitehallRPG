@@ -20,6 +20,7 @@ var xpPrevLevel : int = 0
 var xpToLevel : int = 0
 
 var Name : String
+var title : String
 var sprite : Texture2D
 var isActive : bool = false
 var alive : bool = true
@@ -31,6 +32,7 @@ func initialize(inventory : Node):
 	if !data: return
 	Inventory = inventory
 	Name = data.name
+	title = data.title
 	sprite = data.sprite
 	level = data.level
 	xpToLevel = xp_to_next_level(level)

@@ -58,7 +58,7 @@ text = "MP:"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Class" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
+[node name="Title" type="Label" parent="HBoxContainer/HBoxContainer/Values"]
 layout_mode = 2
 text = "Class"
 horizontal_alignment = 2

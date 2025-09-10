@@ -33,9 +33,9 @@ stats = {
 }
 statGrowths = {
 "dexterity": 1.8,
-"health": 5,
+"health": 5.0,
 "intelligence": 2.2,
-"mana": 2,
+"mana": 2.0,
 "resistance": 1.8,
 "speed": 0.6,
 "strength": 1.2,
