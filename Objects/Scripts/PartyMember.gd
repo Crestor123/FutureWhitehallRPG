@@ -78,7 +78,7 @@ func level_up():
 	xpToLevel = xp_to_next_level(level)
 	
 	for i in data.statGrowths:
-		Stats.stats[i] += data.statGrowths[i]
-	Stats.tempStats["health"] = Stats.stats["health"]
-	Stats.tempStats["mana"] = Stats.stats["mana"]
+		Stats.stats[i] += floor(data.statGrowths[i])
+	Stats.tempStats["health"] = floor(Stats.stats["health"])
+	Stats.tempStats["mana"] = floor(Stats.stats["mana"])
 	pass

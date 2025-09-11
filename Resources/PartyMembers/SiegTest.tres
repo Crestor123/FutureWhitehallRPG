@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=7 format=3 uid="uid://cnq1i3hxjj4vt"]
+[gd_resource type="Resource" script_class="PartyMemberResource" load_steps=9 format=3 uid="uid://cnq1i3hxjj4vt"]
 
 [ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_s8jy6"]
 [ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="2_8nqao"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Resources/Templates/PartyMemberResource.gd" id="3_alc1s"]
 [ext_resource type="Resource" uid="uid://csxy2k4ktuogf" path="res://Resources/Abilities/Defend.tres" id="3_v87vp"]
 [ext_resource type="Texture2D" uid="uid://ctahb0x6g451v" path="res://Assets/SiegIcon.png" id="4_hcljs"]
+[ext_resource type="Resource" uid="uid://rtnxo5pqwlbw" path="res://Resources/Items/SpellCards/Gust.tres" id="5_jf12w"]
+[ext_resource type="Resource" uid="uid://cc71xyw6etrys" path="res://Resources/Items/Consumables/Potion.tres" id="6_hwe6x"]
 
 [resource]
 script = ExtResource("3_alc1s")
@@ -51,4 +53,4 @@ statusResist = {
 "stun": 0
 }
 abilities = Array[ExtResource("1_s8jy6")]([ExtResource("2_8nqao"), ExtResource("3_v87vp")])
-inventory = Array[ExtResource("2_gfnqx")]([])
+inventory = Array[ExtResource("2_gfnqx")]([ExtResource("5_jf12w"), ExtResource("6_hwe6x"), ExtResource("6_hwe6x"), ExtResource("6_hwe6x"), ExtResource("6_hwe6x"), ExtResource("6_hwe6x")])

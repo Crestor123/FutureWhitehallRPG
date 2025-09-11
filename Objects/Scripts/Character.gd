@@ -34,8 +34,8 @@ func setPosition(newPosition : Vector2):
 	#new position should be tile coordinates
 	if int(newPosition.x) % 2 == 0:
 		newPosition.x += 1
-	if int(newPosition.y) % 2 == 0:
-		newPosition.y += 1
+	#if int(newPosition.y) % 2 == 0:
+		#newPosition.y += 1
 	
 	global_position = Vector2(newPosition.x * tileSize / 2, newPosition.y * tileSize)
 	pass

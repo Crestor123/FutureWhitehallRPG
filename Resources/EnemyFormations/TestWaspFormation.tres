@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyFormation" load_steps=4 format=3 uid="uid://hy3g8pcqo08j"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyResource.gd" id="1_474yq"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyFormation.gd" id="2_3itb4"]
+[ext_resource type="Resource" uid="uid://b010tcmxyr5un" path="res://Resources/Enemies/TestWasp.tres" id="2_61d24"]
+
+[resource]
+script = ExtResource("2_3itb4")
+enemyList = Array[ExtResource("1_474yq")]([ExtResource("2_61d24"), ExtResource("2_61d24")])

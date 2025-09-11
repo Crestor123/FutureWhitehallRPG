@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=5 format=3 uid="uid://b010tcmxyr5un"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_ej6f7"]
+[ext_resource type="Script" path="res://Resources/Templates/Battle/EnemyResource.gd" id="2_2h6s5"]
+[ext_resource type="Resource" uid="uid://i8eqr8470aeg" path="res://Resources/Abilities/Attack.tres" id="2_nq5kg"]
+[ext_resource type="Texture2D" uid="uid://u1xc1kkd6ckq" path="res://Assets/Sprites/Enemies/Icon42.png" id="4_s3fnc"]
+
+[resource]
+script = ExtResource("2_2h6s5")
+name = "Wasp"
+level = 1
+experience = 3
+sprite = ExtResource("4_s3fnc")
+element = "earth"
+stats = {
+"dexterity": 2,
+"health": 12,
+"intelligence": 0,
+"mana": 0,
+"resistance": 0,
+"speed": 2,
+"strength": 0,
+"vitality": 1
+}
+resistances = {
+"acid": 0,
+"air": -25,
+"earth": 0,
+"electricity": 0,
+"fire": 0,
+"void": 0,
+"water": 0
+}
+statusResist = {
+"blind": 0,
+"burn": 0,
+"silence": 0,
+"sleep": 0,
+"slow": 0,
+"stun": 0
+}
+abilities = Array[ExtResource("1_ej6f7")]([ExtResource("2_nq5kg")])
+moneyDrop = 3
+itemDrops = {}

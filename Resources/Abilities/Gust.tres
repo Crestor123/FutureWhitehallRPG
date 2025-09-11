@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=3 format=3 uid="uid://cqhjojfu5xyp1"]
+
+[ext_resource type="Script" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_7d7nc"]
+[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="2_tt2b7"]
+
+[resource]
+script = ExtResource("1_7d7nc")
+name = "Gust"
+description = "Basic air attack"
+target = "single"
+targetAllies = false
+swapTargets = true
+mainStat = "intelligence"
+targetStat = "health"
+manaCost = 1
+ammoCost = 0
+allGuns = false
+baseDamage = 4
+multiplier = 1.5
+accuracy = 0.0
+turns = 0
+type = "magical"
+element = "air"
+statusEffects = Array[ExtResource("2_tt2b7")]([])

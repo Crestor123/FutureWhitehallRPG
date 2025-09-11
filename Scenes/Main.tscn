@@ -15,7 +15,7 @@
 texture_filter = 1
 script = ExtResource("1_pskxb")
 StartingScene = ExtResource("2_1pr5y")
-StartingPosition = Vector2(20, 11.5)
+StartingPosition = Vector2(22, 12)
 
 [node name="Player" parent="." instance=ExtResource("4_dvuns")]
 
