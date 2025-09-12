@@ -26,6 +26,7 @@ func initialize(setPlayer : Node):
 	Statblock.btnRight.pressed.connect(_on_right_pressed)
 	Statblock.btnBack.pressed.connect(_on_back_presssed)
 	Statblock.btnClose.pressed.connect(_on_close_pressed)
+	Statblock.update_stats(currentPartyMember)
 	
 	#If a submenu is selected, preserve it when switching characters
 
@@ -133,6 +134,8 @@ func equip_part(buttonData):
 			i.append_label(" (" + str(i.data["part"].bonusMagic) + ") ")
 		if i.data["part"].Owner == currentPartyMember:
 			i.append_label(" (E)")
+			
+	Statblock.update_stats(currentPartyMember)
 	pass
 
 func unequip_part():
@@ -147,6 +150,7 @@ func unequip_part():
 	currentPartyMember.Caster.unequip_part(part)
 	slot.set_label(currentSlot.capitalize())
 	slot.data["part"] = null
+	Statblock.update_stats(currentPartyMember)
 	pass
 
 func display_spells():
@@ -206,6 +210,8 @@ func equip_spell(buttonData):
 			i.getData.connect(unequip_spell)
 		else:
 			i.getData.connect(equip_spell)
+			
+	Statblock.update_stats(currentPartyMember)
 	pass
 
 func unequip_spell(buttonData):
@@ -231,6 +237,8 @@ func unequip_spell(buttonData):
 			i.getData.connect(unequip_spell)
 		else:
 			i.getData.connect(equip_spell)
+			
+	Statblock.update_stats(currentPartyMember)
 	pass
 
 func clear_inventory():

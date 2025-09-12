@@ -71,6 +71,13 @@ func unequip_spell(spell : SpellCardNode):
 	pass
 
 func update_stats():
+	for i in stats:
+		stats[i] = 0
+	for i in resistances:
+		resistances[i] = 0
+	for i in statusResist:
+		statusResist[i] = 0
+	
 	for i in spellCards:
 		for j in i.bonuses:
 			stats[j] += i.bonuses[j]

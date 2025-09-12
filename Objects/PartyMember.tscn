@@ -9,9 +9,10 @@
 [node name="PartyMember" type="Node"]
 script = ExtResource("1_t2p47")
 
-[node name="StatComponent" parent="." node_paths=PackedStringArray("parent", "equipment") instance=ExtResource("1_vm0ts")]
+[node name="StatComponent" parent="." node_paths=PackedStringArray("parent", "equipment", "caster") instance=ExtResource("1_vm0ts")]
 parent = NodePath("..")
 equipment = NodePath("../EquipmentComponent")
+caster = NodePath("../CasterComponent")
 
 [node name="EquipmentComponent" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("2_cpuku")]
 Target = NodePath("..")
