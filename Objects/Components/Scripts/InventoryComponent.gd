@@ -75,6 +75,8 @@ func add_item(item : ItemResource):
 	if newItem.id == "battery":
 		TotalCharge += 50
 		CurrentCharge += 50
+		
+	return newItem
 	
 func remove_item(item : Node):
 	itemRemoved.emit(item)

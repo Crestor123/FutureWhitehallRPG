@@ -53,3 +53,19 @@ class_name PartyMemberResource
 @export var abilities : Array[AbilityResource]
 
 @export var inventory : Array[ItemResource]
+
+@export var equipment: Dictionary[String, ItemResource] = {
+	"mainhand": null,
+	"offhand": null,
+	"head": null,
+	"body": null,
+	"accessory": null,
+}
+
+@export var casterComponents: Dictionary[String, ItemResource] = {
+	"battery": null,
+	"prism": null,
+	"memory": null
+}
+
+@export var spells: Array[SpellCardResource]

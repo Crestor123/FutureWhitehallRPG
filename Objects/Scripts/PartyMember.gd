@@ -47,8 +47,25 @@ func initialize(inventory : Node):
 		
 	for item in data.abilities:
 		Abilities.add_ability(item)
-		
-	#Equipment.Inventory = Inventory
+	
+	for slot in data.equipment:
+		var item = data.equipment[slot]
+		if !item: continue
+		var equip = inventory.add_item(item)
+		if equip is EquipNode:
+			Equipment.equip(equip, slot)
+			
+	for slot in data.casterComponents:
+		var item = data.casterComponents[slot]
+		if !item: continue
+		var equip = inventory.add_item(item)
+		if equip is CasterPartNode:
+			Caster.equip_part(equip)
+			
+	for item in data.spells:
+		var spell = inventory.add_item(item)
+		if spell is SpellCardNode:
+			Caster.equip_spell(spell)
 	
 func xp_to_next_level(level : int):
 	return floor(baseXP * (pow(level, exponent)))
