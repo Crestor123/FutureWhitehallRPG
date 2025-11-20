@@ -7,8 +7,8 @@ extends Node
 @export var tileSize = 16
 
 var CurrentScene : Node = null
-var CurrentPackedScene : PackedScene = null
-var PrevScene : PackedScene = null
+var CurrentScenePath : String = ""
+var PrevScene : String = ""
 
 var Character : Node = null
 var CharacterPosition : Vector2 = Vector2.ZERO
@@ -22,17 +22,17 @@ signal encounter()
 signal setInteractable
 signal unsetInteractable
 
-func load_scene(scene : PackedScene, newPosition : Vector2):
+func load_scene(scenePath : String, newPosition : Vector2):
 	if CurrentScene:
 		CharacterPosition = Character.global_position
-		PrevScene = CurrentPackedScene
+		PrevScene = CurrentScenePath
 		CurrentScene.queue_free()
 		Character.queue_free()
-	if !scene:
-		CurrentScene = CurrentPackedScene.instantiate()
+	if !scenePath:
+		CurrentScene = load(CurrentScenePath).instantiate()
 	else:
-		CurrentPackedScene = scene
-		CurrentScene = scene.instantiate()
+		CurrentScenePath = scenePath
+		CurrentScene = load(scenePath).instantiate()
 	add_child(CurrentScene)
 	
 	if CurrentScene is Map:
@@ -58,7 +58,7 @@ func load_subscene(scene : PackedScene):
 			pass
 		
 		CharacterPosition = Character.global_position
-		PrevScene = CurrentPackedScene
+		PrevScene = CurrentScenePath
 		Character.queue_free()
 		CurrentScene.queue_free()
 		
@@ -79,14 +79,14 @@ func change_subscene(scene : PackedScene):
 func return_from_subscene():
 	if !PrevScene: return
 	
-	CurrentPackedScene = PrevScene
+	CurrentScenePath = PrevScene
 	CurrentScene.queue_free()
-	CurrentScene = CurrentPackedScene.instantiate()
+	CurrentScene = load(CurrentScenePath).instantiate()
 	add_child(CurrentScene)
 	
 	create_character()
-	link_objects()
 	Character.global_position = CharacterPosition
+	link_objects()
 	pass
 
 func create_character():

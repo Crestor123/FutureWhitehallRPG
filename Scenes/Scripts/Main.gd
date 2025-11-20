@@ -5,7 +5,7 @@ extends Node2D
 @onready var SceneChanger = $SceneChanger
 @onready var Player = $Player
 
-@export var StartingScene : PackedScene
+@export var StartingScene : String
 @export var StartingPosition : Vector2
 
 func _ready():

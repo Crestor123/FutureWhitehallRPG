@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://vwc8vtsckf4f"]
 
-[ext_resource type="Script" path="res://Objects/Scripts/Character.gd" id="1_re7u5"]
+[ext_resource type="Script" uid="uid://buj7dysok07ps" path="res://Objects/Scripts/Character.gd" id="1_re7u5"]
 [ext_resource type="Texture2D" uid="uid://dt3wejkg3d3w2" path="res://Assets/Sprites/Sieg.png" id="2_d3bua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ampw3"]
 size = Vector2(16, 16)
 
 [node name="Character" type="CharacterBody2D"]
+collision_layer = 3
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_re7u5")
@@ -23,6 +24,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ampw3")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(0, 8)
 target_position = Vector2(0, 16)
 collision_mask = 3

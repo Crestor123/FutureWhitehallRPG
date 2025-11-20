@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcirhhyojhm5v"]
+[gd_scene load_steps=10 format=3 uid="uid://dcirhhyojhm5v"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Main.gd" id="1_pskxb"]
-[ext_resource type="PackedScene" uid="uid://krfbju6et3ny" path="res://Scenes/Maps/Forest1.tscn" id="2_1pr5y"]
+[ext_resource type="Script" uid="uid://cspjb63gusvk" path="res://Scenes/Scripts/Main.gd" id="1_pskxb"]
 [ext_resource type="PackedScene" uid="uid://penyqboqdfbh" path="res://Objects/Player.tscn" id="4_dvuns"]
 [ext_resource type="PackedScene" uid="uid://vwc8vtsckf4f" path="res://Objects/Character.tscn" id="4_wag8g"]
 [ext_resource type="PackedScene" uid="uid://ciubsoqne0anu" path="res://Objects/PartyMember.tscn" id="5_hr24t"]
-[ext_resource type="Script" path="res://Scenes/Scripts/SceneChanger.gd" id="5_qkc37"]
+[ext_resource type="Script" uid="uid://dleucie5pyotk" path="res://Scenes/Scripts/SceneChanger.gd" id="5_qkc37"]
 [ext_resource type="Resource" uid="uid://cnq1i3hxjj4vt" path="res://Resources/PartyMembers/SiegTest.tres" id="5_w7k4n"]
 [ext_resource type="PackedScene" uid="uid://bl7pjotc7ibe3" path="res://Objects/UI/OverworldUI.tscn" id="6_c3y5o"]
 [ext_resource type="PackedScene" uid="uid://bo4wynw2jixx4" path="res://Scenes/Battle.tscn" id="7_r16ws"]
@@ -14,7 +13,7 @@
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_pskxb")
-StartingScene = ExtResource("2_1pr5y")
+StartingScene = "res://Scenes/Maps/Forest1.tscn"
 StartingPosition = Vector2(22, 12)
 
 [node name="Player" parent="." instance=ExtResource("4_dvuns")]
