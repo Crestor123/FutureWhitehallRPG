@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckt6mj6la3sew"]
 
-[ext_resource type="Script" path="res://Objects/UI/Scripts/AllyStatBlock.gd" id="1_200gg"]
+[ext_resource type="Script" uid="uid://cv3sytfstpdpy" path="res://Objects/UI/Scripts/AllyStatBlock.gd" id="1_200gg"]
 [ext_resource type="PackedScene" uid="uid://ca4yi7yt5lxtk" path="res://Objects/UI/Battle/HealthBar.tscn" id="2_k38ki"]
 
 [node name="AllyStatBlock" type="HBoxContainer"]

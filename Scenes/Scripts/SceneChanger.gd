@@ -123,6 +123,7 @@ func get_enemy_formations():
 	return CurrentScene.EnemyFormations
 
 func character_step():
+	if !Character.active: return
 	if !randomEncounters:
 		return
 	stepCount -= 1

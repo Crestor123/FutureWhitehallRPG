@@ -22,7 +22,7 @@ DialogueState="*res://Objects/UI/DialogueState.tscn"
 
 [dialogue_manager]
 
-general/balloon_path="res://Objects/UI/balloon.tscn"
+runtime/balloon_path="res://Objects/UI/balloon.tscn"
 
 [display]
 
