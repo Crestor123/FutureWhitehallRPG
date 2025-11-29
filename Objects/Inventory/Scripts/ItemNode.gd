@@ -14,6 +14,9 @@ class_name ItemNode
 @export var stackable : bool
 @export var quantity : int = 1
 
+func get_class_name():
+	return "ItemNode"
+
 func initialize():
 	itemName = data.name
 	id = data.id

@@ -38,6 +38,9 @@ class_name EquipNode
 
 var Owner : PartyMember = null
 
+func get_class_name():
+	return "EquipNode"
+
 func initialize():
 	super.initialize()
 	stackable = false

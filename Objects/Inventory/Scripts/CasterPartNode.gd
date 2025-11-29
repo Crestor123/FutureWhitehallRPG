@@ -10,6 +10,9 @@ class_name CasterPartNode
 
 var Owner : PartyMember = null
 
+func get_class_name():
+	return "CasterPartNode"
+
 func initialize():
 	super.initialize()
 	slot = data.slot

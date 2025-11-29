@@ -5,21 +5,21 @@
 [ext_resource type="Script" uid="uid://dp1r0slcv244w" path="res://Objects/UI/Scripts/DetailStatBlock.gd" id="2_y5j5e"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_c4oro"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="3_xpse3"]
-[ext_resource type="Texture2D" uid="uid://d3tase345qgjc" path="res://Assets/SmallElementIcons/SmallFiretIcon.png" id="4_1b4q3"]
-[ext_resource type="Texture2D" uid="uid://odg2jtsgatan" path="res://Assets/SmallElementIcons/SmallEarthIcon.png" id="5_gic3o"]
-[ext_resource type="Texture2D" uid="uid://cuwc1aag580p0" path="res://Assets/SmallElementIcons/SmallWaterIcon.png" id="6_ytxtl"]
-[ext_resource type="Texture2D" uid="uid://dbtisi3jaw7g6" path="res://Assets/SmallElementIcons/SmallAirIcon.png" id="7_c0ayq"]
-[ext_resource type="Texture2D" uid="uid://dk8u2vtmeakm0" path="res://Assets/SmallElementIcons/SmallElectricIcon.png" id="8_fjcnk"]
-[ext_resource type="Texture2D" uid="uid://bh3fk7esfin4b" path="res://Assets/SmallElementIcons/SmallAcidIcon.png" id="9_pvoaq"]
-[ext_resource type="Texture2D" uid="uid://ceul7lah0nrv" path="res://Assets/SmallElementIcons/SmallVoidIcon.png" id="10_bdapj"]
+[ext_resource type="Texture2D" uid="uid://dn4f044s6tsmf" path="res://Assets/SmallElementIcons/SmallFireIcon2.png" id="6_lx8kk"]
+[ext_resource type="Texture2D" uid="uid://dm0taasi3uakg" path="res://Assets/SmallElementIcons/SmallEarthIcon2.png" id="7_5pjv6"]
+[ext_resource type="Texture2D" uid="uid://ma00qk7a7ueq" path="res://Assets/SmallElementIcons/SmallWaterIcon2.png" id="8_dgq8h"]
+[ext_resource type="Texture2D" uid="uid://b145dgotmp0tl" path="res://Assets/SmallElementIcons/SmallAirIcon2.png" id="9_xy6ow"]
+[ext_resource type="Texture2D" uid="uid://e8vier2dsajy" path="res://Assets/SmallElementIcons/SmallElectricIcon2.png" id="10_0l12r"]
+[ext_resource type="Texture2D" uid="uid://b3ydmbsm8rfx6" path="res://Assets/SmallElementIcons/SmallAcidIcon2.png" id="11_v570g"]
+[ext_resource type="Texture2D" uid="uid://djvpratji7s8r" path="res://Assets/SmallElementIcons/SmallVoidIcon2.png" id="12_wbrhe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ufn"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.19607843, 0.18431373, 0.23921569, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.9490196, 1, 0.9098039, 1)
 corner_detail = 1
 
 [node name="DetailStatBlock" type="PanelContainer"]
@@ -178,7 +178,7 @@ columns = 2
 [node name="FireIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("4_1b4q3")
+texture = ExtResource("6_lx8kk")
 stretch_mode = 2
 
 [node name="lblFire" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -189,7 +189,7 @@ horizontal_alignment = 2
 [node name="EarthIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("5_gic3o")
+texture = ExtResource("7_5pjv6")
 stretch_mode = 2
 
 [node name="lblEarth" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -200,7 +200,7 @@ horizontal_alignment = 2
 [node name="WaterIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("6_ytxtl")
+texture = ExtResource("8_dgq8h")
 stretch_mode = 2
 
 [node name="lblWater" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -211,7 +211,7 @@ horizontal_alignment = 2
 [node name="AirIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("7_c0ayq")
+texture = ExtResource("9_xy6ow")
 stretch_mode = 2
 
 [node name="lblAir" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -222,7 +222,7 @@ horizontal_alignment = 2
 [node name="ElectricityIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("8_fjcnk")
+texture = ExtResource("10_0l12r")
 stretch_mode = 2
 
 [node name="lblElectricity" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -233,7 +233,7 @@ horizontal_alignment = 2
 [node name="AcidIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("9_pvoaq")
+texture = ExtResource("11_v570g")
 stretch_mode = 2
 
 [node name="lblAcid" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
@@ -244,7 +244,7 @@ horizontal_alignment = 2
 [node name="VoidIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("10_bdapj")
+texture = ExtResource("12_wbrhe")
 stretch_mode = 2
 
 [node name="lblVoid" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/GridContainer"]

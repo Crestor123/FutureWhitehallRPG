@@ -9,6 +9,9 @@ class_name FirearmNode
 
 var currentCharge : int = 0
 
+func get_class_name():
+	return super.get_class_name()
+
 func initialize():
 	super.initialize()
 	slot = "weapon"

@@ -49,35 +49,41 @@ size_flags_stretch_ratio = 0.2
 
 [node name="Close" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 text = "Close"
 flat = true
 
 [node name="Back" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 text = "Back"
 flat = true
 
-[node name="AllItems" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Sort" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "All"
+size_flags_horizontal = 10
+theme = ExtResource("4_v6veo")
+theme_override_constants/line_spacing = 2
+theme_override_styles/normal = ExtResource("5_57fbi")
+theme_override_styles/pressed = ExtResource("5_57fbi")
+theme_override_styles/hover = ExtResource("5_57fbi")
+theme_override_styles/focus = ExtResource("5_57fbi")
 flat = true
-
-[node name="Consumables" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Consumables"
-flat = true
-
-[node name="KeyItems" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Key Items"
-flat = true
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "Consumables"
+popup/item_1/id = 1
+popup/item_2/text = "Equipment"
+popup/item_2/id = 4
+popup/item_3/text = "Caster Parts"
+popup/item_3/id = 3
+popup/item_4/text = "Spell Cards"
+popup/item_4/id = 5
+popup/item_5/text = "Key"
+popup/item_5/id = 2
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -108,11 +114,19 @@ flat = true
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_1gv1y")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ItemContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -120,4 +134,5 @@ columns = 2
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/HBoxContainer/Sort" to="." method="_on_sort_item_selected"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/Use" to="." method="_on_use_pressed"]

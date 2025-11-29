@@ -17,6 +17,9 @@ class_name ConsumableNode
 
 @export var additionalEffects : Array[EffectResource]
 
+func get_class_name():
+	return "ConsumableNode"
+
 func initialize():
 	super.initialize()
 	stat = data.stat

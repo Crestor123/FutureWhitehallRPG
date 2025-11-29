@@ -41,6 +41,9 @@ class_name SpellCardNode
 
 var Owner : PartyMember = null
 
+func get_class_name():
+	return "SpellCardNode"
+
 func initialize():
 	super.initialize()
 	element = data.element
