@@ -1,22 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://2fq6scld01gq"]
+[gd_scene load_steps=6 format=3 uid="uid://2fq6scld01gq"]
 
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_8tltr"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_00k27"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_7376m"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/DialogBox.gd" id="2_csdjw"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_25sc3"]
-
-[sub_resource type="Theme" id="Theme_1jtba"]
-default_font = ExtResource("1_8tltr")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ahno"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
+[ext_resource type="Script" uid="uid://3dbjkgs30w2g" path="res://Objects/UI/Scripts/DialogBox.gd" id="2_csdjw"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_jhlv3"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_25sc3"]
 
 [node name="DialogBox" type="PanelContainer"]
 texture_filter = 1
@@ -27,8 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_1jtba")
-theme_override_styles/panel = SubResource("StyleBoxFlat_4ahno")
+theme = ExtResource("1_00k27")
+theme_override_styles/panel = ExtResource("2_jhlv3")
 script = ExtResource("2_csdjw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

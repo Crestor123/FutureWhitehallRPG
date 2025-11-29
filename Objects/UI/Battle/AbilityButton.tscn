@@ -1,40 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://uw3dcoheq0un"]
+[gd_scene load_steps=4 format=3 uid="uid://uw3dcoheq0un"]
 
-[ext_resource type="Script" path="res://Objects/UI/Scripts/AbilityButton.gd" id="1_vlvv0"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_gstkj"]
+[ext_resource type="Script" uid="uid://b14rvqe2uq2mx" path="res://Objects/UI/Scripts/AbilityButton.gd" id="1_vlvv0"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_28aup"]
 
-[node name="AbilityButton" type="Control"]
+[node name="AbilityButton" type="PanelContainer"]
 custom_minimum_size = Vector2(96, 32)
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_gstkj")
+theme_override_styles/panel = ExtResource("2_28aup")
 script = ExtResource("1_vlvv0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="Name" type="Label" parent="HBoxContainer"]
 texture_filter = 1
@@ -48,12 +30,7 @@ visible = false
 layout_mode = 2
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

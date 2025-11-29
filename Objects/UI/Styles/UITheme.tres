@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://y1a1n1fegqy2"]
+
+[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_d73gx"]
+
+[resource]
+default_font = ExtResource("1_d73gx")
+default_font_size = 8
+Button/colors/font_color = Color(0.7607843, 0.7490196, 0.78431374, 1)
+Button/colors/font_hover_color = Color(0.9490196, 1, 0.9098039, 1)
+Label/colors/font_color = Color(0.9490196, 1, 0.9098039, 1)

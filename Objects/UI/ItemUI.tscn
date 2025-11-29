@@ -1,21 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bce3sdywtuaux"]
+[gd_scene load_steps=5 format=3 uid="uid://bce3sdywtuaux"]
 
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_3a718"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/ItemUI.gd" id="2_0a254"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_1pt3m"]
+[ext_resource type="Script" uid="uid://cjy3rgasb17gj" path="res://Objects/UI/Scripts/ItemUI.gd" id="2_0a254"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_a782i"]
-
-[sub_resource type="Theme" id="Theme_u8w4l"]
-default_font = ExtResource("1_3a718")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnxlo"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_o5t5c"]
 
 [node name="ItemUI" type="PanelContainer"]
 texture_filter = 1
@@ -28,8 +16,8 @@ offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_u8w4l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_dnxlo")
+theme = ExtResource("1_1pt3m")
+theme_override_styles/panel = ExtResource("2_o5t5c")
 script = ExtResource("2_0a254")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

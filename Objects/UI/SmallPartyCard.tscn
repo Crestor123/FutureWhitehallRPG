@@ -1,21 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dym7jkbfp2udy"]
+[gd_scene load_steps=5 format=3 uid="uid://dym7jkbfp2udy"]
 
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_4qnnf"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/SmallPartyCard.gd" id="1_wivi4"]
+[ext_resource type="Script" uid="uid://qtl36j477y5q" path="res://Objects/UI/Scripts/SmallPartyCard.gd" id="1_wivi4"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_4fhav"]
-
-[sub_resource type="Theme" id="Theme_ajfdw"]
-default_font = ExtResource("1_4qnnf")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slpop"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="2_jcadb"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="3_yspil"]
 
 [node name="SmallPartyCard" type="Control"]
 texture_filter = 1
@@ -26,19 +14,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("1_wivi4")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_right = 38.0
+offset_bottom = 24.5
 grow_vertical = 2
-theme = SubResource("Theme_ajfdw")
-theme_override_styles/panel = SubResource("StyleBoxFlat_slpop")
+theme = ExtResource("2_jcadb")
+theme_override_styles/panel = ExtResource("3_yspil")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2

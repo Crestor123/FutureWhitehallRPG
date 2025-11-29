@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://vtk1f7ay8agw"]
+[gd_scene load_steps=8 format=3 uid="uid://vtk1f7ay8agw"]
 
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_qaysh"]
 [ext_resource type="PackedScene" uid="uid://b0uvi1e534jup" path="res://Objects/UI/PartyMemberStatblock.tscn" id="2_odos0"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/MainMenu.gd" id="2_uakbt"]
-
-[sub_resource type="Theme" id="Theme_3u5l8"]
-default_font = ExtResource("1_qaysh")
-default_font_size = 8
+[ext_resource type="Script" uid="uid://vjnnulx1meg4" path="res://Objects/UI/Scripts/MainMenu.gd" id="2_uakbt"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="3_hhbtw"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="4_jioli"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58x3v"]
 bg_color = Color(0, 0, 0, 1)
@@ -16,6 +14,10 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_3u5l8"]
+default_font = ExtResource("1_qaysh")
+default_font_size = 8
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,8 +37,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_3u5l8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_58x3v")
+theme = ExtResource("3_hhbtw")
+theme_override_styles/panel = ExtResource("4_jioli")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2

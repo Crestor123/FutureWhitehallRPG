@@ -2,7 +2,7 @@ extends MarginContainer
 
 @export var SmallPartyCard : PackedScene
 
-@onready var PartyContainer = $PanelContainer/VBoxContainer/PartyContainer
+@onready var PartyContainer = $PanelContainer/MarginContainer/VBoxContainer/PartyContainer
 
 signal select
 

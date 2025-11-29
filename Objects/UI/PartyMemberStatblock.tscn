@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0uvi1e534jup"]
+[gd_scene load_steps=4 format=3 uid="uid://b0uvi1e534jup"]
 
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_7bshc"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="1_84r0g"]
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_qegto"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/PartyMemberStatblock.gd" id="2_1sq5f"]
-
-[sub_resource type="Theme" id="Theme_mf1pj"]
-default_font = ExtResource("1_qegto")
-default_font_size = 8
+[ext_resource type="Script" uid="uid://dlpdd3kae25v" path="res://Objects/UI/Scripts/PartyMemberStatblock.gd" id="2_1sq5f"]
 
 [node name="PartyMemberStatblock" type="MarginContainer"]
 texture_filter = 1
@@ -15,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_mf1pj")
+theme = ExtResource("1_7bshc")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4

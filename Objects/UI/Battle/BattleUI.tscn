@@ -1,33 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://c56ghvj57d1ws"]
+[gd_scene load_steps=16 format=3 uid="uid://c56ghvj57d1ws"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
+[ext_resource type="Script" uid="uid://c7k7mspbxfs2" path="res://Scenes/Scripts/BattleUILayer.gd" id="1_8sqfg"]
 [ext_resource type="PackedScene" uid="uid://uw3dcoheq0un" path="res://Objects/UI/Battle/AbilityButton.tscn" id="2_f4qr7"]
 [ext_resource type="Texture2D" uid="uid://ersecl1p8w6k" path="res://Assets/CursorSingle.png" id="3_ax01a"]
 [ext_resource type="PackedScene" uid="uid://ckt6mj6la3sew" path="res://Objects/UI/Battle/AllyStatBlock.tscn" id="3_nnqog"]
 [ext_resource type="PackedScene" uid="uid://c3h4fytt0403" path="res://Objects/UI/Battle/EnemyStatBlock.tscn" id="4_ikcrs"]
 [ext_resource type="PackedScene" uid="uid://xyxigkol2w46" path="res://Objects/UI/Battle/BattlerTurnIcon.tscn" id="5_ascfi"]
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="5_myop7"]
 [ext_resource type="PackedScene" uid="uid://cixh3fc4xa53q" path="res://Objects/UI/Battle/DamageNumber.tscn" id="6_7wr75"]
 [ext_resource type="PackedScene" uid="uid://c8j3n03ppymdr" path="res://Objects/UI/LevelUpCard.tscn" id="7_c0dyx"]
 [ext_resource type="PackedScene" uid="uid://dhpsyorslfhw3" path="res://Objects/UI/ItemRewardCard.tscn" id="8_lva5y"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/BattleWinExperience.gd" id="8_v4pl8"]
+[ext_resource type="Script" uid="uid://dfdo62x8id60r" path="res://Objects/UI/Scripts/BattleWinExperience.gd" id="8_v4pl8"]
 [ext_resource type="PackedScene" uid="uid://b7038mhew1d2l" path="res://Objects/UI/Battle/DetailStatBlock.tscn" id="9_diotm"]
-
-[sub_resource type="Theme" id="Theme_kcj8j"]
-default_font = ExtResource("5_myop7")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvmax"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_47dam"]
-default_font = ExtResource("5_myop7")
-default_font_size = 8
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="10_vbkmt"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="11_jlm7k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ufn"]
 bg_color = Color(0, 0, 0, 1)
@@ -113,15 +98,23 @@ offset_left = -3.05176e-05
 offset_bottom = 0.0799866
 grow_horizontal = 0
 grow_vertical = 2
-theme = SubResource("Theme_kcj8j")
-theme_override_styles/panel = SubResource("StyleBoxFlat_xvmax")
+theme = ExtResource("10_vbkmt")
+theme_override_styles/panel = ExtResource("11_jlm7k")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="RightBar"]
+[node name="MarginContainer" type="MarginContainer" parent="RightBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RightBar/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="AbilityContainer" type="VBoxContainer" parent="RightBar/ScrollContainer"]
+[node name="AbilityContainer" type="VBoxContainer" parent="RightBar/MarginContainer/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="BottomBar" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)
@@ -133,8 +126,8 @@ anchor_bottom = 1.0
 offset_top = -64.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_47dam")
-theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+theme = ExtResource("10_vbkmt")
+theme_override_styles/panel = ExtResource("11_jlm7k")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
 layout_mode = 2
@@ -177,7 +170,7 @@ anchor_right = 0.04
 anchor_bottom = 0.737
 offset_bottom = -0.880005
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vkn38")
+theme_override_styles/panel = ExtResource("11_jlm7k")
 
 [node name="TurnOrder" type="VBoxContainer" parent="LeftBar"]
 layout_mode = 2
@@ -196,8 +189,8 @@ anchor_left = 0.1
 anchor_right = 0.72
 offset_bottom = 9.0
 grow_horizontal = 2
-theme = SubResource("Theme_47dam")
-theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+theme = ExtResource("10_vbkmt")
+theme_override_styles/panel = ExtResource("11_jlm7k")
 
 [node name="CenterContainer" type="CenterContainer" parent="TopBar"]
 layout_mode = 2

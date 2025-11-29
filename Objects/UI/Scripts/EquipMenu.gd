@@ -46,17 +46,23 @@ func initialize(setPlayer : Node):
 			set_slot(newEquipSlot, slot, equipmentSlots[slot]["type"])
 		else:
 			#Otherwise, show the equipped item
-			set_equipment(newEquipSlot, equipmentSlots[slot]["equip"], false)
+			set_equipment(newEquipSlot, equipmentSlots[slot]["equip"], false, slot, equipmentSlots[slot]["type"])
 
 		newEquipSlot.getData.connect(display_inventory)
 
 func update_stats():
 	Statblock.update_stats(currentPartyMember)
 
-func display_inventory(buttonData):
+func display_inventory(buttonData = null):
 	#Display the list of equippable items for a given slot
-	var slot = buttonData["slot"]
-	var type = buttonData["type"]
+	var slot
+	var type
+	if buttonData:
+		slot = buttonData["slot"]
+		type = buttonData["type"]
+	else:
+		slot = currentSlot
+		type = currentType
 	
 	for i in InventoryContainer.get_children():
 		i.queue_free()
@@ -108,6 +114,7 @@ func equip(buttonData):
 				j.getData.connect(equip)
 			
 	update_stats()
+	display_inventory()
 	pass
 
 func unequip():
@@ -139,6 +146,7 @@ func unequip():
 				i.getData.connect(equip)
 
 	update_stats()
+	display_inventory()
 
 #Button helper functions
 func set_slot(button : Node, slot : String, type : String):
@@ -148,10 +156,15 @@ func set_slot(button : Node, slot : String, type : String):
 	button.add_data("type", type)
 	pass
 	
-func set_equipment(button : Node, equipment : EquipNode, showOwner : bool = false):
+func set_equipment(button : Node, equipment : EquipNode, showOwner : bool = false, slot : String = "", type : String = ""):
 	button.set_icon(equipment.icon)
 	button.add_data("item", equipment)
-	button.add_data("slot", equipment.slot)
+	if slot: 
+		button.add_data("slot", slot)
+	else: 
+		button.add_data("slot", equipment.slot)
+	if type:
+		button.add_data("type", type)
 	
 	if showOwner:
 		if equipment.Owner == currentPartyMember:

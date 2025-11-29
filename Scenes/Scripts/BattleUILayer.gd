@@ -14,7 +14,7 @@ extends Control
 @onready var bottomBar = $BottomBar
 @onready var leftBar = $LeftBar
 
-@onready var AbilityContainer = $RightBar/ScrollContainer/AbilityContainer
+@onready var AbilityContainer = $RightBar/MarginContainer/ScrollContainer/AbilityContainer
 @onready var LevelUpCardContainer = $MarginContainer2/LevelUpCardContainer
 @onready var ItemRewardCard = $MarginContainer3/ItemRewardCard
 @onready var EnemyStats = $BottomBar/HBoxContainer/MarginContainer/EnemyStats

@@ -1,22 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhpsyorslfhw3"]
+[gd_scene load_steps=6 format=3 uid="uid://dhpsyorslfhw3"]
 
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_f7f1n"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/ItemRewardCard.gd" id="2_vp3dw"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_j7uok"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_0myx5"]
+[ext_resource type="Script" uid="uid://d3nhsmgcag1qm" path="res://Objects/UI/Scripts/ItemRewardCard.gd" id="2_vp3dw"]
 [ext_resource type="PackedScene" uid="uid://bce3sdywtuaux" path="res://Objects/UI/ItemUI.tscn" id="3_l26km"]
 [ext_resource type="PackedScene" uid="uid://bdw10lf2pb5ip" path="res://Objects/Components/InventoryComponent.tscn" id="5_p3jex"]
-
-[sub_resource type="Theme" id="Theme_u05o6"]
-default_font = ExtResource("1_f7f1n")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80hpe"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
 
 [node name="ItemRewardCard" type="PanelContainer"]
 texture_filter = 1
@@ -25,8 +13,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_u05o6")
-theme_override_styles/panel = SubResource("StyleBoxFlat_80hpe")
+theme = ExtResource("1_j7uok")
+theme_override_styles/panel = ExtResource("2_0myx5")
 script = ExtResource("2_vp3dw")
 ItemUI = ExtResource("3_l26km")
 

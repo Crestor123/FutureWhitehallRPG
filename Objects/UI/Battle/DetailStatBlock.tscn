@@ -1,7 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://b7038mhew1d2l"]
 
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="1_cwxij"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/DetailStatBlock.gd" id="2_y5j5e"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_lx8kk"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_5pjv6"]
+[ext_resource type="Script" uid="uid://dp1r0slcv244w" path="res://Objects/UI/Scripts/DetailStatBlock.gd" id="2_y5j5e"]
 [ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="3_c4oro"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="3_xpse3"]
 [ext_resource type="Texture2D" uid="uid://d3tase345qgjc" path="res://Assets/SmallElementIcons/SmallFiretIcon.png" id="4_1b4q3"]
@@ -11,10 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://dk8u2vtmeakm0" path="res://Assets/SmallElementIcons/SmallElectricIcon.png" id="8_fjcnk"]
 [ext_resource type="Texture2D" uid="uid://bh3fk7esfin4b" path="res://Assets/SmallElementIcons/SmallAcidIcon.png" id="9_pvoaq"]
 [ext_resource type="Texture2D" uid="uid://ceul7lah0nrv" path="res://Assets/SmallElementIcons/SmallVoidIcon.png" id="10_bdapj"]
-
-[sub_resource type="Theme" id="Theme_47dam"]
-default_font = ExtResource("1_cwxij")
-default_font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ufn"]
 bg_color = Color(0, 0, 0, 1)
@@ -32,8 +29,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_47dam")
-theme_override_styles/panel = SubResource("StyleBoxFlat_b5ufn")
+theme = ExtResource("1_lx8kk")
+theme_override_styles/panel = ExtResource("2_5pjv6")
 script = ExtResource("2_y5j5e")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

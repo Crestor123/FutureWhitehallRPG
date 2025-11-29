@@ -1,22 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://df46g44jqaloo"]
+[gd_scene load_steps=6 format=3 uid="uid://df46g44jqaloo"]
 
-[ext_resource type="Script" path="res://Objects/UI/Scripts/EquipMenu.gd" id="1_vqg7w"]
-[ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="2_1lib3"]
+[ext_resource type="Script" uid="uid://xmkfxp7nu2yq" path="res://Objects/UI/Scripts/EquipMenu.gd" id="1_vqg7w"]
 [ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/LabelButton.tscn" id="3_4avlj"]
+[ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="3_nb8ic"]
+[ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="4_jbttc"]
 [ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="4_mfuy6"]
-
-[sub_resource type="Theme" id="Theme_4tk66"]
-default_font = ExtResource("2_1lib3")
-default_font_size = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1aqx"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
 
 [node name="EquipMenu" type="Control"]
 texture_filter = 1
@@ -36,8 +24,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_4tk66")
-theme_override_styles/panel = SubResource("StyleBoxFlat_i1aqx")
+theme = ExtResource("3_nb8ic")
+theme_override_styles/panel = ExtResource("4_jbttc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2

@@ -12,7 +12,7 @@ func initialize(setAlly : Node):
 	lblName.text = ally.Name
 	lblHealth.text = str(ally.Stats.get_health()) + " / " + str(ally.Stats.get_stat("health"))
 	healthBar.set_bar(ally.Stats.get_health(true))
-	lblMana.set("theme_override_colors/font_color", Color.BLUE)
+	#lblMana.set("theme_override_colors/font_color", Color.hex(0x6f8be6))
 	lblMana.text = str(int(ally.Stats.get_mana()))
 	pass
 
