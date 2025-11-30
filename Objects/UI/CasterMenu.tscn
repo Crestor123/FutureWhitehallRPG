@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcrulihdxoypq"]
+[gd_scene load_steps=7 format=3 uid="uid://dcrulihdxoypq"]
 
 [ext_resource type="Script" uid="uid://d2uvb3gjvxkq7" path="res://Objects/UI/Scripts/CasterMenu.gd" id="1_7mf3o"]
 [ext_resource type="PackedScene" uid="uid://3y78cpohvo3u" path="res://Objects/UI/Statblock.tscn" id="2_q4wk2"]
 [ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/LabelButton.tscn" id="2_rma8k"]
 [ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="3_m0hsi"]
 [ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="4_kmwit"]
+[ext_resource type="Texture2D" uid="uid://dx0emmo681tr6" path="res://Assets/CastingDevice.png" id="6_kmwit"]
 
 [node name="CasterMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +33,18 @@ layout_mode = 2
 
 [node name="Statblock" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_q4wk2")]
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("4_kmwit")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("6_kmwit")
+stretch_mode = 2
 
 [node name="CasterSlots" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2

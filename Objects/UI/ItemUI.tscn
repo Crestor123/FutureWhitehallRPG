@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="1_1pt3m"]
 [ext_resource type="Script" uid="uid://cjy3rgasb17gj" path="res://Objects/UI/Scripts/ItemUI.gd" id="2_0a254"]
-[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_a782i"]
 [ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="2_o5t5c"]
+[ext_resource type="Texture2D" uid="uid://qnwfe83f7nk6" path="res://Assets/Close2.png" id="4_1pt3m"]
 
 [node name="ItemUI" type="PanelContainer"]
 texture_filter = 1
@@ -33,7 +33,7 @@ size_flags_vertical = 4
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_a782i")
+texture = ExtResource("4_1pt3m")
 
 [node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

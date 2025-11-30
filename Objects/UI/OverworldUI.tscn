@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://bl7pjotc7ibe3"]
 
 [ext_resource type="Script" uid="uid://diu0p6a88godd" path="res://Objects/UI/Scripts/OverworldUI.gd" id="1_a6sns"]
-[ext_resource type="Texture2D" uid="uid://t8wr247qndot" path="res://Assets/Options.png" id="1_clnle"]
 [ext_resource type="PackedScene" uid="uid://c8huwo6ppqdrt" path="res://Objects/UI/LabelButton.tscn" id="2_5cv1q"]
 [ext_resource type="PackedScene" uid="uid://2fq6scld01gq" path="res://Objects/UI/DialogBox.tscn" id="2_caxfj"]
 [ext_resource type="FontFile" uid="uid://cq6y8rhxtac33" path="res://Assets/dogicapixel.ttf" id="3_kkorv"]
 [ext_resource type="PackedScene" uid="uid://h3m45oqrscux" path="res://Objects/UI/DialogueState.tscn" id="4_62xy5"]
 [ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="4_yn734"]
+[ext_resource type="Texture2D" uid="uid://ho1qpjvtao33" path="res://Assets/Options2.png" id="5_78ja4"]
 [ext_resource type="Theme" uid="uid://y1a1n1fegqy2" path="res://Objects/UI/Styles/UITheme.tres" id="6_78ja4"]
 [ext_resource type="StyleBox" uid="uid://ovnmlldjmprs" path="res://Objects/UI/Styles/UIStyle.tres" id="7_aibgd"]
 
@@ -30,7 +30,7 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 focus_mode = 0
-icon = ExtResource("1_clnle")
+icon = ExtResource("5_78ja4")
 flat = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

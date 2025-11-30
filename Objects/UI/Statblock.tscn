@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://3y78cpohvo3u"]
 
-[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="1_77ex4"]
-[ext_resource type="Script" path="res://Objects/UI/Scripts/Statblock.gd" id="1_ygv54"]
+[ext_resource type="Script" uid="uid://cusene14hr23c" path="res://Objects/UI/Scripts/Statblock.gd" id="1_ygv54"]
+[ext_resource type="Texture2D" uid="uid://qnwfe83f7nk6" path="res://Assets/Close2.png" id="2_b6ri3"]
 
 [node name="Statblock" type="VBoxContainer"]
 script = ExtResource("1_ygv54")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_77ex4")
+texture = ExtResource("2_b6ri3")
 stretch_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

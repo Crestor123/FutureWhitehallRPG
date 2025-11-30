@@ -6,6 +6,8 @@ extends Node
 
 @export var tileSize = 16
 
+@onready var Anim = $AnimationPlayer
+
 var CurrentScene : Node = null
 var CurrentScenePath : String = ""
 var PrevScene : String = ""
@@ -18,11 +20,17 @@ var stepCount : int = 0
 
 var currentInteractable : Interactable = null
 
+signal hideUI
+signal showUI
 signal encounter()
 signal setInteractable
 signal unsetInteractable
 
 func load_scene(scenePath : String, newPosition : Vector2):
+	hideUI.emit()
+	Anim.play("fade_out")
+	await Anim.animation_finished
+	
 	if CurrentScene:
 		CharacterPosition = Character.global_position
 		PrevScene = CurrentScenePath
@@ -49,6 +57,10 @@ func load_scene(scenePath : String, newPosition : Vector2):
 		print(CurrentScene.global_position)
 		
 		link_objects()
+		
+	Anim.play("fade_in")
+	await Anim.animation_finished
+	showUI.emit()
 	pass
 
 func load_subscene(scene : PackedScene):

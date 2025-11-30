@@ -166,7 +166,8 @@ func display_spells():
 	for i in currentPartyMember.Caster.spellCards:
 		var spell = LabelButton.instantiate()
 		CasterContainer.add_child(spell)
-		spell.set_label(i.itemName + " " + str(i.memoryCost))
+		spell.set_label(i.itemName, str(i.memoryCost))
+		spell.lblCost.set("theme_override_colors/font_color", spell.MemoryColor)
 		spell.set_icon(i.icon)
 		spell.add_data("spell", i)
 		spell.getData.connect(unequip_spell)
@@ -175,7 +176,8 @@ func display_spells():
 		if i is SpellCardNode and i.Owner == null:
 			var spell = LabelButton.instantiate()
 			InventoryContainer.add_child(spell)
-			spell.set_label(i.itemName + " " + str(i.memoryCost))
+			spell.set_label(i.itemName, str(i.memoryCost))
+			spell.lblCost.set("theme_override_colors/font_color", spell.MemoryColor)
 			spell.set_icon(i.icon)
 			spell.add_data("spell", i)
 			if i.Owner == currentPartyMember:
@@ -192,7 +194,8 @@ func equip_spell(buttonData):
 	#Add a new button to the caster for the equipped spell
 	var newLabel = LabelButton.instantiate()
 	CasterContainer.add_child(newLabel)
-	newLabel.set_label(spell.itemName + " " + str(spell.memoryCost))
+	newLabel.set_label(spell.itemName, str(spell.memoryCost))
+	newLabel.lblCost.set("theme_override_colors/font_color", newLabel.MemoryColor)
 	newLabel.set_icon(spell.icon)
 	newLabel.add_data("spell", spell)
 	newLabel.getData.connect(unequip_spell)
@@ -200,7 +203,8 @@ func equip_spell(buttonData):
 	#Update the inventory list
 	for i in InventoryContainer.get_children():
 		if !i.data.has("spell"): continue
-		i.set_label(i.data["spell"].itemName + " " + str(i.data["spell"].memoryCost))
+		i.set_label(i.data["spell"].itemName, str(i.data["spell"].memoryCost))
+		i.lblCost.set("theme_override_colors/font_color", i.MemoryColor)
 		if i.getData.is_connected(equip_spell):
 			i.getData.disconnect(equip_spell)
 		if i.getData.is_connected(unequip_spell):
@@ -227,7 +231,8 @@ func unequip_spell(buttonData):
 	#Update the inventory list
 	for i in InventoryContainer.get_children():
 		if !i.data.has("spell"): continue
-		i.set_label(i.data["spell"].itemName + " " + str(i.data["spell"].memoryCost))
+		i.set_label(i.data["spell"].itemName, str(i.data["spell"].memoryCost))
+		spell.lblCost.set("theme_override_colors/font_color", spell.MemoryColor)
 		if i.getData.is_connected(equip_spell):
 			i.getData.disconnect(equip_spell)
 		if i.getData.is_connected(unequip_spell):
@@ -239,6 +244,7 @@ func unequip_spell(buttonData):
 			i.getData.connect(equip_spell)
 			
 	Statblock.update_stats(currentPartyMember)
+	display_spells()
 	pass
 
 func clear_inventory():

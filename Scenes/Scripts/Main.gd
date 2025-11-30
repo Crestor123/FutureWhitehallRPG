@@ -15,6 +15,8 @@ func _ready():
 	
 	SceneChanger.setInteractable.connect(interactable_set)
 	SceneChanger.unsetInteractable.connect(interactable_unset)
+	SceneChanger.showUI.connect(show_ui)
+	SceneChanger.hideUI.connect(hide_ui)
 	SceneChanger.load_scene(StartingScene, StartingPosition)
 	SceneChanger.encounter.connect(enter_battle)
 	
@@ -57,6 +59,12 @@ func enter_battle(enemyFormation):
 	SceneChanger.CurrentScene.initialize(Player.PartyMembers, enemyFormation, Player.Inventory)
 	SceneChanger.CurrentScene.battleWon.connect(battle_victory)
 	pass
+
+func show_ui():
+	UI.show()
+	
+func hide_ui():
+	UI.hide()
 
 func open_menu(menuState : String):
 	await SceneChanger.load_subscene(SceneChanger.PauseMenu)

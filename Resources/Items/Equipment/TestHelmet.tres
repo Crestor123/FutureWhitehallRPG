@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EquipResource" load_steps=3 format=3 uid="uid://d07ihjdk063dj"]
+[gd_resource type="Resource" script_class="EquipResource" load_steps=4 format=3 uid="uid://d07ihjdk063dj"]
 
-[ext_resource type="Texture2D" uid="uid://bulrlqlf42moe" path="res://Assets/Bag.png" id="1_aghkl"]
-[ext_resource type="Script" path="res://Resources/Templates/Items/EquipResource.gd" id="1_f64ta"]
+[ext_resource type="Script" uid="uid://bh8gkuff8ddtk" path="res://Resources/Templates/Battle/AbilityResource.gd" id="1_46way"]
+[ext_resource type="Script" uid="uid://cht7erp5llbci" path="res://Resources/Templates/Items/EquipResource.gd" id="1_f64ta"]
+[ext_resource type="Texture2D" uid="uid://dsekji1gvmeik" path="res://Assets/Bag2.png" id="2_gofrp"]
 
 [resource]
 script = ExtResource("1_f64ta")
@@ -16,26 +17,5 @@ bonuses = {
 "strength": 0,
 "vitality": 5
 }
-resistances = {
-"acid": 0,
-"air": 0,
-"earth": 0,
-"electricity": 0,
-"fire": 0,
-"void": 0,
-"water": 0
-}
-statusResists = {
-"blind": 0,
-"burn": 0,
-"silence": 0,
-"sleep": 0,
-"slow": 0,
-"stun": 0
-}
 name = "Test Helmet"
-description = ""
-icon = ExtResource("1_aghkl")
-cost = 0
-stackable = false
-quantity = 1
+icon = ExtResource("2_gofrp")

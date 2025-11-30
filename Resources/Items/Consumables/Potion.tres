@@ -1,23 +1,17 @@
 [gd_resource type="Resource" script_class="ConsumableResource" load_steps=4 format=3 uid="uid://cc71xyw6etrys"]
 
-[ext_resource type="Script" path="res://Resources/Templates/EffectResource.gd" id="1_pypxo"]
-[ext_resource type="Texture2D" uid="uid://csnjvdqwhfwhj" path="res://Assets/Close.png" id="2_2w47i"]
-[ext_resource type="Script" path="res://Resources/Templates/Items/ConsumableResource.gd" id="2_etoda"]
+[ext_resource type="Script" uid="uid://eq1wyju7dw2j" path="res://Resources/Templates/EffectResource.gd" id="1_pypxo"]
+[ext_resource type="Script" uid="uid://brouce3cymwdy" path="res://Resources/Templates/Items/ConsumableResource.gd" id="2_etoda"]
+[ext_resource type="Texture2D" uid="uid://qnwfe83f7nk6" path="res://Assets/Close2.png" id="2_pfoga"]
 
 [resource]
 script = ExtResource("2_etoda")
 stat = "health"
 element = "water"
 bonus = 10
-turns = 0
-battleOnly = false
 targetAllies = true
-targetAll = false
-additionalEffects = Array[ExtResource("1_pypxo")]([])
 name = "Potion"
-id = ""
 description = "A simple potion."
-icon = ExtResource("2_2w47i")
+icon = ExtResource("2_pfoga")
 cost = 5
 stackable = true
-quantity = 1

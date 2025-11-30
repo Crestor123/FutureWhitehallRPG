@@ -4,9 +4,13 @@ class_name LabelButton
 
 @onready var Icon = $HBoxContainer/Icon
 @onready var lblName = $HBoxContainer/Name
+@onready var lblCost = $HBoxContainer/Cost
 @onready var btnSelect = $Select
 
 @export var defaultTexture : Texture2D
+@export var ManaColor : Color
+@export var AmmoColor : Color
+@export var MemoryColor : Color
 
 signal pressed
 signal getData
@@ -17,8 +21,9 @@ func add_data(key : String, value):
 	data[key] = value
 	pass
 
-func set_label(setName : String):
+func set_label(setName : String, setCost : String = ""):
 	lblName.text = setName
+	lblCost.text = setCost
 
 func append_label(append : String):
 	lblName.text = lblName.text + append
